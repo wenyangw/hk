@@ -1,7 +1,8 @@
 package com.justdin.test.dao;
 
+import lnyswz.hk.utils.PagerModel;
+
 import com.justdin.test.bean.User;
-import com.justdin.utils.PagerModel;
 
 
 public interface UserDAO {

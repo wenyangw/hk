@@ -1,4 +1,4 @@
-package com.justdin.utils;
+package lnyswz.hk.utils;
 
 public class SystemContext {
 	

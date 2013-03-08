@@ -20,10 +20,10 @@
 			net.sourceforge.jtds.jdbc.Driver
 		</property>
 		<property name="connection.url">
-			jdbc:jtds:sqlserver://218.25.74.4:1433/ssh3
+			jdbc:jtds:sqlserver://192.168.0.3:1433/lnyswz
 		</property>
 
-		<property name="hibernate.hbm2ddl.auto">update</property>
+<!--		<property name="hibernate.hbm2ddl.auto">update</property>-->
 		<mapping resource="com/justdin/test/bean/User.hbm.xml" />
 
 

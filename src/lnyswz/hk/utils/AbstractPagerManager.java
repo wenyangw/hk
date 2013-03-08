@@ -1,4 +1,4 @@
-package com.justdin.utils;
+package lnyswz.hk.utils;
 
 import java.util.List;
 

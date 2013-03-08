@@ -35,7 +35,7 @@
 
     <!-- 哪些类的哪些方法参与事务 -->
     <aop:config>
-        <aop:pointcut id="allManagerMethod" expression="execution(* com.justdin.service.*.*(..))"/>
+        <aop:pointcut id="allManagerMethod" expression="execution(* lnyswz.hk.service.*.*(..))"/>
         <aop:advisor pointcut-ref="allManagerMethod" advice-ref="txAdvice"/>
     </aop:config>	
 

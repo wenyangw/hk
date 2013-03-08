@@ -1,9 +1,10 @@
 package com.justdin.test.dao.impl;
 
+import lnyswz.hk.utils.AbstractPagerManager;
+import lnyswz.hk.utils.PagerModel;
+
 import com.justdin.test.bean.User;
 import com.justdin.test.dao.UserDAO;
-import com.justdin.utils.AbstractPagerManager;
-import com.justdin.utils.PagerModel;
 
 public class IUserDAO extends AbstractPagerManager implements UserDAO {
 
