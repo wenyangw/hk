@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<!-- Generated file - Do not edit! -->
+
+<hibernate-configuration>
+
+	<!-- a SessionFactory instance listed as /jndi/name -->
+	<session-factory>
+
+		<!-- properties -->
+		<property name="dialect">
+			org.hibernate.dialect.SQLServerDialect
+		</property>
+		<property name="show_sql">true</property>
+		<property name="use_outer_join">false</property>
+		<property name="connection.username">sa</property>
+		<property name="connection.password">sine</property>
+		<property name="connection.driver_class">
+			net.sourceforge.jtds.jdbc.Driver
+		</property>
+		<property name="connection.url">
+			jdbc:jtds:sqlserver://218.25.74.4:1433/ssh3
+		</property>
+
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<mapping resource="com/justdin/test/bean/User.hbm.xml" />
+
+
+
+	</session-factory>
+
+</hibernate-configuration>
