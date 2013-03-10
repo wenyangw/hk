@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+ <class name="lnyswz.hk.bean.Xsmx" table="V_XSMX">
+  <composite-id name="id" class="lnyswz.hk.bean.XsmxId">
+   <key-property name="khbh" type="string">
+    <column name="khbh"/>
+   </key-property>
+   <key-property name="bmbh" type="string">
+    <column name="bmbh"/>
+   </key-property>
+   <key-property name="xsfplsh" type="string">
+    <column name="xsfplsh" />
+   </key-property>
+   <key-property name="xsje" type="big_decimal">
+    <column name="xsje" />
+   </key-property>
+   <key-property name="hked" type="float">
+    <column name="hked" />
+   </key-property>
+   <key-property name="kpsj" type="string">
+    <column name="kpsj"/>
+   </key-property>
+   <key-property name="hksj" type="string">
+    <column name="hksj"/>
+   </key-property>
+  </composite-id>
+ </class>
+</hibernate-mapping>
+

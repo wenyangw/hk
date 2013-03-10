@@ -26,7 +26,7 @@ public class UserDAOImpl extends AbstractPagerManager implements UserDAO {
 	}
 	
 	public User findUserByName(String username) {
-		List<User> users = this.getHibernateTemplate().find("from User u where u.name = ?", username);
+		List<User> users = this.getHibernateTemplate().find("from User u where u.username = ?", username);
 		if(users.size() == 1){
 			return users.get(0);
 		}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="xdoclet-hibernate" default="xdoclet" basedir=".">
+
+    <property name="xdoclet.home" value="d:/Utilitie/xdoclet-1.2.3"/>
+    <property name="xdoclet.lib.dir" value="${xdoclet.home}/lib"/>
+    <property name="lib.dir" value="${basedir}/WebRoot/WEB-INF/lib"/>
+    <property name="project.src.dir" value="${basedir}/src"/>
+    <property name="project.classes.dir" value="${basedir}/src"/>
+    <property name="project.resources.dir" value="${basedir}/src"/>
+    <!--
+    <property name="tomcat.lib.dir" value="E:\myserver\zfv-tomcat-5.5.20\common\lib"/>
+    -->
+    <property name="hibernate.cfg.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+    <property name="hibernate.cfg.driver" value="net.sourceforge.jtds.jdbc.Driver"/>
+    <property name="hibernate.cfg.username" value="sa"/>
+    <property name="hibernate.cfg.password" value="sine"/>
+    <property name="hibernate.cfg.jdbcurl" value="jdbc:jtds:sqlserver://218.25.74.4:1433/lnyswz"/>
+    <property name="hibernate.cfg.showsql" value="true"/>
+    <target name="xdoclet">
+        <path id="xdoclet.task.classpath">
+            <!--
+            <pathelement path="${tomcat.lib.dir}/*.jar"/>
+            -->
+            <fileset dir="${xdoclet.lib.dir}">
+                <include name="**/*.jar"/>
+            </fileset>
+            <fileset dir="${lib.dir}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+        <taskdef name="hibernatedoclet"
+            classname="xdoclet.modules.hibernate.HibernateDocletTask"
+            classpathref="xdoclet.task.classpath"
+        />
+    </target>
+    <target name="mapping" depends="xdoclet">
+        <hibernatedoclet destdir="${project.classes.dir}" verbose="true" force="false">
+            <fileset dir="${project.src.dir}">
+                <include name="**/lnyswz/hk/bean/**/*.java"/>
+            </fileset>
+            <hibernate version="3.0" xmlencoding="gb2312"/>
+        </hibernatedoclet>
+    </target>
+    <target name="cfg" depends="xdoclet">
+        <hibernatedoclet destdir="${project.resources.dir}" verbose="true" force="true">
+            <fileset dir="${project.src.dir}">
+                <include name="**/lnyswz/hk/bean/**/*.java"/>
+            </fileset>
+            <hibernatecfg
+                destinationFile="hibernate.cfg.xml"
+                dialect="${hibernate.cfg.dialect}"
+                driver="${hibernate.cfg.driver}"
+                userName="${hibernate.cfg.username}"
+                password="${hibernate.cfg.password}"
+                jdbcUrl="${hibernate.cfg.jdbcurl}"
+                showSql="${hibernate.cfg.showsql}"
+                destDir="${project.resources.dir}"
+                xmlencoding="gb2312"
+                version="3.0">
+                <otherProperty name="hibernate.hbm2ddl.auto" value="update"/>
+                <!--
+                <otherProperty name="format_sql" value="true"/>
+                -->
+            </hibernatecfg>
+                
+        </hibernatedoclet>
+    </target>
+  <target name="sql" depends="xdoclet">
+        <taskdef name="schemaexport"
+            classname="org.hibernate.tool.hbm2ddl.SchemaExportTask"
+            classpathref="xdoclet.task.classpath"/>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
+        <property name="hibernate.format_sql" value="true"/>
+        <property name="hibernate.use_sql_comments true" value="true"/>
+        <schemaexport
+            quiet="no"
+            text="yes"
+            drop="no"
+            delimiter=";"
+            output="${project.resources.dir}/sql-schema.sql">
+            <fileset dir="${project.classes.dir}">
+                <include name="**/lnyswz/hk/bean/**/*.hbm.xml"/>
+            </fileset>
+        </schemaexport>
+    </target>
+</project>

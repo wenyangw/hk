@@ -7,7 +7,7 @@
 
     <constant name="struts.devMode" value="true" />
 
-    <package name="test" namespace="/test" extends="struts-default">
+    <package name="hk" extends="struts-default">
 
         <global-results>
             <result name="error">/error.jsp</result>
@@ -16,8 +16,19 @@
 
 
         <action name="login"  class="loginAction">
-            <result name="success">/common/welcome.jsp</result>
+            <result name="success">/jsp/main.jsp</result>
         </action>
+        
+        <action name="sxkh"  class="sxkhAction">
+            <result name="list">/jsp/sxkhList.jsp</result>
+            <result name="editPage">/jsp/sxkhEdit.jsp</result>
+            <result name="ye">/jsp/sxkhInfo.jsp</result>
+        </action>
+        
+        <action name="xsmx"  class="xsmxAction">
+            <result name="list">/jsp/xsmxList.jsp</result>
+        </action>
+        
     </package>
 
 

@@ -1,5 +1,5 @@
 #MyEclipse Hibernate Properties
-#Sun Jan 27 16:51:06 CST 2013
+#Sat Mar 09 21:19:47 CST 2013
 sessionFactoryName=com.justdin.bean.HibernateSessionFactory
 genBasicCompId=false
 profile=
@@ -19,6 +19,6 @@ sessionFactoryId=
 basePersistenceClass=
 genAnnotations=false
 reSettingsFile=
-configFile=/ssh3/src/hibernate.cfg.xml
+configFile=/hk/src/hibernate.cfg.xml
 createConfigFile=false
 addLibs2Classpath=false

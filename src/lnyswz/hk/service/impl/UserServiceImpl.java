@@ -16,8 +16,12 @@ public class UserServiceImpl implements UserService {
 		if(user == null){
 			return null;
 		}
-		if(password.equals(user.getPassword())){
-			return user;
+		if(user.isUsed()){
+			if(password.equals(user.getPassword())){
+				return user;
+			}
+		}else{
+			System.out.println("该用户已禁用");
 		}
 		return null;
 	}

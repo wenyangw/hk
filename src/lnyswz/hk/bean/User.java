@@ -18,6 +18,8 @@ public class User{
 	
 	private String name;
 	
+	private boolean used;
+	
 	/**
 	 * @hibernate.id
 	 * generator-class="native"
@@ -29,25 +31,8 @@ public class User{
 		this.id = id;
 	}
 	/**
-	 * @hibernate.property
-	 */
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * @hibernate.property
-	 */
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	/**
-	 * @hibernate.property
+	 * @hibernate.property not-null="true" length="12"
+	 * 
 	 */
 	public String getUsername() {
 		return username;
@@ -56,12 +41,39 @@ public class User{
 		this.username = username;
 	}
 	/**
-	 * @hibernate.property
+	 * @hibernate.property length="8"
+	 */
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	/**
+	 * @hibernate.property not-null="true" length="30"
+	 */
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @hibernate.property not-null="true" length="2"
 	 */
 	public String getOrg() {
 		return org;
 	}
 	public void setOrg(String org) {
 		this.org = org;
+	}
+	/**
+	 * @hibernate.property not-null="true"
+	 */
+	public boolean isUsed() {
+		return used;
+	}
+	public void setUsed(boolean used) {
+		this.used = used;
 	}
 }
