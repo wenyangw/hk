@@ -12,7 +12,7 @@ public class XsmxTest {
 	public static void main(String[] args) {
 		Session session = HibernateUtil.openSession();
 
-		List<Xsmx> lists = (List<Xsmx>)session.createQuery("from XsmxS").list();
+		List<Xsmx> lists = (List<Xsmx>)session.createQuery("from Xsmx").list();
 		
 		for(Xsmx xsmx : lists){
 			System.out.println("xsmx's xsfplsh is " + xsmx.getId().getXsfplsh());
