@@ -12,6 +12,9 @@
     <bean id="sxkhService" class="lnyswz.hk.service.impl.SxkhServiceImpl">
     	<property name="sxkhDAO" ref="sxkhDAO" />
     </bean>
+    <bean id="xsmxService" class="lnyswz.hk.service.impl.XsmxServiceImpl">
+    	<property name="xsmxDAO" ref="xsmxDAO" />
+    </bean>
 	<!-- DAO Setup -->
 	<bean id="userDAO" class="lnyswz.hk.dao.impl.UserDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />        
@@ -19,7 +22,9 @@
     <bean id="sxkhDAO" class="lnyswz.hk.dao.impl.SxkhDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />        
     </bean>
-    
+    <bean id="xsmxDAO" class="lnyswz.hk.dao.impl.XsmxDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />        
+    </bean>
         
 </beans>
 

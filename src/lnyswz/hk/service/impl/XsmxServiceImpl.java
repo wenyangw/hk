@@ -4,7 +4,7 @@ import lnyswz.hk.dao.XsmxDAO;
 import lnyswz.hk.service.XsmxService;
 import lnyswz.hk.utils.PagerModel;
 
-public class XsmxserviceImpl implements XsmxService {
+public class XsmxServiceImpl implements XsmxService {
 	private XsmxDAO xsmxDAO;
 	
 	@Override

@@ -14,7 +14,8 @@ public class XsmxDAOImpl extends AbstractPagerManager implements
 		
 	@Override
 	public PagerModel findXsmxs(String bmbh, String khbh) {
-		return this.searchPaginated("from Xsmx x where x.bmbh = ? and khbh = ?", new String[]{bmbh, khbh});
+		System.out.println("bmbh,khbh = " + bmbh + ", " + khbh);
+		return this.searchPaginated("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ?", new String[]{bmbh, khbh});
 	}
 
 }

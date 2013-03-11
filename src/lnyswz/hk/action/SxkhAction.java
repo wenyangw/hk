@@ -27,9 +27,9 @@ public class SxkhAction extends ActionSupport {
 		User user = (User)session.getAttribute("user");
 		String org = user.getOrg();
 		
-		PagerModel pg = sxkhService.findSxkhs(org);
+		PagerModel pm = sxkhService.findSxkhs(org);
 		
-		request.setAttribute("pg", pg);
+		request.setAttribute("pm", pm);
 
 		return "list";
 	}

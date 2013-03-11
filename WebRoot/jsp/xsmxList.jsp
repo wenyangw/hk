@@ -44,13 +44,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${xsmx.id.hksj}</td>
             <td>${xsmx.id.xsje}</td>
             <td>${xsmx.id.hked}</td>
-            <td><input type="text" name=""></td>
+            <td><input type="text" name="hk"></input></td>
           </tr>
           </c:forEach>
 	</c:if>
           
           <!-- 在列表数据为空的时候，要显示的提示信息 -->
-	<c:if test="${empty pg.list}">
+	<c:if test="${empty pm.list}">
 	    <tr>
 	    	<td colspan="5" align="center" bgcolor="#EFF3F7" class="TableBody1" onmouseover="this.bgColor = '#DEE7FF';" onmouseout="this.bgColor='#EFF3F7';">
 	    	没有找到相应的记录

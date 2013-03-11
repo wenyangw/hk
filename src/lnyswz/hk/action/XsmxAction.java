@@ -23,7 +23,7 @@ public class XsmxAction extends ActionSupport {
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
 		PagerModel pm = xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh());
-		
+		System.out.println("Hello World");
 		request.setAttribute("pm", pm);
 		return "list";
 	}

@@ -37,8 +37,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<td>编辑</td>
     	<td>操作</td>
     </tr>
-    <c:if test="${!empty pg.list}">
-          <c:forEach items="${pg.list}" var="sxkh">
+    <c:if test="${!empty pm.list}">
+          <c:forEach items="${pm.list}" var="sxkh">
           
           <tr>
             
@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</c:if>
           
           <!-- 在列表数据为空的时候，要显示的提示信息 -->
-	<c:if test="${empty pg.list}">
+	<c:if test="${empty pm.list}">
 	    <tr>
 	    	<td colspan="5" align="center" bgcolor="#EFF3F7" class="TableBody1" onmouseover="this.bgColor = '#DEE7FF';" onmouseout="this.bgColor='#EFF3F7';">
 	    	没有找到相应的记录
