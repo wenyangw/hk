@@ -27,15 +27,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <table>
     <tr>
-    	<td>客户编号</td>
-    	<td>客户名称</td>
-    	<td>授信期间</td>
-    	<td>授信额度</td>
-    	<td>历史累计</td>
-    	<td>截止流水号</td>
-    	<td>是否月结</td>
-    	<td>编辑</td>
-    	<td>操作</td>
+    	<th>客户编号</th>
+    	<th>客户名称</th>
+    	<th>授信期间</th>
+    	<th>授信额度</th>
+    	<th>历史累计</th>
+    	<th>截止流水号</th>
+    	<th>是否月结</th>
+    	<th>编辑</th>
+    	<th>操作</th>
     </tr>
     <c:if test="${!empty pm.list}">
           <c:forEach items="${pm.list}" var="sxkh">

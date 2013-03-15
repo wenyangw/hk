@@ -5,6 +5,6 @@ import java.util.List;
 import lnyswz.hk.bean.Hkmx;
 
 public interface HkmxDAO {
-	public String getLastLsh(int sxkhId, String khbh);
+	public String getLastHkLsh(String bmbh, String khbh);
 	public List<Hkmx> findUncompletedHkmxs();
 }

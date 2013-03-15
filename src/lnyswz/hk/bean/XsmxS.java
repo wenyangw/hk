@@ -18,21 +18,21 @@ import java.math.BigDecimal;
  * @author Wenyang(wenyangw@gmail.com) 
  * @version 1.0 
  */ 
-public class XsmxId implements java.io.Serializable{ 
+public class XsmxS implements java.io.Serializable{ 
 	private String khbh;
 	private String xsfplsh;
 	private BigDecimal xsje;
 	//private float hked;
 	private String kpsj;
-	//private String hksj;
+	private String hksj;
     private String bmbh;
 
 	/** 
 	 * default constructor. 
 	 */ 
-	public XsmxId() { 
+	public XsmxS() { 
 		super(); 
-	} // END: XsmxId 
+	} 
 
 
 	/** 
@@ -163,18 +163,18 @@ public class XsmxId implements java.io.Serializable{
 	 *
 	 * @return hksj as String.
 	 */
-//	public String getHksj() {
-//	    return hksj;
-//	}
+	public String getHksj() {
+	    return hksj;
+	}
 	
 	/**
 	 * Set hksj.
 	 *
 	 * @param hksj the value to set.
 	 */
-//	public void setHksj(String hksj) {
-//	    this.hksj = hksj;
-//	}
+	public void setHksj(String hksj) {
+	    this.hksj = hksj;
+	}
     
     /**
      * Get bmbh.
@@ -193,6 +193,6 @@ public class XsmxId implements java.io.Serializable{
     public void setBmbh(String bmbh) {
         this.bmbh = bmbh;
     }
-} // END: XsmxId 
+} // END: XsmxS
 ///:~
 

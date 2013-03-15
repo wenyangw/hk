@@ -13,9 +13,8 @@ public class XsmxDAOImpl extends AbstractPagerManager implements
 		lnyswz.hk.dao.XsmxDAO {
 		
 	@Override
-	public PagerModel findXsmxs(String bmbh, String khbh) {
-		System.out.println("bmbh,khbh = " + bmbh + ", " + khbh);
-		return this.searchPaginated("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ?", new String[]{bmbh, khbh});
+	public PagerModel findXsmxs(String bmbh, String khbh, String xsfplsh) {
+		return this.searchPaginated("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh});
 	}
 
 }

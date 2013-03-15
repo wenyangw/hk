@@ -14,6 +14,7 @@
     </bean>
     <bean id="xsmxService" class="lnyswz.hk.service.impl.XsmxServiceImpl">
     	<property name="xsmxDAO" ref="xsmxDAO" />
+    	<property name="hkmxDAO" ref="hkmxDAO" />
     </bean>
 	<!-- DAO Setup -->
 	<bean id="userDAO" class="lnyswz.hk.dao.impl.UserDAOImpl">
@@ -25,6 +26,8 @@
     <bean id="xsmxDAO" class="lnyswz.hk.dao.impl.XsmxDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />        
     </bean>
-        
+    <bean id="hkmxDAO" class="lnyswz.hk.dao.impl.HkmxDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />        
+    </bean>    
 </beans>
 

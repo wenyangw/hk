@@ -27,24 +27,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <table>
     <tr>
-    	<td>发票编号</td>
-    	<td>销售时间</td>
-    	<td>还款时间</td>
-    	<td>发票金额</td>
-    	<td>己付金额</td>
-    	<td>本次还款</td>
+    	<th>发票编号</th>
+    	<th>销售时间</th>
+    	<th>还款时间</th>
+    	<th>发票金额</th>
     </tr>
     <c:if test="${!empty pm.list}">
-          <c:forEach items="${pm.list}" var="xsmx" varStatus="i">
+          <c:forEach items="${pm.list}" var="xsmxs" varStatus="i">
           
           <tr>
             
-            <td>${xsmx.id.xsfplsh}</td>
-            <td>${xsmx.id.kpsj}</a></td>
-            <td>${xsmx.id.hksj}</td>
-            <td>${xsmx.id.xsje}</td>
-            <td>${xsmx.id.hked}</td>
-            <td><input type="text" name="hk"></input></td>
+            <td>${xsmxs.xsfplsh}</td>
+            <td>${xsmxs.kpsj}</td>
+            <td>${xsmxs.hksj}</td>
+            <td>${xsmxs.xsje}</td>
           </tr>
           </c:forEach>
 	</c:if>
