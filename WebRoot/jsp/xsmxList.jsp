@@ -31,6 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<th>销售时间</th>
     	<th>还款时间</th>
     	<th>发票金额</th>
+    	<th>还款金额</th>
     </tr>
     <c:if test="${!empty pm.list}">
           <c:forEach items="${pm.list}" var="xsmxs" varStatus="i">
@@ -41,6 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${xsmxs.kpsj}</td>
             <td>${xsmxs.hksj}</td>
             <td>${xsmxs.xsje}</td>
+            <td>${xsmxs.xsfplsh == hkmx.xsfplsh ? hkmx.hkje : 0}</td>
           </tr>
           </c:forEach>
 	</c:if>

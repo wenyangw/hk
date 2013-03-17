@@ -21,6 +21,11 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	}
 	
 	@Override
+	public List<Hkmx> getLastHkmx(String bmbh, String khbh) {
+		return this.getHibernateTemplate().find("from Hkmx h where h.xsfplsh = ?", getLastHkLsh(bmbh, khbh));
+	}
+	
+	@Override
 	public List<Hkmx> findUncompletedHkmxs() {
 		return this.getHibernateTemplate().find("from Hkmx h where h.completed = '0'");
 	}
