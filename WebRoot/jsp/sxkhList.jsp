@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${sxkh.lsh}</td>
             <td>${sxkh.yjkh}</td>
             <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a href="sxkh!delete.action">删除</a></td>
-            <td><a href="xsmx.action?id=${sxkh.id}">销售明细</a>&nbsp;<a href="sxkh!ye.action?id=${sxkh.id}">余额</a></td>
+            <td><a href="xsmx.action?id=${sxkh.id}">销售明细</a>&nbsp;<a href="xsmx!total.action?id=${sxkh.id}">余额</a></td>
           </tr>
           </c:forEach>
 	</c:if>

@@ -908,5 +908,8 @@ public static String getStringDateShort() {
     return first_day;
   }
 
+  public static void main(String[] args) {
+	System.out.println(daysBetween(stringToDate("2013-03-18"), stringToDate("2012-9-16")));
+}
 
 }

@@ -27,6 +27,7 @@
         
         <action name="xsmx"  class="xsmxAction">
             <result name="list">/jsp/xsmxList.jsp</result>
+            <result name="total">/jsp/xsmxTotal.jsp</result>
         </action>
         
     </package>
