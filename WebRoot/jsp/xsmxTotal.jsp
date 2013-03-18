@@ -31,6 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<td>欠款总额</td><td>${total.total}</td>
     </tr>
     <tr>
+    	<td>超额度欠款</td><td>${total.total - sumOf}</td>
+    </tr>
+    <tr>
     	<td>授信期内金额</td><td>${total.totalIn}</td>
     </tr>
     <tr>	
@@ -46,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<td>超期91-120天</td><td>${total.totalOut4}</td>
     </tr>
     <tr>
-    	<td>超期150天以上</td><td>${total.totalOut5}</td>
+    	<td>超期120天以上</td><td>${total.totalOut5}</td>
     </tr>      
     </table>
   </body>

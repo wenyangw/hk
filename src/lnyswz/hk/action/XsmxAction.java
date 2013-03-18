@@ -79,6 +79,7 @@ public class XsmxAction extends ActionSupport {
 		
 		SxkhTotal total = xsmxService.total(sxkh);
 		request.setAttribute("total", total);
+		request.setAttribute("sumOf", sxkh.getLimit());
 		return "total";
 	}
 	public int getId() {
