@@ -20,18 +20,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<link href="<%=request.getContextPath() %>/style/main.css" rel="stylesheet" type="text/css" />
-	
+	<script type=text/javascript src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script> 
+
+    <script language="javascript" type="text/javascript" > 
+	$(function(){ 
+    //使用jquery 取得table 中td里面的值 
+    	$("#tb td").click(function(){ 
+    		alert($(this).text()); 
+    	})
+    });
+    </script>
 
   </head>
   
   <body>
-    <table>
+  <form action="hkmx.action" method="post">
+  本次还款金额：<input type="text" name="hkje" /><input type="submit" value="还款" />
+  </form>
+    <table id="tb">
     <tr>
     	<th>发票编号</th>
     	<th>销售时间</th>
     	<th>还款时间</th>
     	<th>发票金额</th>
-    	<th>还款金额</th>
+    	<th>已还款金额</th>
     </tr>
     <c:if test="${!empty pm.list}">
           <c:forEach items="${pm.list}" var="xsmxs" varStatus="i">
