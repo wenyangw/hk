@@ -27,7 +27,8 @@ public class Sxkh {
 	private String lsh;
     private String bmbh;
     private String yjkh;
-
+    private String ywybh;
+    private String ywymc;
 	/** 
 	* default constructor. 
 	*/ 
@@ -207,6 +208,26 @@ public class Sxkh {
     public void setId(int id) {
         this.id = id;
     }
+
+
+	public String getYwybh() {
+		return ywybh;
+	}
+
+
+	public void setYwybh(String ywybh) {
+		this.ywybh = ywybh;
+	}
+
+
+	public String getYwymc() {
+		return ywymc;
+	}
+
+
+	public void setYwymc(String ywymc) {
+		this.ywymc = ywymc;
+	}
     
 } // END: Sxkh 
 ///:~

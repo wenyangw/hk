@@ -14,13 +14,13 @@ public class XsmxDAOImpl extends AbstractPagerManager implements
 		lnyswz.hk.dao.XsmxDAO {
 		
 	@Override
-	public PagerModel findXsmxs(String bmbh, String khbh, String xsfplsh) {
-		return this.searchPaginated("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh});
+	public PagerModel findXsmxs(String bmbh, String khbh, String xsfplsh, String ywybh) {
+		return this.searchPaginated("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? and x.id.ywybh = ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh, ywybh});
 	}
 	
 	@Override
-	public List<Xsmx> findXsmxsList(String bmbh, String khbh, String xsfplsh) {
-		return this.getHibernateTemplate().find("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh});
+	public List<Xsmx> findXsmxsList(String bmbh, String khbh, String xsfplsh, String ywybh) {
+		return this.getHibernateTemplate().find("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? and x.id.ywybh = ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh, ywybh});
 	}
 
 }

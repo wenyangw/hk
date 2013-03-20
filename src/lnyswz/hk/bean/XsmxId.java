@@ -26,6 +26,7 @@ public class XsmxId implements java.io.Serializable{
 	private String kpsj;
 	//private String hksj;
     private String bmbh;
+    private String ywybh;
 
 	/** 
 	 * default constructor. 
@@ -193,6 +194,18 @@ public class XsmxId implements java.io.Serializable{
     public void setBmbh(String bmbh) {
         this.bmbh = bmbh;
     }
+
+
+	public String getYwybh() {
+		return ywybh;
+	}
+
+
+	public void setYwybh(String ywybh) {
+		this.ywybh = ywybh;
+	}
+    
+    
 } // END: XsmxId 
 ///:~
 

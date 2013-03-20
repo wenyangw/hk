@@ -36,7 +36,7 @@ public class XsmxAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
-		List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh());
+		List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
 		Hkmx hkmx = new Hkmx();
 		hkmx.setHkje(new BigDecimal(0));
 		for(Hkmx h : hkmxs){
@@ -45,7 +45,7 @@ public class XsmxAction extends ActionSupport {
 		}
 		
 		
-		PagerModel pm1 = xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh());
+		PagerModel pm1 = xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
 		PagerModel pm = new PagerModel();
 		
 		List<Object> list1 = pm1.getList();

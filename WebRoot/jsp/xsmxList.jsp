@@ -23,33 +23,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type=text/javascript src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script> 
 
     <script language="javascript" type="text/javascript" > 
-	$(function(){ 
-		$("#btnhk").bind("click" ,function(){
+	$(function(){
+		$("#btnCancel").css("display", "none");
+		$("#btnHk").css("display", "none");
+		$("#btnOk").bind("click" ,function(){
 			var hkzje = $("#hkzje").val();
 			var th = "<th>本次还款金额</th>";
 			$("#tb>thead>tr").append(th);
 			//alert("Button is clicked");
 			$("#tb>tbody>tr").each(function(index){
-				while(hkzje > 0){
+				var hkje = 0.00;
+				
+				if(hkzje > 0){
 					 
-					//var xsje = $(".xsjeTd").eq(index).text();
-					var $xsje = $("td:eq(3)", $(this));
+					var xsje = $(".xsjeTd").eq(index).text();
 					//alert(xsje);
-					//var hked = $(".hkedTd").eq(index).text();
-					var $hked = $("td:eq(4)" , $(this));
+					var hked = $(".hkedTd").eq(index).text();
 					//alert(hked);
-					var hkje = $xsje.val() - $hked.val();
-					//alert(hkje);
+					hkje = Number(xsje) - Number(hked);
+					
 					if(hkje > hkzje){
 						hkje = hkzje;
 					}
 					hkzje -= hkje;
 				}
-				var col = "<td>" + hkje + "</td>";
-				$(this).append(col);
+				
+				if(hkje == 0){
+						$(this).append("<td></td>");
+				}else{
+					$(this).append("<td>" + hkje.toFixed(4) + "</td>");
+				}
 				//alert("第" + index + "行的数据是" + $(this).text() + "/" + $(".hkedTd").eq(index).text());
 				
 			})
+			$("#btnOk").css("display", "none");
+			$("#btnCancel").css("display", "inline");
+			$("#btnHk").css("display", "inline");
+		})
+		$("#btnCancel").bind("click", function(){
+			$("#btnOk").css("display", "inline");
+			$("#btnCancel").css("display", "none");
+			$("#btnHk").css("display", "none");
+			
 		})
     //使用jquery 取得table 中td里面的值 
     	$("#tb td").click(function(){ 
@@ -67,9 +82,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-<%--  <form action="hkmx.action" method="post">--%>
-  本次还款金额：<input type="text" name="hkje" id="hkzje" /><input type="submit" id="btnhk" value="还款" />
-<%--  </form>--%>
+  	<form action="hkmx.action" method="post">
+  	请输入本次还款总金额：<input type="text" name="hkje" id="hkzje" />
+  	<input type="button" id="btnOk" value="确定" />
+  	<input type="button" id="btnCancel" value="取消" />
+  	<input type="submit" id="btnHk" value="确定还款" />
+	</form>
     <table id="tb">
     <thead>
     <tr>
@@ -90,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${xsmxs.kpsj}</td>
             <td>${xsmxs.hksj}</td>
             <td class="xsjeTd">${xsmxs.xsje}</td>
-            <td class="hkedTd">${xsmxs.xsfplsh == hkmx.xsfplsh ? hkmx.hkje : 0}</td>
+            <td class="hkedTd">${xsmxs.xsfplsh == hkmx.xsfplsh ? hkmx.hkje : ""}</td>
           </tr>
           </c:forEach>
 	</c:if>

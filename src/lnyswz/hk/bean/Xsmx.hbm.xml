@@ -28,6 +28,9 @@
 <!--   <key-property name="hksj" type="string">-->
 <!--    <column name="hksj"/>-->
 <!--   </key-property>-->
+	<key-property name="ywybh" type="string">
+    <column name="ywybh"/>
+   </key-property>
   </composite-id>
  </class>
 </hibernate-mapping>

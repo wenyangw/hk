@@ -27,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <table>
     <tr>
+    	<th>业务员名称</th>
     	<th>客户编号</th>
     	<th>客户名称</th>
     	<th>授信期间</th>
@@ -41,9 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <c:forEach items="${pm.list}" var="sxkh">
           
           <tr>
-            
+            <td>${sxkh.ywymc}</td>
             <td>${sxkh.khbh}</td>
-            <td>${sxkh.khmc}</a></td>
+            <td>${sxkh.khmc}</td>
             <td>${sxkh.days}</td>
             <td>${sxkh.limit}</td>
             <td>${sxkh.balance}</td>

@@ -19,9 +19,9 @@ public class XsmxServiceImpl implements XsmxService {
 	private HkmxDAO hkmxDAO;
 	
 	@Override
-	public PagerModel findXsmxs(String bmbh, String khbh) {
-		String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh);
-		return xsmxDAO.findXsmxs(bmbh, khbh, xsfplsh);
+	public PagerModel findXsmxs(String bmbh, String khbh, String ywybh) {
+		String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
+		return xsmxDAO.findXsmxs(bmbh, khbh, xsfplsh, ywybh);
 	}
 	
 	@Override
@@ -30,14 +30,15 @@ public class XsmxServiceImpl implements XsmxService {
 		SxkhTotal total = new SxkhTotal();
 		String bmbh = sxkh.getBmbh();
 		String khbh = sxkh.getKhbh();
+		String ywybh = sxkh.getYwybh();
 		//得到最后一笔还款的销售流水号
-		String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh);
+		String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, "");
 		
 		//取得未还款的销售明细
-		List<Xsmx> lists = xsmxDAO.findXsmxsList(bmbh, khbh, xsfplsh);
+		List<Xsmx> lists = xsmxDAO.findXsmxsList(bmbh, khbh, xsfplsh, ywybh);
 		
 		//取得最后一笔未还款的记录
-		List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh);
+		List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
 		//计算最后一笔已还款金额
 		BigDecimal hked = new BigDecimal(0);
 		for(Hkmx hkmx : hkmxs){
