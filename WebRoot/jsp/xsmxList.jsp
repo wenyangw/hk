@@ -49,9 +49,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 				
 				if(hkje == 0){
-						$(this).append("<td></td>");
+						$(this).append("<td class='hkTd'></td>");
 				}else{
-					$(this).append("<td>" + hkje.toFixed(4) + "</td>");
+					$(this).append("<td class='hkTd'>" + hkje.toFixed(4) + "</td>");
 				}
 				//alert("第" + index + "行的数据是" + $(this).text() + "/" + $(".hkedTd").eq(index).text());
 				
@@ -64,19 +64,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#btnOk").css("display", "inline");
 			$("#btnCancel").css("display", "none");
 			$("#btnHk").css("display", "none");
+			$("#tb>thead>tr>th:eq(5)").remove();
+			$("td.hkTd").remove();
 			
 		})
-    //使用jquery 取得table 中td里面的值 
-    	$("#tb td").click(function(){ 
-    		alert($(this).text()); 
-    	})
+		$("#btnHk").bind("click", function(){
+			var hkmx = "[";
+			$("#tb>tbody>tr").each(function(index){
+				hkmx += "{'xsfplsh':'" + $(".lshTd").eq(index).text() + "','hkje':" + $(".hkTd").eq(index).text() + "},";
+			});
+			hkmx += "]";
+			alert(hkmx);
+		})
     });
-	function addCol() {  
-            $th = $("<th>本次还款金额</th>");  
-            $col = $("<td></td>");  
-            $("#tb>thead>tr").append($th);  
-            $("#tb>tbody>tr").append($col);  
-        }  
     </script>
 
   </head>
@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	请输入本次还款总金额：<input type="text" name="hkje" id="hkzje" />
   	<input type="button" id="btnOk" value="确定" />
   	<input type="button" id="btnCancel" value="取消" />
-  	<input type="submit" id="btnHk" value="确定还款" />
+  	<input type="button" id="btnHk" value="确定还款" />
 	</form>
     <table id="tb">
     <thead>
@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           
           <tr>
             
-            <td>${xsmxs.xsfplsh}</td>
+            <td class="lshTd">${xsmxs.xsfplsh}</td>
             <td>${xsmxs.kpsj}</td>
             <td>${xsmxs.hksj}</td>
             <td class="xsjeTd">${xsmxs.xsje}</td>
