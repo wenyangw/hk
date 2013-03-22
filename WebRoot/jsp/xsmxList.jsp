@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	$(function(){
 		$("#btnCancel").css("display", "none");
 		$("#btnHk").css("display", "none");
+		
 		$("#btnOk").bind("click" ,function(){
 			var hkzje = $("#hkzje").val();
 			var th = "<th>本次还款金额</th>";
@@ -69,12 +70,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		})
 		$("#btnHk").bind("click", function(){
-			var hkmx = "[";
+			//var hkmx = "[";
+			var hkmx = "";
 			$("#tb>tbody>tr").each(function(index){
-				hkmx += "{'xsfplsh':'" + $(".lshTd").eq(index).text() + "','hkje':" + $(".hkTd").eq(index).text() + "},";
+				if($(".hkTd").eq(index).text() != 0){
+					hkmx += $(".lshTd").eq(index).text() + ":" + $(".hkTd").eq(index).text();
+					if( $(".xsjeTd").eq(index).text() - $(".hkedTd").eq(index).text() - $(".hkTd").eq(index).text() == 0){
+						if($(".hkedTd").eq(index).text() == 0){
+							hkmx += ':1,';
+						}else{
+							hkmx += ':2,';
+						}
+					}else{
+						hkmx += ':0,'
+					}
+				}
 			});
-			hkmx += "]";
-			alert(hkmx);
+			$.post("hkmx.action?hk=" + hkmx,function(){
+				alert("update success");
+			});
 		})
     });
     </script>

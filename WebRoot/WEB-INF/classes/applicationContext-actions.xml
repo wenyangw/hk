@@ -16,5 +16,8 @@
 		<property name="sxkhService" ref="sxkhService" />
 		<property name="hkmxService" ref="hkmxService" />
 	</bean>
+	<bean id="hkmxAction" class="lnyswz.hk.action.HkmxAction" scope="prototype">
+	</bean>
+	
 </beans>
 

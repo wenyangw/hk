@@ -9,7 +9,17 @@ import lnyswz.hk.dao.HkmxDAO;
 import lnyswz.hk.utils.AbstractPagerManager;
 
 public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
-
+	
+	@Override
+	public void save(Hkmx hkmx) {
+		this.getHibernateTemplate().save(hkmx);
+	}
+	
+	@Override
+	public void update(Hkmx hkmx) {
+		this.getHibernateTemplate().update(hkmx);
+	}
+	
 	@Override
 	public String getLastHkLsh(String bmbh, String khbh, String ywybh) {
 		return (String)this.getSession()

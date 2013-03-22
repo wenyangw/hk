@@ -30,6 +30,8 @@
             <result name="total">/jsp/xsmxTotal.jsp</result>
         </action>
         
+        <action name="hkmx"  class="hkmxAction">
+        </action>
     </package>
 
 
