@@ -23,6 +23,17 @@ public class SxkhAction extends ActionSupport {
 	//ÊÚÐÅ¿Í»§Id
 	private int id;
 	
+	private String khbh;
+	private String khmc;
+	private int days;
+	private float balance;
+	private float limit;
+	private String lsh;
+    private String bmbh;
+    private String yjkh;
+    private String ywybh;
+    private String ywymc;
+	
 	public String list() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)ServletActionContext.getRequest();
 		HttpSession session = (HttpSession)request.getSession();
@@ -57,6 +68,23 @@ public class SxkhAction extends ActionSupport {
 		return "editPage";
 	}
 	
+	public String edit(){
+		Sxkh sxkh = sxkhService.getSxkh(id);
+		sxkh.setKhbh(khbh);
+		sxkh.setKhmc(khmc);
+		sxkh.setYwybh(ywybh);
+		sxkh.setYwymc(ywymc);
+		sxkh.setBalance(balance);
+		sxkh.setDays(days);
+		sxkh.setLimit(limit);
+		sxkh.setLsh(lsh);
+		sxkh.setYjkh(yjkh);
+		
+		sxkhService.modify(sxkh);
+		
+		return "edit";
+	}
+	
 	public String ye(){
 		HttpServletRequest request = (HttpServletRequest)ServletActionContext.getRequest();
 		
@@ -82,6 +110,93 @@ public class SxkhAction extends ActionSupport {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	public String getKhbh() {
+		return khbh;
+	}
+
+	public void setKhbh(String khbh) {
+		this.khbh = khbh;
+	}
+
+	public String getKhmc() {
+		return khmc;
+	}
+
+	public void setKhmc(String khmc) {
+		this.khmc = khmc;
+	}
+
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
+	}
+
+	public float getBalance() {
+		return balance;
+	}
+
+	public void setBalance(float balance) {
+		this.balance = balance;
+	}
+
+	public float getLimit() {
+		return limit;
+	}
+
+	public void setLimit(float limit) {
+		this.limit = limit;
+	}
+
+	public String getLsh() {
+		return lsh;
+	}
+
+	public void setLsh(String lsh) {
+		this.lsh = lsh;
+	}
+
+	public String getBmbh() {
+		return bmbh;
+	}
+
+	public void setBmbh(String bmbh) {
+		this.bmbh = bmbh;
+	}
+
+	public String getYjkh() {
+		return yjkh;
+	}
+
+	public void setYjkh(String yjkh) {
+		this.yjkh = yjkh;
+	}
+
+	public String getYwybh() {
+		return ywybh;
+	}
+
+	public void setYwybh(String ywybh) {
+		this.ywybh = ywybh;
+	}
+
+	public String getYwymc() {
+		return ywymc;
+	}
+
+	public void setYwymc(String ywymc) {
+		this.ywymc = ywymc;
+	}
+
+	public SxkhService getSxkhService() {
+		return sxkhService;
+	}
+
+	public XsmxService getXsmxService() {
+		return xsmxService;
+	}
 	
 }

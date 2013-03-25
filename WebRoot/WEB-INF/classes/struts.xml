@@ -4,7 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
+	<constant name="struts.i18n.encoding" value="utf-8"/>
     <constant name="struts.devMode" value="true" />
 
     <package name="hk" extends="struts-default">
@@ -22,6 +22,7 @@
         <action name="sxkh"  class="sxkhAction">
             <result name="list">/jsp/sxkhList.jsp</result>
             <result name="editPage">/jsp/sxkhEdit.jsp</result>
+            <result name="edit">/jsp/sxkhEditSuc.jsp</result>
             <result name="ye">/jsp/sxkhInfo.jsp</result>
             <result name="total">/jsp/sxkhTotal.jsp</result>
         </action>

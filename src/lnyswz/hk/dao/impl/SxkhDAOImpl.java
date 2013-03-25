@@ -22,7 +22,7 @@ public class SxkhDAOImpl extends AbstractPagerManager implements SxkhDAO {
 	}
 
 	@Override
-	public void update(Sxkh sxkh) {
+	public void modify(Sxkh sxkh) {
 		// TODO Auto-generated method stub
 		this.getHibernateTemplate().update(sxkh);
 	}

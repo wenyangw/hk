@@ -19,6 +19,11 @@ public class SxkhServiceImpl implements SxkhService {
 		return sxkhDAO.getSxkhs(org);
 	}
 	
+	@Override
+	public void modify(Sxkh sxkh) {
+		sxkhDAO.modify(sxkh);
+	}
+	
 	public Sxkh getSxkh(int id){
 		return sxkhDAO.getSxkh(id);
 	}

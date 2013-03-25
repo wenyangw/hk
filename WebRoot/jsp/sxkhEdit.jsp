@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=GB18030" pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 
 <%@include file="../common/common.jsp" %>
 <%
@@ -24,31 +25,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<form action="sxkh!edit.action" method="post">
+  	<input type="hidden" name="id" value="${sxkh.id}"/>
     <table border="1">
     <tr>
-    	<td>�ͻ����</td><td><input type="texxt" name="khbh" value="${sxkh.khbh}"/></input></td>
+    	<td>客户编号</td><td><input type="texxt" name="khbh" value="${sxkh.khbh}"/></input></td>
     </tr>
     <tr>
-    	<td>�ͻ�����</td><td><input type="texxt" name="khmc" value="${sxkh.khmc}"/></input></td>
+    	<td>客户名称</td><td><input type="texxt" name="khmc" value="${sxkh.khmc}"/></input></td>
     </tr>
     <tr>
-    	<td>�����ڼ�</td><td><input type="texxt" name="days" value="${sxkh.days}"/></input></td>
+    	<td>业务员编号</td><td><input type="texxt" name="ywybh" value="${sxkh.ywybh}"/></input></td>
+    </tr>
+    <tr>
+    	<td>业务员名称</td><td><input type="texxt" name="ywymc" value="${sxkh.ywymc}"/></input></td>
+    </tr>
+    <tr>
+    	<td>授信期间</td><td><input type="texxt" name="days" value="${sxkh.days}"/></input></td>
     </tr>
     <tr>	
-    	<td>���Ŷ��</td><td><input type="texxt" name="limit" value="${sxkh.limit}"/></input></td>
+    	<td>授信额度</td><td><input type="texxt" name="limit" value="${sxkh.limit}"/></input></td>
     </tr>
     <tr>
-    	<td>��ʷ�ۼ�</td><td><input type="texxt" name="balance" value="${sxkh.balance}"/></input></td>
+    	<td>历史累计</td><td><input type="texxt" name="balance" value="${sxkh.balance}"/></input></td>
     </tr>
     <tr>
-    	<td>��ֹ��ˮ��</td><td><input type="texxt" name="lsh" value="${sxkh.lsh}"/></input></td>
+    	<td>截止流水号</td><td><input type="texxt" name="lsh" value="${sxkh.lsh}"/></input></td>
     </tr>
     <tr>
-    	<td>�Ƿ��½�</td><td><input type="texxt" name="yjkh" value="${sxkh.yjkh}"/></input></td>
+    	<td>是否月结</td><td><input type="texxt" name="yjkh" value="${sxkh.yjkh}"/></input></td>
     </tr>
     <tr>
-    	<td><input type="submit" value="����"/></td>
-    	<td><input type="button" value="����"/></td>
+    	<td><input type="submit" value="保存"/></td>
+    	<td><input type="button" value="返回"/></td>
     </tr>      
     </table>
     </form>

@@ -10,11 +10,11 @@ public class HkmxServiceImpl implements HkmxService {
 	HkmxDAO hkmxDAO;
 	
 	@Override
-	public void save(Hkmx hkmx) {
+	public void add(Hkmx hkmx) {
 		hkmxDAO.save(hkmx);
 	}
 	@Override
-	public void update(Hkmx hkmx) {
+	public void modify(Hkmx hkmx) {
 		hkmxDAO.update(hkmx);
 	}
 	
@@ -25,6 +25,7 @@ public class HkmxServiceImpl implements HkmxService {
 	
 	@Override
 	public List<Hkmx> findUncompletedHkmxs(String lsh) {
+		
 		return hkmxDAO.findUncompletedHkmxs(lsh);
 	}
 	
