@@ -23,6 +23,10 @@ public class HkmxServiceImpl implements HkmxService {
 		return hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
 	}
 	
+	@Override
+	public List<Hkmx> findUncompletedHkmxs(String lsh) {
+		return hkmxDAO.findUncompletedHkmxs(lsh);
+	}
 	
 	
 	public void setHkmxDAO(HkmxDAO hkmxDAO) {

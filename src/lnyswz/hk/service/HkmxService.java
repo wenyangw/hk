@@ -8,6 +8,7 @@ public interface HkmxService {
 	public void save(Hkmx hkmx);
 	public void update(Hkmx hkmx);
 	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh);
+	public List<Hkmx> findUncompletedHkmxs(String lsh);
 	
 	
 }

@@ -1,6 +1,7 @@
 package lnyswz.hk.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import lnyswz.hk.bean.Sxkh;
 import lnyswz.hk.bean.SxkhTotal;
 import lnyswz.hk.bean.Xsmx;
 import lnyswz.hk.dao.HkmxDAO;
+import lnyswz.hk.dao.SxkhDAO;
 import lnyswz.hk.dao.XsmxDAO;
 import lnyswz.hk.service.XsmxService;
 import lnyswz.hk.utils.DateUtil;
@@ -17,6 +19,7 @@ import lnyswz.hk.utils.PagerModel;
 public class XsmxServiceImpl implements XsmxService {
 	private XsmxDAO xsmxDAO;
 	private HkmxDAO hkmxDAO;
+	private SxkhDAO sxkhDAO;
 	
 	@Override
 	public PagerModel findXsmxs(String bmbh, String khbh, String ywybh) {
@@ -25,14 +28,29 @@ public class XsmxServiceImpl implements XsmxService {
 	}
 	
 	@Override
-	public SxkhTotal total(Sxkh sxkh) {
+	public List<SxkhTotal> getTotals(String bmbh) {
+		List<Sxkh> sxkhs = sxkhDAO.getSxkhs(bmbh);
+		
+		List<SxkhTotal> totals = new ArrayList<SxkhTotal>();
+		for(Sxkh sxkh : sxkhs){
+			SxkhTotal total = getTotal(sxkh);
+			if(total != null){
+				totals.add(total);
+			}
+		}
+		
+		return totals;
+	}
+	
+	@Override
+	public SxkhTotal getTotal(Sxkh sxkh) {
 		//创建返回的对象
 		SxkhTotal total = new SxkhTotal();
 		String bmbh = sxkh.getBmbh();
 		String khbh = sxkh.getKhbh();
 		String ywybh = sxkh.getYwybh();
 		//得到最后一笔还款的销售流水号
-		String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, "");
+		String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
 		
 		//取得未还款的销售明细
 		List<Xsmx> lists = xsmxDAO.findXsmxsList(bmbh, khbh, xsfplsh, ywybh);

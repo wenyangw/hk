@@ -1,5 +1,7 @@
 package lnyswz.hk.service.impl;
 
+import java.util.List;
+
 import lnyswz.hk.bean.Sxkh;
 import lnyswz.hk.dao.SxkhDAO;
 import lnyswz.hk.service.SxkhService;
@@ -10,6 +12,11 @@ public class SxkhServiceImpl implements SxkhService {
 	@Override
 	public PagerModel findSxkhs(String org) {
 		return sxkhDAO.findSxkhByOrg(org);
+	}
+	
+	@Override
+	public List<Sxkh> getSxkhs(String org) {
+		return sxkhDAO.getSxkhs(org);
 	}
 	
 	public Sxkh getSxkh(int id){

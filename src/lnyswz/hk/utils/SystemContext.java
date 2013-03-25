@@ -25,7 +25,6 @@ public class SystemContext {
 	
 	public static int getPagesize() {
 		Integer ps = pagesize.get();
-		System.out.println("ps:" + ps);
 		if(ps == null) {
 			return Integer.MAX_VALUE;
 		}

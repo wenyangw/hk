@@ -9,6 +9,6 @@ public interface HkmxDAO {
 	public void update(Hkmx hkmx);
 	public String getLastHkLsh(String bmbh, String khbh, String ywybh);
 	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh);
-	public List<Hkmx> findUncompletedHkmxs();
+	public List<Hkmx> findUncompletedHkmxs(String lsh);
 	
 }

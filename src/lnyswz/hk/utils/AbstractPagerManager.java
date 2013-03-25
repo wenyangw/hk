@@ -46,7 +46,7 @@ public class AbstractPagerManager extends HibernateDaoSupport {
 				query.setParameter(i, params[i]);
 			}
 		}
-		System.out.println("query:" + query.toString());
+		
 		int total = ((Long)query.uniqueResult()).intValue();
 		
 		//获得当前页的结果集

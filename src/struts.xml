@@ -23,6 +23,7 @@
             <result name="list">/jsp/sxkhList.jsp</result>
             <result name="editPage">/jsp/sxkhEdit.jsp</result>
             <result name="ye">/jsp/sxkhInfo.jsp</result>
+            <result name="total">/jsp/sxkhTotal.jsp</result>
         </action>
         
         <action name="xsmx"  class="xsmxAction">

@@ -25,40 +25,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<a href="sxkh!listTotal.action">详细用户列表</a>
     <table>
     <tr>
-    	<th>业务员名称</th>
     	<th>客户编号</th>
-    	<th>客户名称</th>
-    	<th>授信期间</th>
-    	<th>授信额度</th>
-    	<th>历史累计</th>
-    	<th>截止流水号</th>
-    	<th>是否月结</th>
-    	<th>编辑</th>
-    	<th>操作</th>
+    	<th>欠款总额</th>
+    	<th>超额欠款</th>
+    	<th>超期30天以内</th>
+    	<th>超期60天以内</th>
+    	<th>超期90天以内</th>
+    	<th>超期120天以内</th>
+    	<th>超期120天以上</th>
     </tr>
-    <c:if test="${!empty pm.list}">
-          <c:forEach items="${pm.list}" var="sxkh">
+    <c:if test="${!empty list}">
+          <c:forEach items="${list}" var="sxkhTotal">
           
           <tr>
-            <td>${sxkh.ywymc}</td>
-            <td>${sxkh.khbh}</td>
-            <td>${sxkh.khmc}</td>
-            <td>${sxkh.days}</td>
-            <td>${sxkh.limit}</td>
-            <td>${sxkh.balance}</td>
-            <td>${sxkh.lsh}</td>
-            <td>${sxkh.yjkh}</td>
-            <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a href="sxkh!delete.action">删除</a></td>
-            <td><a href="xsmx.action?id=${sxkh.id}">销售明细</a>&nbsp;<a href="xsmx!total.action?id=${sxkh.id}">余额</a></td>
+            <td>${sxkhTotal.hkbh}</td>
+            <td>${sxkhTotal.total}</td>
+            <td>${sxkhTotal.totalIn}</td>
+            <td>${sxkhTotal.totalOut1}</td>
+            <td>${sxkhTotal.totalOut2}</td>
+            <td>${sxkhTotal.totalOut3}</td>
+            <td>${sxkhTotal.totalOut4}</td>
+            <td>${sxkhTotal.totalOut5}</td>
           </tr>
           </c:forEach>
 	</c:if>
           
           <!-- 在列表数据为空的时候，要显示的提示信息 -->
-	<c:if test="${empty pm.list}">
+	<c:if test="${empty list}">
 	    <tr>
 	    	<td colspan="5" align="center" bgcolor="#EFF3F7" class="TableBody1" onmouseover="this.bgColor = '#DEE7FF';" onmouseout="this.bgColor='#EFF3F7';">
 	    	没有找到相应的记录

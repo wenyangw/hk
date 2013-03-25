@@ -8,7 +8,6 @@ import java.util.Map;
 
 import lnyswz.hk.bean.Hkmx;
 import lnyswz.hk.service.HkmxService;
-import lnyswz.hk.utils.CollectUtils;
 import lnyswz.hk.utils.DateUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,16 +28,19 @@ public class HkmxAction extends ActionSupport {
 			String hksj = DateUtil.getCurrentDateString();
 			if(bj.equals("2")){
 				bj = "1";
+				List<Hkmx> lists = hkmxService.findUncompletedHkmxs(lsh);
+				for(Hkmx hkmxEd : lists){
+					hkmxEd.setCompleted("1");
+					hkmxService.update(hkmxEd);
+				}
 			}
 			Hkmx hkmx = new Hkmx();
 			hkmx.setXsfplsh(lsh);
 			hkmx.setHkje(new BigDecimal(hkje));
 			hkmx.setHksj(hksj);
 			hkmx.setCompleted(bj);
-			
 			hkmxService.save(hkmx);
 		}
-		
 		return null;
 	}
 

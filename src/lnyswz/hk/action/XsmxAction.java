@@ -14,6 +14,7 @@ import org.omg.CORBA.Request;
 import lnyswz.hk.bean.Hkmx;
 import lnyswz.hk.bean.Sxkh;
 import lnyswz.hk.bean.SxkhTotal;
+import lnyswz.hk.bean.User;
 import lnyswz.hk.bean.Xsmx;
 import lnyswz.hk.bean.XsmxS;
 import lnyswz.hk.service.HkmxService;
@@ -77,11 +78,13 @@ public class XsmxAction extends ActionSupport {
 		
 		Sxkh sxkh = sxkhService.getSxkh(id); 
 		
-		SxkhTotal total = xsmxService.total(sxkh);
+		SxkhTotal total = xsmxService.getTotal(sxkh);
 		request.setAttribute("total", total);
 		request.setAttribute("sumOf", sxkh.getLimit());
 		return "total";
 	}
+	
+	
 	public int getId() {
 		return id;
 	}

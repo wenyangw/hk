@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import lnyswz.hk.bean.Sxkh;
+import lnyswz.hk.bean.SxkhTotal;
 import lnyswz.hk.bean.User;
 import lnyswz.hk.service.SxkhService;
+import lnyswz.hk.service.XsmxService;
 import lnyswz.hk.utils.PagerModel;
 
 import org.apache.struts2.ServletActionContext;
@@ -17,6 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class SxkhAction extends ActionSupport {
 	private SxkhService sxkhService;
+	private XsmxService xsmxService;
 	//ÊÚÐÅ¿Í»§Id
 	private int id;
 	
@@ -32,6 +35,18 @@ public class SxkhAction extends ActionSupport {
 		request.setAttribute("pm", pm);
 
 		return "list";
+	}
+	
+	public String listTotal(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		
+		User user = (User)session.getAttribute("user");
+		List<SxkhTotal> list = xsmxService.getTotals(user.getOrg());
+		
+		request.setAttribute("list", list);
+		return "total";
+		
 	}
 	
 	public String editPage(){
@@ -54,6 +69,10 @@ public class SxkhAction extends ActionSupport {
 
 	public void setSxkhService(SxkhService sxkhService) {
 		this.sxkhService = sxkhService;
+	}
+	
+	public void setXsmxService(XsmxService xsmxService) {
+		this.xsmxService = xsmxService;
 	}
 
 	public int getId() {

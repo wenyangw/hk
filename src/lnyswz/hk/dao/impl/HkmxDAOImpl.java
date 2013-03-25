@@ -37,8 +37,8 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	}
 	
 	@Override
-	public List<Hkmx> findUncompletedHkmxs() {
-		return this.getHibernateTemplate().find("from Hkmx h where h.completed = '0'");
+	public List<Hkmx> findUncompletedHkmxs(String lsh) {
+		return this.getHibernateTemplate().find("from Hkmx h where h.completed = '0' and xsfpslh = ?", lsh);
 	}
 
 }

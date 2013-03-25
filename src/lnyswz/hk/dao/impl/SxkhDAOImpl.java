@@ -1,5 +1,7 @@
 package lnyswz.hk.dao.impl;
 
+import java.util.List;
+
 import lnyswz.hk.bean.Sxkh;
 import lnyswz.hk.dao.SxkhDAO;
 import lnyswz.hk.utils.AbstractPagerManager;
@@ -28,6 +30,11 @@ public class SxkhDAOImpl extends AbstractPagerManager implements SxkhDAO {
 	@Override
 	public Sxkh getSxkh(int id){
 		return this.getHibernateTemplate().get(Sxkh.class, id);
+	}
+	
+	@Override
+	public List<Sxkh> getSxkhs(String org) {
+		return this.getHibernateTemplate().find("from Sxkh s where s.org = ?", org);
 	}
 	
 	@Override
