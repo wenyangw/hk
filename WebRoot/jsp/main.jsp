@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    Welcome ${user.name} <br>
+    欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
     <a href="sxkh!list.action">授信客户列表</a>
     

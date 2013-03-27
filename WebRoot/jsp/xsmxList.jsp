@@ -75,8 +75,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#tb>tbody>tr").each(function(index){
 				if($(".hkTd").eq(index).text() != 0){
 					hkmx += $(".lshTd").eq(index).text() + ":" + $(".hkTd").eq(index).text();
-					if( $(".xsjeTd").eq(index).text() - $(".hkedTd").eq(index).text() - $(".hkTd").eq(index).text() == 0){
-						if($(".hkedTd").eq(index).text() == 0){
+					var xsje = Number($(".xsjeTd").eq(index).text());
+					var hked = Number($(".hkedTd").eq(index).text());
+					var hk = Number($(".hkTd").eq(index).text());
+					var ye = (xsje - hked - hk).toFixed(4);
+					//alert(ye);
+					if(ye == 0){
+						if(hked == 0){
 							hkmx += ':1,';
 						}else{
 							hkmx += ':2,';
@@ -85,9 +90,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						hkmx += ':0,'
 					}
 				}
+				//alert(hkmx);
 			});
 			$.post("hkmx.action?hk=" + hkmx,function(){
-				alert("update success");
+				$("#tb>tbody>tr").each(function(index){
+					if($(".hkTd").eq(index).text() != 0){
+						alert(index);
+						var xsje = Number($(".xsjeTd").eq(0).text());
+						alert(xsje);
+						var hked = Number($(".hkedTd").eq(0).text());
+						var hk = Number($(".hkTd").eq(0).text());
+						var ye = (xsje - hked - hk).toFixed(4);
+						if(ye == 0){
+							$(this).remove();
+						}else{
+							$(".hkedTd").eq(0).text($(".hkTd").eq(0).text());
+							$(".hkTd").eq(0).text("");
+						}
+					}
+				});
+				alert("还款操作成功");
 			});
 		})
     });

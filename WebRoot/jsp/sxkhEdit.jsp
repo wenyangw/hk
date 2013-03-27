@@ -28,35 +28,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<input type="hidden" name="id" value="${sxkh.id}"/>
     <table border="1">
     <tr>
-    	<td>客户编号</td><td><input type="texxt" name="khbh" value="${sxkh.khbh}"/></input></td>
+    	<td>客户编号</td><td><input type="texxt" name="khbh" value="${sxkh.khbh}" size="30"/></input></td>
     </tr>
     <tr>
-    	<td>客户名称</td><td><input type="texxt" name="khmc" value="${sxkh.khmc}"/></input></td>
+    	<td>客户名称</td><td><input type="text" name="khmc" value="${sxkh.khmc}" size="30"/></input></td>
     </tr>
     <tr>
-    	<td>业务员编号</td><td><input type="texxt" name="ywybh" value="${sxkh.ywybh}"/></input></td>
+    	<td>业务员编号</td><td><input type="text" name="ywybh" value="${sxkh.ywybh}" size="30"/></input></td>
     </tr>
     <tr>
-    	<td>业务员名称</td><td><input type="texxt" name="ywymc" value="${sxkh.ywymc}"/></input></td>
+    	<td>业务员名称</td><td><input type="text" name="ywymc" value="${sxkh.ywymc}" size="30"/></input></td>
     </tr>
     <tr>
-    	<td>授信期间</td><td><input type="texxt" name="days" value="${sxkh.days}"/></input></td>
+    	<td>授信期间</td><td><input type="text" name="days" value="${sxkh.days}" size="30"/></input></td>
     </tr>
     <tr>	
-    	<td>授信额度</td><td><input type="texxt" name="limit" value="${sxkh.limit}"/></input></td>
+    	<td>授信额度</td><td><input type="text" name="limit" value="${sxkh.limit}" size="30"/></input></td>
     </tr>
     <tr>
-    	<td>历史累计</td><td><input type="texxt" name="balance" value="${sxkh.balance}"/></input></td>
+    	<td>历史累计</td><td><input type="text" name="balance" value="${sxkh.balance}" size="30"/></input></td>
     </tr>
     <tr>
-    	<td>截止流水号</td><td><input type="texxt" name="lsh" value="${sxkh.lsh}"/></input></td>
+    	<td>截止流水号</td><td><input type="text" name="lsh" value="${sxkh.lsh}" size="30"/></input></td>
     </tr>
     <tr>
-    	<td>是否月结</td><td><input type="texxt" name="yjkh" value="${sxkh.yjkh}"/></input></td>
+    	<td>是否月结</td><td><input type="text" name="yjkh" value="${sxkh.yjkh}" size="30"/></input></td>
     </tr>
     <tr>
     	<td><input type="submit" value="保存"/></td>
-    	<td><input type="button" value="返回"/></td>
+    	<td><input type="button" value="返回" onclick="javascript:history.back()"/></td>
     </tr>      
     </table>
     </form>

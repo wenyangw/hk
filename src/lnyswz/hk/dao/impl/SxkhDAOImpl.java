@@ -34,12 +34,12 @@ public class SxkhDAOImpl extends AbstractPagerManager implements SxkhDAO {
 	
 	@Override
 	public List<Sxkh> getSxkhs(String org) {
-		return this.getHibernateTemplate().find("from Sxkh s where s.org = ?", org);
+		return this.getHibernateTemplate().find("from Sxkh s where s.org = ? order by s.ywybh, s.khbh", org);
 	}
 	
 	@Override
 	public PagerModel findSxkhByOrg(String org) {
-		return this.searchPaginated("from Sxkh s where s.bmbh = ?", org);
+		return this.searchPaginated("from Sxkh s where s.bmbh = ? order by s.ywybh, s.khbh", org);
 	}
 
 }

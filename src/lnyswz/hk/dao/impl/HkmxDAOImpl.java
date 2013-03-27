@@ -23,7 +23,7 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	@Override
 	public String getLastHkLsh(String bmbh, String khbh, String ywybh) {
 		return (String)this.getSession()
-			.createSQLQuery("select distinct xsfplsh from th_spxs x where xsfplsh in (select xsfplsh from t_hkmx  h where hkje <> 0 and completed = '0') and bmbh = ? and khbh = ? and ywybh = ?")
+			.createSQLQuery("select distinct xsfplsh from th_spxs x where xsfplsh in (select xsfplsh from t_hkmx1  h where hkje <> 0 and completed = '0') and bmbh = ? and khbh = ? and ywybh = ?")
 			.addScalar("xsfplsh", Hibernate.STRING)
 			.setString(0, bmbh)
 			.setString(1, khbh)
@@ -38,8 +38,6 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	
 	@Override
 	public List<Hkmx> findUncompletedHkmxs(String lsh) {
-		System.out.println("lsh is " + lsh);
-		System.out.println("the size is " + this.getHibernateTemplate().find("from Hkmx h where h.completed = '0' and h.xsfplsh = ?", lsh).size());
 		return this.getHibernateTemplate().find("from Hkmx h where h.completed = '0' and h.xsfplsh = ?", lsh);
 	}
 

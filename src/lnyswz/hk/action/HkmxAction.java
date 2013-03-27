@@ -22,25 +22,16 @@ public class HkmxAction extends ActionSupport {
 		
 		for(String mx : hkmxs){
 			
-			String lsh = mx.substring(0, 12);
-			System.out.println("lsh = " + lsh);
+			String lsh = mx.substring(0, 11);
 			String hkje = mx.substring(12,mx.lastIndexOf(':'));
-			System.out.println("hkje = " + hkje);
 			String bj = mx.substring(mx.lastIndexOf(':') + 1);
-			System.out.println("bj = " + bj);
 			String hksj = DateUtil.getCurrentDateString();
-			System.out.println("hksj = " + hksj);
 			if(bj.equals("2")){
 				bj = "1";
-				System.out.println("line 35");
 				List<Hkmx> lists = hkmxService.findUncompletedHkmxs(lsh);
-				System.out.println("lists.size = " + lists.size());
-				System.out.println("line 37");
 				if(lists.size() != 0){
 					for(Hkmx hkmxEd : lists){
-						System.out.println("line 39");
 						hkmxEd.setCompleted("1");
-						System.out.println("line 41");
 						hkmxService.modify(hkmxEd);
 					}
 				}

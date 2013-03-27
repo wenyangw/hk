@@ -19,6 +19,9 @@
             <result name="success">/jsp/main.jsp</result>
         </action>
         
+        <action name="logout"  class="logoutAction">
+        </action>
+        
         <action name="sxkh"  class="sxkhAction">
             <result name="list">/jsp/sxkhList.jsp</result>
             <result name="editPage">/jsp/sxkhEdit.jsp</result>

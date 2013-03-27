@@ -8,6 +8,8 @@
 	<bean id="loginAction" class="lnyswz.hk.action.LoginAction" scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
+	<bean id="logoutAction" class="lnyswz.hk.action.LogoutAction" scope="prototype">
+	</bean>
 	<bean id="sxkhAction" class="lnyswz.hk.action.SxkhAction" scope="prototype">
 		<property name="sxkhService" ref="sxkhService" />
 	</bean>
