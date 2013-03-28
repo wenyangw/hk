@@ -12,6 +12,7 @@
 	</bean>
 	<bean id="sxkhAction" class="lnyswz.hk.action.SxkhAction" scope="prototype">
 		<property name="sxkhService" ref="sxkhService" />
+		<property name="xsmxService" ref="xsmxService" />
 	</bean>
 	<bean id="xsmxAction" class="lnyswz.hk.action.XsmxAction" scope="prototype">
 		<property name="xsmxService" ref="xsmxService" />

@@ -3,14 +3,16 @@ package lnyswz.hk.bean;
 import java.math.BigDecimal;
 
 public class SxkhTotal {
+	public String ywybh;
+	public String ywymc;
 	public String khbh;
+	public String khmc;
 	public BigDecimal total;
 	public BigDecimal totalIn;
 	public BigDecimal totalOut1;
 	public BigDecimal totalOut2;
 	public BigDecimal totalOut3;
 	public BigDecimal totalOut4;
-	public BigDecimal totalOut5;
 	public String getKhbh() {
 		return khbh;
 	}
@@ -53,10 +55,22 @@ public class SxkhTotal {
 	public void setTotalOut4(BigDecimal totalOut4) {
 		this.totalOut4 = totalOut4;
 	}
-	public BigDecimal getTotalOut5() {
-		return totalOut5;
+	public String getYwybh() {
+		return ywybh;
 	}
-	public void setTotalOut5(BigDecimal totalOut5) {
-		this.totalOut5 = totalOut5;
+	public void setYwybh(String ywybh) {
+		this.ywybh = ywybh;
+	}
+	public String getYwymc() {
+		return ywymc;
+	}
+	public void setYwymc(String ywymc) {
+		this.ywymc = ywymc;
+	}
+	public String getKhmc() {
+		return khmc;
+	}
+	public void setKhmc(String khmc) {
+		this.khmc = khmc;
 	}
 }

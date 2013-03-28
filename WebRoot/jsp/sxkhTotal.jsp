@@ -28,26 +28,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table>
     <tr>
     	<th>客户编号</th>
+    	<th>客户编号</th>
+    	<th>客户编号</th>
     	<th>欠款总额</th>
-    	<th>超额欠款</th>
-    	<th>超期30天以内</th>
-    	<th>超期60天以内</th>
-    	<th>超期90天以内</th>
-    	<th>超期120天以内</th>
-    	<th>超期120天以上</th>
+    	<th>授信期内</th>
+    	<th>超期1-30天以内</th>
+    	<th>超期31-90天以内</th>
+    	<th>超期91-180天以内</th>
+    	<th>超期180天以上</th>
     </tr>
     <c:if test="${!empty list}">
           <c:forEach items="${list}" var="sxkhTotal">
           
           <tr>
-            <td>${sxkhTotal.hkbh}</td>
+          	<td>${sxkhTotal.ywymc}</td>
+            <td>${sxkhTotal.khbh}</td>
+            <td>${sxkhTotal.khmc}</td>
             <td>${sxkhTotal.total}</td>
             <td>${sxkhTotal.totalIn}</td>
             <td>${sxkhTotal.totalOut1}</td>
             <td>${sxkhTotal.totalOut2}</td>
             <td>${sxkhTotal.totalOut3}</td>
             <td>${sxkhTotal.totalOut4}</td>
-            <td>${sxkhTotal.totalOut5}</td>
           </tr>
           </c:forEach>
 	</c:if>

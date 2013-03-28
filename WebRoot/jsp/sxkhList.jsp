@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   Welcome ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
-  	<a href="sxkh!listTotal.action">详细用户列表</a>**<a href="<%=request.getContextPath()%>/jsp/sxkhEdit.jsp">增加授信客户</a>
+  	<a href="sxkh!listTotal.action">客户统计</a>**<a href="<%=request.getContextPath()%>/jsp/sxkhEdit.jsp">增加授信客户</a>
     <table>
     <tr>
     	<th>业务员名称</th>

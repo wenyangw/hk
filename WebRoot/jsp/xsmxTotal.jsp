@@ -25,13 +25,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <table border="1">
     <tr>
+    	<td>业务员名称</td><td>${total.ywymc}</td>
+    </tr>
+    <tr>
     	<td>客户编号</td><td>${total.khbh}</td>
+    </tr>
+    <tr>
+    	<td>客户名称</td><td>${total.khmc}</td>
     </tr>
     <tr>
     	<td>欠款总额</td><td>${total.total}</td>
     </tr>
     <tr>
-    	<td>超额度欠款</td><td>${total.total - sumOf}</td>
+    	<td>超额度欠款</td><td>${total.total == 0 ? 0 : total.total - sumOf}</td>
     </tr>
     <tr>
     	<td>授信期内金额</td><td>${total.totalIn}</td>
@@ -40,17 +46,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<td>超期1-30天</td><td>${total.totalOut1}</td>
     </tr>
     <tr>
-    	<td>超期31-60天</td><td>${total.totalOut2}</td>
+    	<td>超期31-90天</td><td>${total.totalOut2}</td>
     </tr>
     <tr>
-    	<td>超期61-90天</td><td>${total.totalOut3}</td>
+    	<td>超期91-180天</td><td>${total.totalOut3}</td>
     </tr>
     <tr>
-    	<td>超期91-120天</td><td>${total.totalOut4}</td>
+    	<td>超期180天以上</td><td>${total.totalOut4}</td>
     </tr>
-    <tr>
-    	<td>超期120天以上</td><td>${total.totalOut5}</td>
-    </tr>      
     </table>
   </body>
 </html>

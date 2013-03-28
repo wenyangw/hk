@@ -30,7 +30,7 @@ public class XsmxServiceImpl implements XsmxService {
 	@Override
 	public List<SxkhTotal> getTotals(String bmbh) {
 		List<Sxkh> sxkhs = sxkhDAO.getSxkhs(bmbh);
-		
+		System.out.println("sxkhs = " + sxkhs.size());
 		List<SxkhTotal> totals = new ArrayList<SxkhTotal>();
 		for(Sxkh sxkh : sxkhs){
 			SxkhTotal total = getTotal(sxkh);
@@ -48,20 +48,9 @@ public class XsmxServiceImpl implements XsmxService {
 		SxkhTotal total = new SxkhTotal();
 		String bmbh = sxkh.getBmbh();
 		String khbh = sxkh.getKhbh();
+		String khmc = sxkh.getKhmc();
 		String ywybh = sxkh.getYwybh();
-		//得到最后一笔还款的销售流水号
-		String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
-		
-		//取得未还款的销售明细
-		List<Xsmx> lists = xsmxDAO.findXsmxsList(bmbh, khbh, xsfplsh, ywybh);
-		
-		//取得最后一笔未还款的记录
-		List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
-		//计算最后一笔已还款金额
-		BigDecimal hked = new BigDecimal(0);
-		for(Hkmx hkmx : hkmxs){
-			hked = hked.add(hkmx.getHkje());
-		}
+		String ywymc = sxkh.getYwymc();
 		
 		//建立不同超期时段的汇总变量
 		BigDecimal totalAll = new BigDecimal(0);
@@ -70,23 +59,44 @@ public class XsmxServiceImpl implements XsmxService {
 		BigDecimal totalOut2 = new BigDecimal(0);
 		BigDecimal totalOut3 = new BigDecimal(0);
 		BigDecimal totalOut4 = new BigDecimal(0);
-		BigDecimal totalOut5 = new BigDecimal(0);
+		
+		//得到最后一笔还款的销售流水号
+		//String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
+		
+				
+		//取得最后一笔未还款的记录
+		List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
+		
+		if(hkmxs.size() != 0){
+		
+		//计算最后一笔已还款金额
+		BigDecimal hked = new BigDecimal(0);
+		for(Hkmx hkmx : hkmxs){
+			hked = hked.add(hkmx.getHkje());
+		}
+		//得到最后一笔还款的销售流水号
+		String xsfplsh = hkmxs.get(0).getXsfplsh();
+		
+		//取得未还款的销售明细
+		List<Xsmx> lists = xsmxDAO.findXsmxsList(bmbh, khbh, xsfplsh, ywybh);
+
+		
+		
 		
 		//当前日期
 		Date currentDate = DateUtil.getCurrentDateTime();
 		for(Xsmx xsmx : lists){
 			//根据开票时间，得到不同时段的时候值
-			String hksjStr = DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, sxkh.getDays());
+			String hksjStr = DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, 
+					sxkh.getDays());
 			String hksjStr1 = DateUtil.dateIncreaseByDay(hksjStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, 30);
-			String hksjStr2 = DateUtil.dateIncreaseByDay(hksjStr1, DateUtil.ISO_EXPANDED_DATE_FORMAT, 30);
-			String hksjStr3 = DateUtil.dateIncreaseByDay(hksjStr2, DateUtil.ISO_EXPANDED_DATE_FORMAT, 30);
-			String hksjStr4 = DateUtil.dateIncreaseByDay(hksjStr3, DateUtil.ISO_EXPANDED_DATE_FORMAT, 30);
+			String hksjStr2 = DateUtil.dateIncreaseByDay(hksjStr1, DateUtil.ISO_EXPANDED_DATE_FORMAT, 60);
+			String hksjStr3 = DateUtil.dateIncreaseByDay(hksjStr2, DateUtil.ISO_EXPANDED_DATE_FORMAT, 90);
 			
 			Date hksj = DateUtil.stringToDate(hksjStr);
 			Date hksj1 = DateUtil.stringToDate(hksjStr1);
 			Date hksj2 = DateUtil.stringToDate(hksjStr2);
 			Date hksj3 = DateUtil.stringToDate(hksjStr3);
-			Date hksj4 = DateUtil.stringToDate(hksjStr4);
 			
 			//本条销售金额
 			BigDecimal xsje = xsmx.getId().getXsje();
@@ -104,15 +114,13 @@ public class XsmxServiceImpl implements XsmxService {
 				totalOut2 = totalOut2.add(xsje);
 			}else if(DateUtil.daysBetween(currentDate, hksj3) >= 0){
 				totalOut3 = totalOut3.add(xsje);
-			}else if(DateUtil.daysBetween(currentDate, hksj4) >= 0){
-				totalOut4 = totalOut4.add(xsje);
 			}else{
-				totalOut5 = totalOut5.add(xsje);
+				totalOut4 = totalOut4.add(xsje);
 			}
 		}
 		
 		//累加历史陈欠金额
-		totalOut5 = totalOut5.add(new BigDecimal(sxkh.getBalance()));
+		totalOut4 = totalOut4.add(new BigDecimal(sxkh.getBalance()));
 		
 		//计算总欠款金额
 		totalAll = totalAll.add(totalIn);
@@ -120,17 +128,18 @@ public class XsmxServiceImpl implements XsmxService {
 		totalAll = totalAll.add(totalOut2);
 		totalAll = totalAll.add(totalOut3);
 		totalAll = totalAll.add(totalOut4);
-		totalAll = totalAll.add(totalOut5);
-		
-		//返回值		
+		}
+		//返回值	
+		total.setYwybh(ywybh);
+		total.setYwymc(ywymc);
 		total.setKhbh(khbh);
+		total.setKhmc(khmc);
 		total.setTotal(totalAll);
 		total.setTotalIn(totalIn);
 		total.setTotalOut1(totalOut1);
 		total.setTotalOut2(totalOut2);
 		total.setTotalOut3(totalOut3);
 		total.setTotalOut4(totalOut4);
-		total.setTotalOut5(totalOut5);
 		
 		return total;
 	}
