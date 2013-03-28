@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<input type="hidden" name="id" value="${sxkh.id}"/>
     <table border="1">
     <tr>
-    	<td>客户编号</td><td><input type="texxt" name="khbh" value="${sxkh.khbh}" size="30"/></input></td>
+    	<td>客户编号</td><td><input type="text" name="khbh" value="${sxkh.khbh}" size="30"/></input></td>
     </tr>
     <tr>
     	<td>客户名称</td><td><input type="text" name="khmc" value="${sxkh.khmc}" size="30"/></input></td>

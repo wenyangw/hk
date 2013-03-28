@@ -24,6 +24,11 @@ public class SxkhServiceImpl implements SxkhService {
 		sxkhDAO.modify(sxkh);
 	}
 	
+	@Override
+	public void delete(int id) {
+		sxkhDAO.delete(id);
+	}
+	
 	public Sxkh getSxkh(int id){
 		return sxkhDAO.getSxkh(id);
 	}

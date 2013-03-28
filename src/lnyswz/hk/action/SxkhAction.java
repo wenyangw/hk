@@ -69,7 +69,18 @@ public class SxkhAction extends ActionSupport {
 	}
 	
 	public String edit(){
-		Sxkh sxkh = sxkhService.getSxkh(id);
+		Sxkh sxkh;
+		
+		if(id != 0){
+			sxkh = sxkhService.getSxkh(id);
+		}else{
+			sxkh = new Sxkh();
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			
+			User user = (User)session.getAttribute("user");
+			sxkh.setBmbh(user.getOrg());
+		}
 		sxkh.setKhbh(khbh);
 		sxkh.setKhmc(khmc);
 		sxkh.setYwybh(ywybh);
@@ -83,6 +94,11 @@ public class SxkhAction extends ActionSupport {
 		sxkhService.modify(sxkh);
 		
 		return "edit";
+	}
+	
+	public String delete(){
+		sxkhService.delete(id);
+		return "delete";
 	}
 	
 	public String ye(){

@@ -37,20 +37,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				if(hkzje > 0){
 					 
-					var xsje = $(".xsjeTd").eq(index).text();
+					var xsje = Number($(".xsjeTd").eq(index).text());
 					//alert(xsje);
-					var hked = $(".hkedTd").eq(index).text();
+					var hked = Number($(".hkedTd").eq(index).text());
 					//alert(hked);
-					hkje = Number(xsje) - Number(hked);
-					
+					hkje = xsje - hked;
+					//alert("hkje1 = " + hkje1);
 					if(hkje > hkzje){
-						hkje = hkzje;
+						hkje = Number(hkzje);
 					}
 					hkzje -= hkje;
 				}
-				
+				//alert(hkje1);
 				if(hkje == 0){
-						$(this).append("<td class='hkTd'></td>");
+					$(this).append("<td class='hkTd'></td>");
 				}else{
 					$(this).append("<td class='hkTd'>" + hkje.toFixed(4) + "</td>");
 				}
@@ -94,8 +94,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 			$.post("hkmx.action?hk=" + hkmx,function(){
 				$("#tb>tbody>tr").each(function(index){
-					if($(".hkTd").eq(index).text() != 0){
-						alert(index);
+					if($(".hkTd").eq(0).text() != 0){
+						//alert(index);
 						var xsje = Number($(".xsjeTd").eq(0).text());
 						alert(xsje);
 						var hked = Number($(".hkedTd").eq(0).text());
@@ -110,6 +110,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 				});
 				alert("还款操作成功");
+				$("#btnOk").css("display", "inline");
+				$("#btnCancel").css("display", "none");
+				$("#btnHk").css("display", "none");
+				$("#hkzje").val("");
 			});
 		})
     });

@@ -20,14 +20,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<link href="<%=request.getContextPath() %>/style/main.css" rel="stylesheet" type="text/css" />
-	
+	<script type=text/javascript src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script> 
+
+    <script language="javascript" type="text/javascript" > 
+	$(function(){
+		
+		
+	});
+	function delete(id){
+		alert(id);
+	}
+	</script>
 
   </head>
   
   <body>
   Welcome ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
-  	<a href="sxkh!listTotal.action">详细用户列表</a>
+  	<a href="sxkh!listTotal.action">详细用户列表</a>**<a href="<%=request.getContextPath()%>/jsp/sxkhEdit.jsp">增加授信客户</a>
     <table>
     <tr>
     	<th>业务员名称</th>
@@ -53,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${sxkh.balance}</td>
             <td>${sxkh.lsh}</td>
             <td>${sxkh.yjkh}</td>
-            <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a href="sxkh!delete.action">删除</a></td>
+            <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a href="" onClick="delete(${sxkh.id})">删除</a></td>
             <td><a href="xsmx.action?id=${sxkh.id}">销售明细</a>&nbsp;<a href="xsmx!total.action?id=${sxkh.id}">余额</a></td>
           </tr>
           </c:forEach>
