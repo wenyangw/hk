@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Hibernate;
 
 import lnyswz.hk.bean.Hkmx;
+import lnyswz.hk.bean.HkmxLog;
 import lnyswz.hk.dao.HkmxDAO;
 import lnyswz.hk.utils.AbstractPagerManager;
 
@@ -15,6 +16,10 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 		this.getHibernateTemplate().save(hkmx);
 	}
 	
+	@Override
+	public void addLog(HkmxLog log) {
+		this.getHibernateTemplate().save(log);
+	}
 	@Override
 	public void update(Hkmx hkmx) {
 		this.getHibernateTemplate().update(hkmx);
@@ -40,5 +45,9 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	public List<Hkmx> findUncompletedHkmxs(String lsh) {
 		return this.getHibernateTemplate().find("from Hkmx h where h.completed = '0' and h.xsfplsh = ?", lsh);
 	}
-
+	
+	@Override
+	public List<Hkmx> findHkmxeds(String logNo){
+		return this.getHibernateTemplate().find("from Hkmx h where h.logNo = ?", logNo);
+	}
 }

@@ -37,6 +37,11 @@
         
         <action name="hkmx"  class="hkmxAction">
         </action>
+        
+        <action name="hkmxLog"  class="hkmxLogAction">
+        	<result name="log">/jsp/hkmxLog.jsp</result>
+        	<result name="detail">/jsp/hkmxDetail.jsp</result>
+        </action>
     </package>
 
 

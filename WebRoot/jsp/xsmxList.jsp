@@ -60,11 +60,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#btnOk").css("display", "none");
 			$("#btnCancel").css("display", "inline");
 			$("#btnHk").css("display", "inline");
+			$("#hkzje").attr("disabled", true);
 		})
 		$("#btnCancel").bind("click", function(){
 			$("#btnOk").css("display", "inline");
 			$("#btnCancel").css("display", "none");
 			$("#btnHk").css("display", "none");
+			$("#hkzje").attr("disabled", false);
 			$("#tb>thead>tr>th:eq(5)").remove();
 			$("td.hkTd").remove();
 			
@@ -92,28 +94,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 				//alert(hkmx);
 			});
-			$.post("hkmx.action?hk=" + hkmx,function(){
+			//alert("sxkhId = " + ${sxkh.id});
+			//alert("jsxkhId = " + $("#sxkhId").val();
+			var urlTxt = "hkmx.action?hk=" + hkmx.substring(0,hkmx.lastIndexOf(",")) + "&hkzje=" + $("#hkzje").val() + "&sxkhId=" + ${sxkh.id};
+			//alert(urlTxt);
+			$.post(urlTxt, function(){
 				$("#tb>tbody>tr").each(function(index){
 					if($(".hkTd").eq(0).text() != 0){
 						//alert(index);
 						var xsje = Number($(".xsjeTd").eq(0).text());
-						alert(xsje);
+						//alert(xsje);
 						var hked = Number($(".hkedTd").eq(0).text());
 						var hk = Number($(".hkTd").eq(0).text());
 						var ye = (xsje - hked - hk).toFixed(4);
 						if(ye == 0){
 							$(this).remove();
 						}else{
-							$(".hkedTd").eq(0).text($(".hkTd").eq(0).text());
+							$(".hkedTd").eq(0).text(hk + hked);
 							$(".hkTd").eq(0).text("");
 						}
 					}
 				});
-				alert("还款操作成功");
 				$("#btnOk").css("display", "inline");
 				$("#btnCancel").css("display", "none");
 				$("#btnHk").css("display", "none");
 				$("#hkzje").val("");
+				$("#hkzje").attr("disabled", false);
+				$("#tb>thead>tr>th:eq(5)").remove();
+				$("td.hkTd").remove();
+				alert("还款操作成功");
 			});
 		})
     });
@@ -122,8 +131,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <a href="sxkh!list.action">返回授信客户列表</a><br>
+    <hr>
   	<form action="hkmx.action" method="post">
-  	请输入本次还款总金额：<input type="text" name="hkje" id="hkzje" />
+  	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" />
   	<input type="button" id="btnOk" value="确定" />
   	<input type="button" id="btnCancel" value="取消" />
   	<input type="button" id="btnHk" value="确定还款" />

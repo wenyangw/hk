@@ -35,42 +35,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  Welcome ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+  	欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
-  	<a href="sxkh!listTotal.action">客户统计</a>**<a href="<%=request.getContextPath()%>/jsp/sxkhEdit.jsp">增加授信客户</a>
+  	<a href="sxkh!list.action">返回授信客户列表</a>
     <table>
     <tr>
-    	<th>业务员名称</th>
-    	<th>客户编号</th>
-    	<th>客户名称</th>
-    	<th>授信期间</th>
-    	<th>授信额度</th>
-    	<th>历史累计</th>
-    	<th>截止流水号</th>
-    	<th>是否月结</th>
-    	<th>编辑</th>
-    	<th>操作</th>
+    	<th>发票号</th>
+    	<th>还款时间</th>
+    	<th>还款金额</th>
+    	<th>是否还清</th>
     </tr>
-    <c:if test="${!empty pm.list}">
-          <c:forEach items="${pm.list}" var="sxkh">
+    <c:if test="${!empty list}">
+          <c:forEach items="${list}" var="hkmx">
           
           <tr>
-            <td>${sxkh.ywymc}</td>
-            <td>${sxkh.khbh}</td>
-            <td>${sxkh.khmc}</td>
-            <td>${sxkh.days}</td>
-            <td>${sxkh.limit}</td>
-            <td>${sxkh.balance}</td>
-            <td>${sxkh.lsh}</td>
-            <td>${sxkh.yjkh}</td>
-            <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a href="" onClick="delete(${sxkh.id})">删除</a></td>
-            <td><a href="xsmx.action?id=${sxkh.id}">销售明细</a>&nbsp;<a href="xsmx!total.action?id=${sxkh.id}">余额</a>&nbsp;<a href="hkmxLog.action?id=${sxkh.id}">还款记录</a></td>
+            <td>${hkmx.xsfplsh}</td>
+            <td>${hkmx.hksj}</td>
+            <td>${hkmx.hkje}</td>
+            <td>${hkmx.completed == "1" ? "是" : "否"}</td>
           </tr>
           </c:forEach>
 	</c:if>
           
           <!-- 在列表数据为空的时候，要显示的提示信息 -->
-	<c:if test="${empty pm.list}">
+	<c:if test="${empty list}">
 	    <tr>
 	    	<td colspan="5" align="center" bgcolor="#EFF3F7" class="TableBody1" onmouseover="this.bgColor = '#DEE7FF';" onmouseout="this.bgColor='#EFF3F7';">
 	    	没有找到相应的记录

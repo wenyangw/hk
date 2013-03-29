@@ -22,6 +22,10 @@
 	<bean id="hkmxAction" class="lnyswz.hk.action.HkmxAction" scope="prototype">
 		<property name="hkmxService" ref="hkmxService" />
 	</bean>
+	<bean id="hkmxLogAction" class="lnyswz.hk.action.HkmxLogAction" scope="prototype">
+		<property name="hkmxLogService" ref="hkmxLogService" />
+		<property name="hkmxService" ref="hkmxService" />
+	</bean>
 	
 </beans>
 
