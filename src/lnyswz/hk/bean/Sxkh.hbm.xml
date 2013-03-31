@@ -41,15 +41,18 @@
 		</property>
 
 		<property name="yjkh" type="java.lang.String">
-			<column name="yjkh" not-null="true"></column>
+			<column name="yjkh" ></column>
 		</property>
 		
 		<property name="ywybh" type="java.lang.String">
-			<column name="ywybh" not-null="true" />
+			<column name="ywybh"  />
 		</property>
 
 		<property name="ywymc" type="java.lang.String">
-			<column name="ywymc" not-null="true"></column>
+			<column name="ywymc" ></column>
+		</property>
+		<property name="lastLsh" type="java.lang.String">
+			<column name="lastlsh"></column>
 		</property>
 	</class>
 

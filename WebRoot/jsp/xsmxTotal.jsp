@@ -23,6 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  欢迎${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+    <hr>
+  <a href="sxkh!list.action">返回授信客户列表</a>
     <table border="1">
     <tr>
     	<td>业务员名称</td><td>${total.ywymc}</td>

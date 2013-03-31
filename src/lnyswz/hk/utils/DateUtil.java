@@ -11,7 +11,13 @@ import java.util.*;
  */
 public class DateUtil
 {
-
+	
+	public static final String getTime(){
+		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMdd_HHmmss");
+		Date date = new Date();
+		return format.format(date);
+	}
+	
     /**
      * Base ISO 8601 Date format yyyyMMdd i.e., 20021225 for the 25th day of December in the year 2002
      */

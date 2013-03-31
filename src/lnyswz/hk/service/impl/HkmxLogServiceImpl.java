@@ -8,6 +8,22 @@ import lnyswz.hk.service.HkmxLogService;
 
 public class HkmxLogServiceImpl implements HkmxLogService {
 	private HkmxLogDAO hkmxLogDAO;
+	
+	@Override
+	public void addLog(HkmxLog log) {
+		hkmxLogDAO.addLog(log);
+	}
+	
+	@Override
+	public void delete(HkmxLog hkmxLog) {
+		hkmxLogDAO.delete(hkmxLog);
+	}
+	
+	@Override
+	public HkmxLog getHkmxLog(int id) {
+		return hkmxLogDAO.getHkmxLog(id);
+	}
+	
 	@Override
 	public List<HkmxLog> findHkmxLogs(int sxkhId) {
 		return hkmxLogDAO.findHkmxLogs(sxkhId);

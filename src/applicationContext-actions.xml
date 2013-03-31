@@ -20,11 +20,14 @@
 		<property name="hkmxService" ref="hkmxService" />
 	</bean>
 	<bean id="hkmxAction" class="lnyswz.hk.action.HkmxAction" scope="prototype">
+		<property name="hkmxLogService" ref="hkmxLogService" />
 		<property name="hkmxService" ref="hkmxService" />
+		<property name="sxkhService" ref="sxkhService" />
 	</bean>
 	<bean id="hkmxLogAction" class="lnyswz.hk.action.HkmxLogAction" scope="prototype">
 		<property name="hkmxLogService" ref="hkmxLogService" />
 		<property name="hkmxService" ref="hkmxService" />
+		<property name="sxkhService" ref="sxkhService" />
 	</bean>
 	
 </beans>

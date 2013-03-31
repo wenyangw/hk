@@ -29,6 +29,7 @@ public class Sxkh {
     private String yjkh;
     private String ywybh;
     private String ywymc;
+    private String lastLsh;
 	/** 
 	* default constructor. 
 	*/ 
@@ -228,6 +229,17 @@ public class Sxkh {
 	public void setYwymc(String ywymc) {
 		this.ywymc = ywymc;
 	}
+
+
+	public String getLastLsh() {
+		return lastLsh;
+	}
+
+
+	public void setLastLsh(String lastLsh) {
+		this.lastLsh = lastLsh;
+	}
+	
     
 } // END: Sxkh 
 ///:~

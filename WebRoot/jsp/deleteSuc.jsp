@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=GB18030" pageEncoding="GB18030"%>
+
+<%@include file="../common/common.jsp" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'main.jsp' starting page</title>
+    <title>My JSP 'sxkhList.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -21,9 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
-    <hr>
-    <a href="sxkh!list.action">授信客户管理</a>
-    
+  	还款记录删除成功，<a href="hkmxLog.action?id=${sxkhId}">返回还款记录列表</a>。
   </body>
 </html>

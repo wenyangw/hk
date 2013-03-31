@@ -17,16 +17,16 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	}
 	
 	@Override
-	public void addLog(HkmxLog log) {
-		this.getHibernateTemplate().save(log);
-	}
-	@Override
 	public void update(Hkmx hkmx) {
 		this.getHibernateTemplate().update(hkmx);
 	}
-	
+	@Override
+	public void delete(Hkmx hkmx) {
+		this.getHibernateTemplate().delete(hkmx);
+	}
 	@Override
 	public String getLastHkLsh(String bmbh, String khbh, String ywybh) {
+		System.out.println("get lastlsh runing");
 		return (String)this.getSession()
 			.createSQLQuery("select distinct xsfplsh from th_spxs x where xsfplsh in (select xsfplsh from t_hkmx1  h where hkje <> 0 and completed = '0') and bmbh = ? and khbh = ? and ywybh = ?")
 			.addScalar("xsfplsh", Hibernate.STRING)
@@ -42,6 +42,11 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	}
 	
 	@Override
+	public List<Hkmx> getLastHkmxByLsh(String lastLsh) {
+		return this.getHibernateTemplate().find("from Hkmx h where h.xsfplsh = ?", lastLsh);
+	}
+	
+	@Override
 	public List<Hkmx> findUncompletedHkmxs(String lsh) {
 		return this.getHibernateTemplate().find("from Hkmx h where h.completed = '0' and h.xsfplsh = ?", lsh);
 	}
@@ -50,4 +55,15 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	public List<Hkmx> findHkmxeds(String logNo){
 		return this.getHibernateTemplate().find("from Hkmx h where h.logNo = ?", logNo);
 	}
+	
+	@Override
+	public List<Hkmx> findHkmxs(int sxkhId, String yearMonth) {
+		//List<String> logNos = this.getHibernateTemplate().find("select logNo from HkmxLog l where l.sxkhId = ? and l.hksj like ?", new Object[]{sxkhId, yearMonth + "%"});
+		//if(logNos.size() > 0){
+			//return this.getHibernateTemplate().find("from Hkmx h where h.logNo in elements(?)", logNos.);
+		//}
+		//return null;
+		return this.getHibernateTemplate().find("select h from Hkmx h,HkmxLog l where l.sxkhId = ? and h.logNo = l.logNo and l.hksj like ?",new Object[]{sxkhId, yearMonth + "%"});
+}
+	
 }

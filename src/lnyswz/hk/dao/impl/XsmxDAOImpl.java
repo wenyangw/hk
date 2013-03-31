@@ -12,15 +12,22 @@ import lnyswz.hk.utils.PagerModel;
 
 public class XsmxDAOImpl extends AbstractPagerManager implements
 		lnyswz.hk.dao.XsmxDAO {
-		
+	
+	@Override
+	public Xsmx getXsmx(String xsfplsh) {
+		System.out.println("xsfplsh in xsmxDAO = " + xsfplsh);
+		List<Xsmx> list = this.getHibernateTemplate().find("from Xsmx x where x.id.xsfplsh = ?", xsfplsh);
+		System.out.println("listsize = " + list.size());
+		return list.get(0);
+	}
 	@Override
 	public PagerModel findXsmxs(String bmbh, String khbh, String xsfplsh, String ywybh) {
 		return this.searchPaginated("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? and x.id.ywybh = ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh, ywybh});
 	}
 	
 	@Override
-	public List<Xsmx> findXsmxsList(String bmbh, String khbh, String xsfplsh, String ywybh) {
-		return this.getHibernateTemplate().find("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? and x.id.ywybh = ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh, ywybh});
+	public List<Xsmx> findXsmxsList(String bmbh, String khbh, String xsfplsh, String ywybh, String yearMonth) {
+		return this.getHibernateTemplate().find("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? and x.id.ywybh = ? and x.id.kpsj < ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh, ywybh, yearMonth});
 	}
 
 }

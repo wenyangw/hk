@@ -20,44 +20,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<link href="<%=request.getContextPath() %>/style/main.css" rel="stylesheet" type="text/css" />
-	<script type=text/javascript src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script> 
-
-    <script language="javascript" type="text/javascript" > 
-	$(function(){
-		
-		
-	});
-	function delete(){
-		if(confirm('确定要删除记录吗?')){
-			return true;
-		}
-		return false;
-	}
-	</script>
+	
 
   </head>
   
   <body>
-  	欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+  	欢迎${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
   	<a href="sxkh!list.action">返回授信客户列表</a>
     <table>
     <tr>
-    	<th>还款时间</th>
-    	<th>还款金额</th>
-    	<th>记录号</th>
-    	<th>操作</th>
+    	<th>业务员名称</th>
+    	<th>客户编号</th>
+    	<th>客户名称</th>
+    	<th>还款总额</th>
+    	<th>提前30天以内还款额</th>
+    	<th>正常还款额</th>
+    	<th>延后30天以上还款额</th>
     </tr>
     <c:if test="${!empty list}">
-          <c:forEach items="${list}" var="hkmxLog" varStatus="status">
-          <c:if test="${status.first}">
-          	<c:set var="logId" value="${hkmxLog.id}"></c:set>
-          </c:if>
+          <c:forEach items="${list}" var="hkmxTotal">
+          
           <tr>
-            <td>${hkmxLog.hksj}</td>
-            <td>${hkmxLog.hkje}</td>
-            <td>${hkmxLog.logNo}</td>
-            <td><a href="hkmxLog!detail.action?logno=${hkmxLog.logNo}">详细</a></td>
+          	<td>${hkmxTotal.ywymc}</td>
+            <td>${hkmxTotal.khbh}</td>
+            <td>${hkmxTotal.khmc}</td>
+            <td>${hkmxTotal.total}</td>
+            <td>${hkmxTotal.total1}</td>
+            <td>${hkmxTotal.total2}</td>
+            <td>${hkmxTotal.total3}</td>
           </tr>
           </c:forEach>
 	</c:if>
@@ -71,6 +62,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </tr>
 	</c:if>
     </table>
-    <a href="hkmxLog!delete.action?id=${logId}" onclick="{if(confirm('确定要删除记录吗?')){return true;}return false;}">删除最后一次还款记录</a>
   </body>
 </html>

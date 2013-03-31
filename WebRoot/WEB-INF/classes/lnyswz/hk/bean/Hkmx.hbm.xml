@@ -30,7 +30,10 @@
 		<property name="completed" type="java.lang.String">
 			<column name="completed"></column>
 		</property>
-
+		
+		<property name="logNo" type="java.lang.String">
+			<column name="logno"></column>
+		</property>
 	</class>
 
 </hibernate-mapping>

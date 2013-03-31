@@ -10,6 +10,7 @@ import lnyswz.hk.bean.SxkhTotal;
 import lnyswz.hk.bean.User;
 import lnyswz.hk.service.SxkhService;
 import lnyswz.hk.service.XsmxService;
+import lnyswz.hk.utils.DateUtil;
 import lnyswz.hk.utils.PagerModel;
 
 import org.apache.struts2.ServletActionContext;
@@ -22,6 +23,8 @@ public class SxkhAction extends ActionSupport {
 	private XsmxService xsmxService;
 	//ÊÚÐÅ¿Í»§Id
 	private int id;
+	private String year;
+	private String month;
 	
 	private String khbh;
 	private String khmc;
@@ -33,6 +36,7 @@ public class SxkhAction extends ActionSupport {
     private String yjkh;
     private String ywybh;
     private String ywymc;
+    private String lastLsh;
 	
 	public String list() throws Exception {
 		HttpServletRequest request = (HttpServletRequest)ServletActionContext.getRequest();
@@ -52,9 +56,11 @@ public class SxkhAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		
-		User user = (User)session.getAttribute("user");
-		List<SxkhTotal> list = xsmxService.getTotals(user.getOrg());
 		
+		String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+		String dateStr = DateUtil.dateToString(DateUtil.dateIncreaseByMonth(DateUtil.stringToDate(yearMonth) ,1));
+		User user = (User)session.getAttribute("user");
+		List<SxkhTotal> list = xsmxService.getTotals(user.getOrg(), dateStr);
 		request.setAttribute("list", list);
 		return "total";
 		
@@ -98,7 +104,7 @@ public class SxkhAction extends ActionSupport {
 	
 	public String delete(){
 		sxkhService.delete(id);
-		return "delete";
+		return "edit";
 	}
 	
 	public String ye(){
@@ -206,6 +212,31 @@ public class SxkhAction extends ActionSupport {
 	public void setYwymc(String ywymc) {
 		this.ywymc = ywymc;
 	}
+	
+	
+	public String getLastLsh() {
+		return lastLsh;
+	}
+
+	public void setLastLsh(String lastLsh) {
+		this.lastLsh = lastLsh;
+	}
+	
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
 
 	public SxkhService getSxkhService() {
 		return sxkhService;
@@ -214,5 +245,6 @@ public class SxkhAction extends ActionSupport {
 	public XsmxService getXsmxService() {
 		return xsmxService;
 	}
+	
 	
 }

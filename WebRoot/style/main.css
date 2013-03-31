@@ -1,9 +1,17 @@
+html, table{
+	font: 12px "宋体","SimSun","Arial Narrow";
+}
+body{
+	text-align:center;
+}
 table{
 	border-collapse:collapse;
 	border-spacing:0;
 	border-left:1px solid #888;
 	border-top:1px solid #888;
 	background:#efefef;
+	/*表格居中*/
+	margin:auto;
 }
 th,td{
 	border-right:1px solid #888;

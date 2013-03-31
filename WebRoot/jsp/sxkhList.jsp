@@ -22,22 +22,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="<%=request.getContextPath() %>/style/main.css" rel="stylesheet" type="text/css" />
 	<script type=text/javascript src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script> 
 
-    <script language="javascript" type="text/javascript" > 
-	$(function(){
-		
-		
-	});
-	function delete(id){
-		alert(id);
-	}
-	</script>
 
   </head>
   
   <body>
-  Welcome ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+  欢迎${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
-  	<a href="sxkh!listTotal.action">客户统计</a>**<a href="<%=request.getContextPath()%>/jsp/sxkhEdit.jsp">增加授信客户</a>
+<%--  	<a href="sxkh!listTotal.action">客户欠款统计</a>**<a href="hkmx!listTotal.action">客户还款统计</a>**<a href="<%=request.getContextPath()%>/jsp/sxkhEdit.jsp">增加授信客户</a>--%>
+  	<a href="jsp/sxkhSel.jsp">客户欠款统计</a>**<a href="jsp/hkSel.jsp">客户还款统计</a>**<a href="<%=request.getContextPath()%>/jsp/sxkhEdit.jsp">增加授信客户</a>
     <table>
     <tr>
     	<th>业务员名称</th>
@@ -63,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${sxkh.balance}</td>
             <td>${sxkh.lsh}</td>
             <td>${sxkh.yjkh}</td>
-            <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a href="" onClick="delete(${sxkh.id})">删除</a></td>
+            <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a id="delSxkh" href="sxkh!delete.action?id=${sxkh.id}" onclick="{if(confirm('确定要删除记录吗?')){return true;}return false;}">删除</a></td>
             <td><a href="xsmx.action?id=${sxkh.id}">销售明细</a>&nbsp;<a href="xsmx!total.action?id=${sxkh.id}">余额</a>&nbsp;<a href="hkmxLog.action?id=${sxkh.id}">还款记录</a></td>
           </tr>
           </c:forEach>

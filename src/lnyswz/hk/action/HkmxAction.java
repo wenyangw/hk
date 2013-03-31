@@ -6,23 +6,33 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
 import lnyswz.hk.bean.Hkmx;
 import lnyswz.hk.bean.HkmxLog;
+import lnyswz.hk.bean.HkmxTotal;
+import lnyswz.hk.bean.Sxkh;
+import lnyswz.hk.bean.SxkhTotal;
 import lnyswz.hk.bean.User;
+import lnyswz.hk.service.HkmxLogService;
 import lnyswz.hk.service.HkmxService;
+import lnyswz.hk.service.SxkhService;
 import lnyswz.hk.utils.DateUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class HkmxAction extends ActionSupport {
 	private HkmxService hkmxService;
+	private HkmxLogService hkmxLogService;
+	private SxkhService sxkhService;
 	private String hk;
 	private String hkzje;
 	private int sxkhId;
+	private String year;
+	private String month;
 	
 	@Override
 	public String execute() throws Exception {
@@ -33,6 +43,7 @@ public class HkmxAction extends ActionSupport {
 		String logNo = user.getUsername() + DateUtil.getTime();
 		String hksj = DateUtil.getCurrentDateString();
 		String lastLsh = hk.substring(0,11);
+		String newLsh = "";
 					
 		String[] hkmxs = hk.split(",");
 		for(String mx : hkmxs){
@@ -50,6 +61,9 @@ public class HkmxAction extends ActionSupport {
 					}
 				}
 			}
+			if(bj.equals("0")){
+				newLsh = lsh;
+			}
 			Hkmx hkmx = new Hkmx();
 			hkmx.setXsfplsh(lsh);
 			hkmx.setHkje(new BigDecimal(hkje));
@@ -66,9 +80,26 @@ public class HkmxAction extends ActionSupport {
 		hkmxLog.setLogNo(logNo);
 		hkmxLog.setSxkhId(sxkhId);
 		
-		hkmxService.addLog(hkmxLog);
+		hkmxLogService.addLog(hkmxLog);
+		
+		Sxkh sxkh = sxkhService.getSxkh(sxkhId);
+		sxkh.setLastLsh(newLsh);
+		
+		sxkhService.modify(sxkh);
 		
 		return null;
+	}
+	
+	public String listTotal(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		
+		User user = (User)session.getAttribute("user");
+		String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month);
+		List<HkmxTotal> list = hkmxService.getTotals(user.getOrg(), yearMonth);
+		
+		request.setAttribute("list", list);
+		return "total";
 	}
 	
 	public String getHk() {
@@ -94,9 +125,35 @@ public class HkmxAction extends ActionSupport {
 	public void setSxkhId(int sxkhId) {
 		this.sxkhId = sxkhId;
 	}
+	
+	
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
 
 	public void setHkmxService(HkmxService hkmxService) {
 		this.hkmxService = hkmxService;
 	}
+
+	public void setSxkhService(SxkhService sxkhService) {
+		this.sxkhService = sxkhService;
+	}
+
+	public void setHkmxLogService(HkmxLogService hkmxLogService) {
+		this.hkmxLogService = hkmxLogService;
+	}
+	
 	
 }

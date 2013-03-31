@@ -25,6 +25,7 @@ public class Hkmx {
 	private BigDecimal hkje;
 	private String hksj;
 	private String completed;
+	private String logNo;
 
 	/** 
 	* default constructor. 
@@ -131,6 +132,18 @@ public class Hkmx {
 	public void setId(int id) {
 	    this.id = id;
 	}
+
+
+	public String getLogNo() {
+		return logNo;
+	}
+
+
+	public void setLogNo(String logNo) {
+		this.logNo = logNo;
+	}
+	
+	
 } // END: Hkmx 
 ///:~
 

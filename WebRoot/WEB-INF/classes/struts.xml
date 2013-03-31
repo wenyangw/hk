@@ -36,11 +36,13 @@
         </action>
         
         <action name="hkmx"  class="hkmxAction">
+        	<result name="total">/jsp/hkmxTotal.jsp</result>
         </action>
         
         <action name="hkmxLog"  class="hkmxLogAction">
         	<result name="log">/jsp/hkmxLog.jsp</result>
         	<result name="detail">/jsp/hkmxDetail.jsp</result>
+        	<result name="delete">/jsp/deleteSuc.jsp</result>
         </action>
     </package>
 
