@@ -179,7 +179,21 @@ public class DateUtil
   
         return (int)(toCalendar.getTime().getTime() - fromCalendar.getTime().getTime()) / (1000 * 60 * 60 * 24);  
     }
-
+    
+    public static final String getLastDateOfMonth(Date date){
+    	Calendar c = Calendar.getInstance();
+    	int year = Integer.parseInt(getYear(date));
+    	int month = Integer.parseInt(getMonth(date)) - 1;
+		c.set(c.YEAR, year);
+		c.set(c.MONTH, month);
+//		System.out.println(c.getActualMaximum(c.DAY_OF_MONTH));
+//		System.out.println(c.getActualMinimum(c.DAY_OF_MONTH));
+		int lastDay = c.getActualMaximum(c.DAY_OF_MONTH);
+		String result = "" + year + "-" + ((month+1) < 10 ? "0" + (month + 1) : (month + 1)) + "-" + (lastDay < 10 ? "0" + lastDay : lastDay);
+		return result;
+		
+    }
+    
     /**
      * Return a Julian date based on the input parameter. This is
      * based from calculations found at

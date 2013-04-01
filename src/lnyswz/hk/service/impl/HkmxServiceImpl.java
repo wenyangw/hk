@@ -80,6 +80,7 @@ public class HkmxServiceImpl implements HkmxService {
 		String khmc = sxkh.getKhmc();
 		String ywybh = sxkh.getYwybh();
 		String ywymc = sxkh.getYwymc();
+		String yjkh = sxkh.getYjkh();
 		//String lastLsh = sxkh.getLastLsh();
 		//if(lastLsh == null){
 			//lastLsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
@@ -109,7 +110,7 @@ public class HkmxServiceImpl implements HkmxService {
 				String xsfplsh = hkmx.getXsfplsh();
 				int days = sxkh.getDays();
 				Xsmx xsmx = xsmxDAO.getXsmx(xsfplsh);
-				XsmxS xsmxS = new XsmxS(xsmx, days);
+				XsmxS xsmxS = new XsmxS(xsmx, days, yjkh);
 				BigDecimal hkje = hkmx.getHkje();
 				String hksj = hkmx.getHksj();
 				String hksjP = xsmxS.getHksj();

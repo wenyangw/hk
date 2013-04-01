@@ -36,13 +36,17 @@ public class XsmxS implements java.io.Serializable{
 		super(); 
 	} 
 
-	public XsmxS(Xsmx xsmx, int days){
+	public XsmxS(Xsmx xsmx, int days, String yjkh){
 		setBmbh(xsmx.getId().getBmbh());
 		setKhbh(xsmx.getId().getKhbh());
 		setKpsj(xsmx.getId().getKpsj());
 		setXsfplsh(xsmx.getId().getXsfplsh());
 		setXsje(xsmx.getId().getXsje());
-		setHksj(DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, days));
+		if(yjkh.equals("0") || yjkh == null || yjkh.equals(" ")){
+			setHksj(DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, days));
+		}else{
+			setHksj(DateUtil.getLastDateOfMonth(DateUtil.stringToDate(xsmx.getId().getKpsj())));
+		}
 	}
 	/** 
 	 * for test. 

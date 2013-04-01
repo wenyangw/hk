@@ -38,7 +38,6 @@ public class XsmxAction extends ActionSupport {
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
 		String lastLsh = sxkh.getLastLsh();
-		System.out.println("lastlsh = (" + lastLsh + ")");
 		if(lastLsh == null){
 			lastLsh = hkmxService.getLastLsh(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
 		}
@@ -52,7 +51,6 @@ public class XsmxAction extends ActionSupport {
 			hkmx.setXsfplsh(h.getXsfplsh());
 		}
 		
-		//PagerModel pm1 = xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
 		PagerModel pm1 = xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), lastLsh);
 		PagerModel pm = new PagerModel();
 		
@@ -60,15 +58,7 @@ public class XsmxAction extends ActionSupport {
 		List<Object> list = new ArrayList<Object>();
 		
 		for(Object xsmx: list1){
-			XsmxS xsmxS = new XsmxS((Xsmx)xsmx, sxkh.getDays());
-			
-//			XsmxS xsmxs = new XsmxS();
-//			xsmxs.setBmbh(((Xsmx)xsmx).getId().getBmbh());
-//			xsmxs.setKhbh(((Xsmx)xsmx).getId().getKhbh());
-//			xsmxs.setKpsj(((Xsmx)xsmx).getId().getKpsj());
-//			xsmxs.setXsfplsh(((Xsmx)xsmx).getId().getXsfplsh());
-//			xsmxs.setXsje(((Xsmx)xsmx).getId().getXsje());
-//			xsmxs.setHksj(DateUtil.dateIncreaseByDay(((Xsmx)xsmx).getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, sxkh.getDays()));
+			XsmxS xsmxS = new XsmxS((Xsmx)xsmx, sxkh.getDays(), sxkh.getYjkh());
 			
 			list.add(xsmxS);
 		}
