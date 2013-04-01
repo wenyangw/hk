@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'sxkhList.jsp' starting page</title>
+    <title>业务管理</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -30,9 +30,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="sxkh!list.action">返回授信客户列表</a>
     <table>
     <tr>
+    	<th>业务员名称</th>
     	<th>客户编号</th>
-    	<th>客户编号</th>
-    	<th>客户编号</th>
+    	<th>客户名称</th>
     	<th>欠款总额</th>
     	<th>授信期内</th>
     	<th>超期1-30天以内</th>

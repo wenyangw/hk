@@ -7,7 +7,7 @@
 
 <hibernate-mapping>
 
-	<class name="lnyswz.hk.bean.Sxkh" table="tc_sxkh1">
+	<class name="lnyswz.hk.bean.Sxkh" table="tc_sxkh">
 		<id name="id" column="id">
             <generator class="native" /> 
 		</id>
