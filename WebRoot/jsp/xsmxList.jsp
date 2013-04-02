@@ -21,7 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<link href="<%=request.getContextPath() %>/style/main.css" rel="stylesheet" type="text/css" />
 	<script type=text/javascript src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script> 
-
+	<script type=text/javascript src="<%=request.getContextPath()%>/js/Calendar1.js"></script>
+	
     <script language="javascript" type="text/javascript" > 
 	$(function(){
 		$("#btnCancel").css("display", "none");
@@ -136,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="sxkh!list.action">返回授信客户列表</a><br>
     <hr>
   	<form action="hkmx.action" method="post">
-  	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" />
+  	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" />,还款时间<input type="text" class="input300" name="startTime" value="" id="datepicker" onclick = "calendar()" readonly="readonly">
   	<input type="button" id="btnOk" value="确定" />
   	<input type="button" id="btnCancel" value="取消" />
   	<input type="button" id="btnHk" value="确定还款" />
