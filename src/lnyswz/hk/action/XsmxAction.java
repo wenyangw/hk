@@ -38,18 +38,27 @@ public class XsmxAction extends ActionSupport {
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
 		String lastLsh = sxkh.getLastLsh();
-		if(lastLsh == null){
-			lastLsh = hkmxService.getLastLsh(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
+		
+		
+		
+		List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
+		//List<Hkmx> hkmxs = hkmxService.getLastHkmxByLsh(lastLsh);
+		BigDecimal hked = new BigDecimal(0);
+		if(hkmxs.size() != 0){
+			if(lastLsh == null){
+				lastLsh = hkmxs.get(0).getXsfplsh();
+			}
+				//计算最后一笔已还款金额
+				for(Hkmx hkmx : hkmxs){
+					hked = hked.add(hkmx.getHkje());
+				}
+		}else{
+			lastLsh = sxkh.getLsh();
 		}
 		
-		//List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
-		List<Hkmx> hkmxs = hkmxService.getLastHkmxByLsh(lastLsh);
 		Hkmx hkmx = new Hkmx();
-		hkmx.setHkje(new BigDecimal(0));
-		for(Hkmx h : hkmxs){
-			hkmx.setHkje(hkmx.getHkje().add(h.getHkje()));
-			hkmx.setXsfplsh(h.getXsfplsh());
-		}
+		hkmx.setHkje(hked);
+		hkmx.setXsfplsh(lastLsh);
 		
 		PagerModel pm1 = xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), lastLsh);
 		PagerModel pm = new PagerModel();

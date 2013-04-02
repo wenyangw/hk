@@ -15,9 +15,7 @@ public class XsmxDAOImpl extends AbstractPagerManager implements
 	
 	@Override
 	public Xsmx getXsmx(String xsfplsh) {
-		System.out.println("xsfplsh in xsmxDAO = " + xsfplsh);
 		List<Xsmx> list = this.getHibernateTemplate().find("from Xsmx x where x.id.xsfplsh = ?", xsfplsh);
-		System.out.println("listsize = " + list.size());
 		return list.get(0);
 	}
 	@Override

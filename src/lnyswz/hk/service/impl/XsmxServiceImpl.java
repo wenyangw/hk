@@ -54,9 +54,10 @@ public class XsmxServiceImpl implements XsmxService {
 		String ywybh = sxkh.getYwybh();
 		String ywymc = sxkh.getYwymc();
 		String lastLsh = sxkh.getLastLsh();
-		if(lastLsh == null){
-			lastLsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
-		}
+		//原处理方式，单独取一次流水号
+//		if(lastLsh == null){
+//			lastLsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
+//		}
 		
 		//建立不同超期时段的汇总变量
 		BigDecimal totalAll = new BigDecimal(0);
@@ -70,17 +71,28 @@ public class XsmxServiceImpl implements XsmxService {
 		//String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
 		
 				
-		//取得最后一笔未还款的记录
-		//List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
-		List<Hkmx> hkmxs = hkmxDAO.getLastHkmxByLsh(lastLsh);
-		
+		//按新方式
+		List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
+		BigDecimal hked = new BigDecimal(0);
 		if(hkmxs.size() != 0){
-		
-			//计算最后一笔已还款金额
-			BigDecimal hked = new BigDecimal(0);
-			for(Hkmx hkmx : hkmxs){
-				hked = hked.add(hkmx.getHkje());
+			if(lastLsh == null){
+				lastLsh = hkmxs.get(0).getXsfplsh();
 			}
+			
+			
+				//计算最后一笔已还款金额
+				
+				for(Hkmx hkmx : hkmxs){
+					hked = hked.add(hkmx.getHkje());
+				}
+		}else{
+			lastLsh = sxkh.getLsh();
+		}
+		
+		//原方式，按前面取得的流水号，再次取得还款记录
+		//List<Hkmx> hkmxs = hkmxDAO.getLastHkmxByLsh(lastLsh);
+		
+		
 			//得到最后一笔还款的销售流水号
 			//String xsfplsh = hkmxs.get(0).getXsfplsh();
 		
@@ -132,7 +144,7 @@ public class XsmxServiceImpl implements XsmxService {
 			totalAll = totalAll.add(totalOut2);
 			totalAll = totalAll.add(totalOut3);
 			totalAll = totalAll.add(totalOut4);
-		}
+		
 		//返回值	
 		total.setYwybh(ywybh);
 		total.setYwymc(ywymc);

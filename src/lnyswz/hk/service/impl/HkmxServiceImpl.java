@@ -106,7 +106,6 @@ public class HkmxServiceImpl implements HkmxService {
 		if(hkmxs != null && hkmxs.size() != 0){
 		
 			for(Hkmx hkmx : hkmxs){
-				System.out.println("xsfplsh = " + hkmx.getXsfplsh());
 				String xsfplsh = hkmx.getXsfplsh();
 				int days = sxkh.getDays();
 				Xsmx xsmx = xsmxDAO.getXsmx(xsfplsh);
