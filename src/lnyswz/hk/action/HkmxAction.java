@@ -33,6 +33,7 @@ public class HkmxAction extends ActionSupport {
 	private int sxkhId;
 	private String year;
 	private String month;
+	private String hkTime;
 	
 	@Override
 	public String execute() throws Exception {
@@ -41,7 +42,8 @@ public class HkmxAction extends ActionSupport {
 				
 		//生成还款记录号
 		String logNo = user.getUsername() + DateUtil.getTime();
-		String hksj = DateUtil.getCurrentDateString();
+		//String hksj = DateUtil.getCurrentDateString();
+		
 		String lastLsh = hk.substring(0,11);
 		String newLsh = "";
 					
@@ -67,7 +69,8 @@ public class HkmxAction extends ActionSupport {
 			Hkmx hkmx = new Hkmx();
 			hkmx.setXsfplsh(lsh);
 			hkmx.setHkje(new BigDecimal(hkje));
-			hkmx.setHksj(hksj);
+			//hkmx.setHksj(hksj);
+			hkmx.setHksj(hkTime);
 			hkmx.setCompleted(bj);
 			hkmx.setLogNo(logNo);
 			hkmxService.add(hkmx);
@@ -75,7 +78,8 @@ public class HkmxAction extends ActionSupport {
 		
 		HkmxLog hkmxLog = new HkmxLog();
 		hkmxLog.setHkje(new BigDecimal(hkzje));
-		hkmxLog.setHksj(hksj);
+		//hkmxLog.setHksj(hksj);
+		hkmxLog.setHksj(hkTime);
 		hkmxLog.setLastLsh(lastLsh);
 		hkmxLog.setLogNo(logNo);
 		hkmxLog.setSxkhId(sxkhId);
@@ -141,6 +145,15 @@ public class HkmxAction extends ActionSupport {
 
 	public void setMonth(String month) {
 		this.month = month;
+	}
+	
+	
+	public String getHkTime() {
+		return hkTime;
+	}
+
+	public void setHkTime(String hkTime) {
+		this.hkTime = hkTime;
 	}
 
 	public void setHkmxService(HkmxService hkmxService) {

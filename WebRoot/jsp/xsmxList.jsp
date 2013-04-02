@@ -137,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="sxkh!list.action">返回授信客户列表</a><br>
     <hr>
   	<form action="hkmx.action" method="post">
-  	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" />,还款时间<input type="text" class="input300" name="startTime" value="" id="datepicker" onclick = "calendar()" readonly="readonly">
+  	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" />,还款时间<input type="text" name="hkTime" value="" id="datepicker" onclick = "calendar()" readonly="readonly">
   	<input type="button" id="btnOk" value="确定" />
   	<input type="button" id="btnCancel" value="取消" />
   	<input type="button" id="btnHk" value="确定还款" />
