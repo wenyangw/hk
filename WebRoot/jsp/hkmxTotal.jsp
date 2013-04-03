@@ -45,10 +45,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	<td>${hkmxTotal.ywymc}</td>
             <td>${hkmxTotal.khbh}</td>
             <td>${hkmxTotal.khmc}</td>
-            <td>${hkmxTotal.total}</td>
-            <td>${hkmxTotal.total1}</td>
-            <td>${hkmxTotal.total2}</td>
-            <td>${hkmxTotal.total3}</td>
+            <td class="datearea">${hkmxTotal.total}</td>
+            <td class="datearea">${hkmxTotal.total1}</td>
+            <td class="datearea">${hkmxTotal.total2}</td>
+            <td class="datearea">${hkmxTotal.total3}</td>
           </tr>
           </c:forEach>
 	</c:if>

@@ -37,25 +37,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<td>客户名称</td><td>${total.khmc}</td>
     </tr>
     <tr>
-    	<td>欠款总额</td><td>${total.total}</td>
+    	<td>欠款总额</td><td class="dataarea">${total.total}</td>
     </tr>
     <tr>
-    	<td>超额度欠款</td><td>${total.total == 0 ? 0 : total.total - sumOf}</td>
+    	<td>超额度欠款</td><td class="dataarea">${total.total == 0 ? 0 : total.total - sumOf}</td>
     </tr>
     <tr>
-    	<td>授信期内金额</td><td>${total.totalIn}</td>
+    	<td>授信期内金额</td><td class="dataarea">${total.totalIn}</td>
     </tr>
     <tr>	
-    	<td>超期1-30天</td><td>${total.totalOut1}</td>
+    	<td>超期1-30天</td><td class="dataarea">${total.totalOut1}</td>
     </tr>
     <tr>
-    	<td>超期31-90天</td><td>${total.totalOut2}</td>
+    	<td>超期31-90天</td><td class="dataarea">${total.totalOut2}</td>
     </tr>
     <tr>
-    	<td>超期91-180天</td><td>${total.totalOut3}</td>
+    	<td>超期91-180天</td><td class="dataarea">${total.totalOut3}</td>
     </tr>
     <tr>
-    	<td>超期180天以上</td><td>${total.totalOut4}</td>
+    	<td>超期180天以上</td><td class="dataarea">${total.totalOut4}</td>
     </tr>
     </table>
   </body>

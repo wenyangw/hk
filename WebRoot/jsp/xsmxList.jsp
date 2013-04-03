@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
     <script language="javascript" type="text/javascript" > 
 	$(function(){
+		dosum();
 		$("#btnCancel").css("display", "none");
 		$("#btnHk").css("display", "none");
 		
@@ -51,9 +52,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 				//alert(hkje1);
 				if(hkje == 0){
-					$(this).append("<td class='hkTd'></td>");
+					$(this).append("<td class='hkTd datearea'></td>");
 				}else{
-					$(this).append("<td class='hkTd'>" + hkje.toFixed(4) + "</td>");
+					$(this).append("<td class='hkTd datearea'>" + hkje.toFixed(4) + "</td>");
 				}
 				//alert("第" + index + "行的数据是" + $(this).text() + "/" + $(".hkedTd").eq(index).text());
 				
@@ -72,6 +73,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("td.hkTd").remove();
 			
 		})
+		
+		
 		$("#btnHk").bind("click", function(){
 			//var hkmx = "[";
 			var hkmx = "";
@@ -93,18 +96,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						hkmx += ':0,'
 					}
 				}
-				//alert(hkmx);
 			});
-			//alert("sxkhId = " + ${sxkh.id});
-			//alert("jsxkhId = " + $("#sxkhId").val();
-			var urlTxt = "hkmx.action?hk=" + hkmx.substring(0,hkmx.lastIndexOf(",")) + "&hkzje=" + $("#hkzje").val() + "&sxkhId=" + ${sxkh.id};
-			//alert(urlTxt);
+			var urlTxt = "hkmx.action?hk=" + hkmx.substring(0,hkmx.lastIndexOf(",")) 
+			                         +"&hkzje=" + $("#hkzje").val() 
+			                         + "&sxkhId=" + ${sxkh.id}
+										+"&hkTime=" + $("#datepicker").val();
+										
+			alert(urlTxt);
 			$.post(urlTxt, function(){
 				$("#tb>tbody>tr").each(function(index){
 					if($(".hkTd").eq(0).text() != 0){
-						//alert(index);
 						var xsje = Number($(".xsjeTd").eq(0).text());
-						//alert(xsje);
 						var hked = Number($(".hkedTd").eq(0).text());
 						var hk = Number($(".hkTd").eq(0).text());
 						var ye = (xsje - hked - hk).toFixed(4);
@@ -123,9 +125,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#hkzje").attr("disabled", false);
 				$("#tb>thead>tr>th:eq(5)").remove();
 				$("td.hkTd").remove();
+				dosum();
 				alert("还款操作成功");
 			});
 		})
+		
+		//累加欠款总额，显示在报表顶部
+		function dosum(){
+			var zxsje = 0;
+			$("#tb>tbody>tr").each(function(index){
+				var xsje = Number($(".xsjeTd").eq(index).text());
+				var hked = Number($(".hkedTd").eq(index).text());
+			
+				zxsje = zxsje + xsje - hked;
+			});
+			$("label#zxsje").text(zxsje.toFixed(4));
+			$("label#zxsje").css("color","red");
+		}
     });
     </script>
 
@@ -137,7 +153,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="sxkh!list.action">返回授信客户列表</a><br>
     <hr>
   	<form action="hkmx.action" method="post">
-  	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" />,还款时间<input type="text" name="hkTime" value="" id="datepicker" onclick = "calendar()" readonly="readonly">
+  	目前客户欠款总额为<label id="zxsje"></label>元,
+  	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" size="10"/>元,
+  	还款时间 	<input type="text" name="hkTime" id="datepicker" onclick = "calendar()" readonly="readonly" size="10">
   	<input type="button" id="btnOk" value="确定" />
   	<input type="button" id="btnCancel" value="取消" />
   	<input type="button" id="btnHk" value="确定还款" />
@@ -147,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <tr>
     	<th>发票编号</th>
     	<th>销售时间</th>
-    	<th>还款时间</th>
+    	<th>应还款时间</th>
     	<th>发票金额</th>
     	<th>已还款金额</th>
     </tr>
@@ -161,8 +179,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="lshTd">${xsmxs.xsfplsh}</td>
             <td>${xsmxs.kpsj}</td>
             <td>${xsmxs.hksj}</td>
-            <td class="xsjeTd">${xsmxs.xsje}</td>
-            <td class="hkedTd">${xsmxs.xsfplsh == hkmx.xsfplsh ? hkmx.hkje : ""}</td>
+            <td class="xsjeTd dataarea">${xsmxs.xsje}</td>
+            <td class="hkedTd dataarea">${xsmxs.xsfplsh == hkmx.xsfplsh ? hkmx.hkje : ""}</td>
           </tr>
           </c:forEach>
 	</c:if>

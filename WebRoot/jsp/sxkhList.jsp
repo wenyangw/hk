@@ -51,8 +51,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${sxkh.khbh}</td>
             <td>${sxkh.khmc}</td>
             <td>${sxkh.days}</td>
-            <td>${sxkh.limit}</td>
-            <td>${sxkh.balance}</td>
+            <td class="dataarea">${sxkh.limit}</td>
+            <td class="dataarea">${sxkh.balance}</td>
             <td>${sxkh.lsh}</td>
             <td>${sxkh.yjkh}</td>
             <td><a href="sxkh!editPage.action?id=${sxkh.id}">修改</a>&nbsp;<a id="delSxkh" href="sxkh!delete.action?id=${sxkh.id}" onclick="{if(confirm('确定要删除记录吗?')){return true;}return false;}">删除</a></td>

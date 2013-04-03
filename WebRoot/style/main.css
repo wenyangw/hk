@@ -22,3 +22,6 @@ th{
 	font-weight:bold;
 	background:#ccc;
 }
+td.dataarea{
+	text-align: right;
+}

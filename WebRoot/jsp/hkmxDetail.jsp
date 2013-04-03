@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <tr>
             <td>${hkmx.xsfplsh}</td>
             <td>${hkmx.hksj}</td>
-            <td>${hkmx.hkje}</td>
+            <td class="dataarea">${hkmx.hkje}</td>
             <td>${hkmx.completed == "1" ? "ÊÇ" : "·ñ"}</td>
           </tr>
           </c:forEach>

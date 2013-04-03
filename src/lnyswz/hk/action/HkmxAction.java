@@ -46,7 +46,6 @@ public class HkmxAction extends ActionSupport {
 		
 		String lastLsh = hk.substring(0,11);
 		String newLsh = "";
-					
 		String[] hkmxs = hk.split(",");
 		for(String mx : hkmxs){
 			String lsh = mx.substring(0, 11);

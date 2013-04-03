@@ -47,12 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	<td>${sxkhTotal.ywymc}</td>
             <td>${sxkhTotal.khbh}</td>
             <td>${sxkhTotal.khmc}</td>
-            <td>${sxkhTotal.total}</td>
-            <td>${sxkhTotal.totalIn}</td>
-            <td>${sxkhTotal.totalOut1}</td>
-            <td>${sxkhTotal.totalOut2}</td>
-            <td>${sxkhTotal.totalOut3}</td>
-            <td>${sxkhTotal.totalOut4}</td>
+            <td class="datearea">${sxkhTotal.total}</td>
+            <td class="datearea">${sxkhTotal.totalIn}</td>
+            <td class="datearea">${sxkhTotal.totalOut1}</td>
+            <td class="datearea">${sxkhTotal.totalOut2}</td>
+            <td class="datearea">${sxkhTotal.totalOut3}</td>
+            <td class="datearea">${sxkhTotal.totalOut4}</td>
           </tr>
           </c:forEach>
 	</c:if>
