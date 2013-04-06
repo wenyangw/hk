@@ -23,7 +23,7 @@ public class XsmxServiceImpl implements XsmxService {
 	private SxkhDAO sxkhDAO;
 	
 	@Override
-	public PagerModel findXsmxs(String bmbh, String khbh, String ywybh, String lastLsh) {
+	public List<Xsmx> findXsmxs(String bmbh, String khbh, String ywybh, String lastLsh) {
 		//String xsfplsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
 		return xsmxDAO.findXsmxs(bmbh, khbh, lastLsh, ywybh);
 	}

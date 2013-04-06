@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="sxkh!list.action">返回授信客户列表</a><br>
     <hr>
   	<form action="hkmx.action" method="post">
-  	目前客户欠款总额为<label id="zxsje"></label>元,
+  	客户：${sxkh.khmc },目前欠款总额为<label id="zxsje"></label>元,<a href="jsp/prnSel.jsp?sxkhId=${sxkh.id}">报表打印</a><br>
   	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" size="10"/>元,
   	还款时间 	<input type="text" name="hkTime" id="datepicker" onclick = "calendar()" readonly="readonly" size="10">
   	<input type="button" id="btnOk" value="确定" />
@@ -171,8 +171,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </tr>
     </thead>
     <tbody>
-    <c:if test="${!empty pm.list}">
-          <c:forEach items="${pm.list}" var="xsmxs" varStatus="i">
+    <c:if test="${!empty list}">
+          <c:forEach items="${list}" var="xsmxs" varStatus="i">
           
           <tr>
             
@@ -186,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</c:if>
           
           <!-- 在列表数据为空的时候，要显示的提示信息 -->
-	<c:if test="${empty pm.list}">
+	<c:if test="${empty list}">
 	    <tr>
 	    	<td colspan="5" align="center" bgcolor="#EFF3F7" class="TableBody1" onmouseover="this.bgColor = '#DEE7FF';" onmouseout="this.bgColor='#EFF3F7';">
 	    	没有找到相应的记录

@@ -7,7 +7,7 @@
 	<constant name="struts.i18n.encoding" value="utf-8"/>
     <constant name="struts.devMode" value="true" />
 
-    <package name="hk" extends="struts-default">
+    <package name="hk" extends="struts-default, jasperreports-default">
 
         <global-results>
             <result name="error">/error.jsp</result>
@@ -33,6 +33,17 @@
         <action name="xsmx"  class="xsmxAction">
             <result name="list">/jsp/xsmxList.jsp</result>
             <result name="total">/jsp/xsmxTotal.jsp</result>
+            <result name="print" type="jasper">
+            	<param name="location">/report/xsmx.jasper</param> 
+                <param name="dataSource">xsmxSs</param>
+                <param name="reportParameters">map</param> 
+                <param name="format">PDF</param>
+                <param name="documentName">xsmx</param>
+                <param name="contentDisposition">attachment</param>
+<!--                <param name="imageServletUrl">    -->
+<!--            		<![CDATA[/image.servlet?image=]]>    -->
+<!--        		</param>  -->
+            </result>
         </action>
         
         <action name="hkmx"  class="hkmxAction">

@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
-  	<a href="sxkh!list.action">返回授信客户列表</a>
+  	<a href="javascript:history.back()">返回还款列表</a>
     <table>
     <tr>
     	<th>发票号</th>

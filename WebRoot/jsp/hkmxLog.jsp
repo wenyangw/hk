@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${hkmxLog.hksj}</td>
             <td class="dataarea">${hkmxLog.hkje}</td>
             <td>${hkmxLog.logNo}</td>
-            <td><a href="hkmxLog!detail.action?logno=${hkmxLog.logNo}">ÏêÏ¸</a></td>
+            <td><a href="hkmxLog!detail.action?logNo=${hkmxLog.logNo}">ÏêÏ¸</a></td>
           </tr>
           </c:forEach>
 	</c:if>
