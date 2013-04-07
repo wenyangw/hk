@@ -36,8 +36,12 @@ public class XsmxAction extends ActionSupport {
 	private HkmxService hkmxService;
 	
 	private int id;
+	private String year;
+	private String month;
 	private List<XsmxS> xsmxSs;
 	private Map<String, Object> map;
+	
+	
 	@Override
 	public String execute() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -47,7 +51,7 @@ public class XsmxAction extends ActionSupport {
 		
 		String lastLsh = hkmx.getXsfplsh();
 		
-		xsmxSs = getXsmxSs(sxkh, lastLsh);
+		xsmxSs = getXsmxS(sxkh, lastLsh);
 		
 //		List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
 //		BigDecimal hked = new BigDecimal(0);
@@ -103,40 +107,52 @@ public class XsmxAction extends ActionSupport {
 	
 	public String print(){
 		HttpServletRequest request = ServletActionContext.getRequest();
+//		HttpSession session = request.getSession();
+//		User user = (User)session.getAttribute("user");
+		
 		Sxkh sxkh = sxkhService.getSxkh(id);
-		map = new HashMap<String, Object>();
 		
 		Hkmx hkmx = getHkmx(sxkh);
 		String lastLsh = hkmx.getXsfplsh();
+		xsmxSs = getXsmxS(sxkh, lastLsh);
+				
+		map = new HashMap<String, Object>();
 		
-		xsmxSs = getXsmxSs(sxkh, lastLsh);
-		
-		map.put("bmmc", "wdys");
-		try{
-			String reportSource;
-			reportSource = ServletActionContext.getServletContext().getRealPath("/report/xsmx.jrxml");
-			File parent = new File(reportSource).getParentFile();
-			JasperCompileManager.compileReportToFile(reportSource, new File(parent, "xsmx_report.jasper").getAbsolutePath());
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return ERROR;
+		String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+		String sj = DateUtil.getLastDateOfMonth(DateUtil.stringToDate(yearMonth));	
+		String bmmc = "";
+		String bmbh = sxkh.getBmbh();
+		if("01".equals(bmbh)){
+			bmmc = "辽宁文达印刷物资有限公司";
+		}else if("04".equals(bmbh)){
+			bmmc = "辽宁印刷物资责任有限公司出版纸张分公司";
+		}if("05".equals(bmbh)){
+			bmmc = "辽宁文达纸业有限公司";
+		}if("07".equals(bmbh)){
+			bmmc = "辽宁印刷物资有限责任公司经营拓展部";
+		}if("08".equals(bmbh)){
+			bmmc = "辽宁印刷物资责任有限公司大连分公司";
 		}
+		map.put("bmmc", bmmc);
+		map.put("khmc", sxkh.getKhmc());
+		map.put("khbh", sxkh.getKhbh());
+		map.put("days", sxkh.getDays());
+		map.put("limit", sxkh.getLimit());
+		map.put("balance", sxkh.getBalance());
+		map.put("endDay", sj);
+		map.put("hked", hkmx.getHkje());
+		
+		
+//		try{
+//			String reportSource = ServletActionContext.getServletContext().getRealPath("/report/xsmx.jrxml");
+//			File parent = new File(reportSource).getParentFile();
+//			JasperCompileManager.compileReportToFile(reportSource, new File(parent, "xsmx_report.jasper").getAbsolutePath());
+//		}catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//			return ERROR;
+//		}
 		return "print";
-	}
-	
-	public List<XsmxS> getXsmxSs(Sxkh sxkh, String lastLsh){
-		List<Xsmx> xsmxs= xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), lastLsh);
-		
-		List<XsmxS> xsmxSs = new ArrayList<XsmxS>();
-		
-		for(Xsmx xsmx: xsmxs){
-			XsmxS xsmxS = new XsmxS(xsmx, sxkh.getDays(), sxkh.getYjkh());
-			
-			xsmxSs.add(xsmxS);
-		}
-		
-		return xsmxSs;
 	}
 	
 	public Hkmx getHkmx(Sxkh sxkh){
@@ -154,10 +170,6 @@ public class XsmxAction extends ActionSupport {
 		}else{
 			if(lastLsh == null || lastLsh.trim().equals("")){
 				lastLsh = sxkh.getLsh();
-			}else{
-				String str = lastLsh.substring(7);
-				int i = Integer.parseInt(str) + 1;
-				lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
 			}
 		}
 		
@@ -168,6 +180,22 @@ public class XsmxAction extends ActionSupport {
 		return hkmx;
 	}
 	
+	public List<XsmxS> getXsmxS(Sxkh sxkh, String lastLsh){
+		List<Xsmx> xsmxs= xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), lastLsh);
+		
+		List<XsmxS> xsmxSs = new ArrayList<XsmxS>();
+		
+		for(Xsmx xsmx: xsmxs){
+			XsmxS xsmxS = new XsmxS(xsmx, sxkh.getDays(), sxkh.getYjkh());
+			
+			xsmxSs.add(xsmxS);
+		}
+		
+		return xsmxSs;
+	}
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -177,6 +205,22 @@ public class XsmxAction extends ActionSupport {
 		this.id = id;
 	}
 
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
 
 	public List<XsmxS> getXsmxSs() {
 		return xsmxSs;

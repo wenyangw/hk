@@ -23,6 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+    <hr>
   	还款记录删除成功，<a href="hkmxLog.action?id=${sxkhId}">返回还款记录列表</a>。
   </body>
 </html>

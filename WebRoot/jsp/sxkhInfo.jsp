@@ -23,6 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	»¶Ó­ ${user.name} &nbsp;&nbsp;<a href="logout.action">ÍË³ö</a><br>
+    <hr>
     <table border="1">
     <tr>
     	<td>¿Í»§±àºÅ</td><td>${sxkh.khbh}</td>

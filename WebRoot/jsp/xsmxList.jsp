@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                         + "&sxkhId=" + ${sxkh.id}
 										+"&hkTime=" + $("#datepicker").val();
 										
-			alert(urlTxt);
+			//alert(urlTxt);
 			$.post(urlTxt, function(){
 				$("#tb>tbody>tr").each(function(index){
 					if($(".hkTd").eq(0).text() != 0){
@@ -148,12 +148,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  欢迎${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+  	欢迎${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
   <a href="sxkh!list.action">返回授信客户列表</a><br>
     <hr>
   	<form action="hkmx.action" method="post">
-  	客户：${sxkh.khmc },目前欠款总额为<label id="zxsje"></label>元,<a href="jsp/prnSel.jsp?sxkhId=${sxkh.id}">报表打印</a><br>
+  	<a href="xsmx!total.action?id=${sxkh.id}">余额统计</a>&nbsp;&nbsp;<a href="hkmxLog.action?id=${sxkh.id}">还款记录</a>&nbsp;&nbsp;<a href="jsp/prnSel.jsp?sxkhId=${sxkh.id}">报表打印</a><br>
+  	客户：${sxkh.khmc },目前欠款总额为<label id="zxsje"></label>元,<br>
   	请输入本次还款总金额：<input type="text" name="hkzje" id="hkzje" size="10"/>元,
   	还款时间 	<input type="text" name="hkTime" id="datepicker" onclick = "calendar()" readonly="readonly" size="10">
   	<input type="button" id="btnOk" value="确定" />

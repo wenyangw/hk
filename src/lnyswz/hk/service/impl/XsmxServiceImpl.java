@@ -78,15 +78,14 @@ public class XsmxServiceImpl implements XsmxService {
 			if(lastLsh == null){
 				lastLsh = hkmxs.get(0).getXsfplsh();
 			}
-			
-			
-				//计算最后一笔已还款金额
-				
-				for(Hkmx hkmx : hkmxs){
-					hked = hked.add(hkmx.getHkje());
-				}
+			//计算最后一笔已还款金额
+			for(Hkmx hkmx : hkmxs){
+				hked = hked.add(hkmx.getHkje());
+			}
 		}else{
-			lastLsh = sxkh.getLsh();
+			if(lastLsh == null || lastLsh.trim().equals("")){
+				lastLsh = sxkh.getLsh();
+			}
 		}
 		
 		//原方式，按前面取得的流水号，再次取得还款记录
@@ -159,7 +158,7 @@ public class XsmxServiceImpl implements XsmxService {
 		
 		return total;
 	}
-	
+			
 	public void setXsmxDAO(XsmxDAO xsmxDAO) {
 		this.xsmxDAO = xsmxDAO;
 	}

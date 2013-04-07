@@ -45,7 +45,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	
+  	欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+    <hr>
   	<form action="xsmx!print.action" method="post">
   		<input type="hidden" name="id" value="${param.sxkhId}">
   		请选择统计截止的时间:

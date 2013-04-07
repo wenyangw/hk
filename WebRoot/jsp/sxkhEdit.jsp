@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+    <hr>
   	<form action="sxkh!edit.action" method="post">
   	<input type="hidden" name="id" value="${sxkh.id}"/>
     <table border="1">

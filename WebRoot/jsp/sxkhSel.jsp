@@ -44,6 +44,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	欢迎 ${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
+    <hr>
   	<form action="sxkh!listTotal.action" method="post">
   	请选择统计截止的时间:
   	<select name="year" class="year">

@@ -45,10 +45,12 @@ public class HkmxAction extends ActionSupport {
 		//String hksj = DateUtil.getCurrentDateString();
 		
 		String lastLsh = hk.substring(0,11);
-		String newLsh = "";
+		//String newLsh = "";
+		String lsh = "";
 		String[] hkmxs = hk.split(",");
+		boolean isCompleted = true;
 		for(String mx : hkmxs){
-			String lsh = mx.substring(0, 11);
+			lsh = mx.substring(0, 11);
 			String hkje = mx.substring(12,mx.lastIndexOf(':'));
 			String bj = mx.substring(mx.lastIndexOf(':') + 1);
 			
@@ -63,8 +65,10 @@ public class HkmxAction extends ActionSupport {
 				}
 			}
 			if(bj.equals("0")){
-				newLsh = lsh;
+				isCompleted = false;
 			}
+			//newLsh = lsh;
+			
 			Hkmx hkmx = new Hkmx();
 			hkmx.setXsfplsh(lsh);
 			hkmx.setHkje(new BigDecimal(hkje));
@@ -85,8 +89,14 @@ public class HkmxAction extends ActionSupport {
 		
 		hkmxLogService.addLog(hkmxLog);
 		
+		
 		Sxkh sxkh = sxkhService.getSxkh(sxkhId);
-		sxkh.setLastLsh(newLsh);
+		if (isCompleted){
+			String str = lsh.substring(7);
+			int i = Integer.parseInt(str) + 1;
+			lsh = lsh.substring(0, 7).concat(String.format("%04d", i));
+		}
+		sxkh.setLastLsh(lsh);
 		
 		sxkhService.modify(sxkh);
 		

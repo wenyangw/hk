@@ -39,7 +39,7 @@
                 <param name="reportParameters">map</param> 
                 <param name="format">PDF</param>
                 <param name="documentName">xsmx</param>
-                <param name="contentDisposition">attachment</param>
+                <param name="contentDisposition">inline</param>
 <!--                <param name="imageServletUrl">    -->
 <!--            		<![CDATA[/image.servlet?image=]]>    -->
 <!--        		</param>  -->
