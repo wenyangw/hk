@@ -30,9 +30,7 @@ public class XsmxServiceImpl implements XsmxService {
 	
 	@Override
 	public List<SxkhTotal> getTotals(String bmbh, String yearMonth) {
-		System.out.println("Bmbh = " + bmbh);
 		List<Sxkh> sxkhs = sxkhDAO.getSxkhs(bmbh);
-		System.out.println("sxkhs = " + sxkhs.size());
 		List<SxkhTotal> totals = new ArrayList<SxkhTotal>();
 		for(Sxkh sxkh : sxkhs){
 			SxkhTotal total = getTotal(sxkh, yearMonth);
@@ -99,7 +97,10 @@ public class XsmxServiceImpl implements XsmxService {
 			List<Xsmx> lists = xsmxDAO.findXsmxsList(bmbh, khbh, lastLsh, ywybh, yearMonth);
 
 			//当前日期
-			Date currentDate = DateUtil.getCurrentDateTime();
+			//Date currentDate = DateUtil.getCurrentDateTime();
+			
+			//统计时间
+			Date tjDate = DateUtil.stringToDate(yearMonth);
 			for(Xsmx xsmx : lists){
 				//根据开票时间，得到不同时段的时候值
 				String hksjStr = DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, 
@@ -121,13 +122,13 @@ public class XsmxServiceImpl implements XsmxService {
 				}
 			
 				//根据还款时候，计算超期范围
-				if(DateUtil.daysBetween(currentDate, hksj) >= 0){
+				if(DateUtil.daysBetween(tjDate, hksj) >= 0){
 					totalIn = totalIn.add(xsje);
-				}else if(DateUtil.daysBetween(currentDate, hksj1) >= 0){
+				}else if(DateUtil.daysBetween(tjDate, hksj1) >= 0){
 					totalOut1 = totalOut1.add(xsje);
-				}else if(DateUtil.daysBetween(currentDate, hksj2) >= 0){
+				}else if(DateUtil.daysBetween(tjDate, hksj2) >= 0){
 					totalOut2 = totalOut2.add(xsje);
-				}else if(DateUtil.daysBetween(currentDate, hksj3) >= 0){
+				}else if(DateUtil.daysBetween(tjDate, hksj3) >= 0){
 					totalOut3 = totalOut3.add(xsje);
 				}else{
 					totalOut4 = totalOut4.add(xsje);

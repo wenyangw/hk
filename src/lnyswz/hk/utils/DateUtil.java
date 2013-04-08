@@ -264,6 +264,18 @@ public class DateUtil
             return null;
         }
     }
+    
+    //获得下月第一天
+    public static final String getNextMonthFirst(Date date){
+    	String str = "";
+    	SimpleDateFormat sdf = new SimpleDateFormat(ISO_EXPANDED_DATE_FORMAT);
+    	Calendar cal = Calendar.getInstance();
+    	cal.setTime(date);
+    	cal.add(Calendar.MONTH, 1);
+    	cal.set(Calendar.DATE, 1);
+    	str = sdf.format(cal.getTime());
+    	return str;
+    }
 
     /**
      * Time Field Rolling function.

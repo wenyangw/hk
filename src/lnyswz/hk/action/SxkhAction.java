@@ -1,5 +1,6 @@
 package lnyswz.hk.action;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,6 @@ import lnyswz.hk.utils.DateUtil;
 import lnyswz.hk.utils.PagerModel;
 
 import org.apache.struts2.ServletActionContext;
-import org.springframework.http.HttpRequest;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -56,9 +56,13 @@ public class SxkhAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		
-		
-		String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
-		String dateStr = DateUtil.dateToString(DateUtil.dateIncreaseByMonth(DateUtil.stringToDate(yearMonth) ,1));
+		String dateStr = "";
+		if(DateUtil.getYear() == Integer.parseInt(year) && (DateUtil.getMonth() + 1) == Integer.parseInt(month)){
+			dateStr = DateUtil.dateIncrease(DateUtil.getCurrentDateString(),DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
+		}else{
+			String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+			dateStr = DateUtil.getNextMonthFirst(DateUtil.stringToDate(yearMonth));
+		}
 		User user = (User)session.getAttribute("user");
 		List<SxkhTotal> list = xsmxService.getTotals(user.getOrg(), dateStr);
 		request.setAttribute("list", list);

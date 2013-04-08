@@ -4,6 +4,7 @@ package lnyswz.hk.action;
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,39 +54,6 @@ public class XsmxAction extends ActionSupport {
 		
 		xsmxSs = getXsmxS(sxkh, lastLsh);
 		
-//		List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
-//		BigDecimal hked = new BigDecimal(0);
-//		if(hkmxs.size() != 0){
-//			if(lastLsh == null){
-//				lastLsh = hkmxs.get(0).getXsfplsh();
-//			}
-//			//计算最后一笔已还款金额
-//			for(Hkmx hkmx : hkmxs){
-//				hked = hked.add(hkmx.getHkje());
-//			}
-//		}else{
-//			if(lastLsh == null || lastLsh.trim().equals("")){
-//				lastLsh = sxkh.getLsh();
-//			}else{
-//				String str = lastLsh.substring(7);
-//				int i = Integer.parseInt(str) + 1;
-//				lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
-//			}
-//		}
-//		
-//		Hkmx hkmx = new Hkmx();
-//		hkmx.setHkje(hked);
-//		hkmx.setXsfplsh(lastLsh);
-		
-//		List<Xsmx> xsmxs= xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), lastLsh);
-//		
-//		List<XsmxS> xsmxSs = new ArrayList<XsmxS>();
-//		
-//		for(Xsmx xsmx: xsmxs){
-//			XsmxS xsmxS = new XsmxS(xsmx, sxkh.getDays(), sxkh.getYjkh());
-//			
-//			xsmxSs.add(xsmxS);
-//		}
 		
 		request.setAttribute("list", xsmxSs);
 		request.setAttribute("hkmx", hkmx);
@@ -96,9 +64,8 @@ public class XsmxAction extends ActionSupport {
 	public String total(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
-		Sxkh sxkh = sxkhService.getSxkh(id); 
-		String yearMonth = DateUtil.getYear(DateUtil.getCurrentDateTime()) + "-" + DateUtil.getMonth(DateUtil.getCurrentDateTime()) + "-01";
-		String dateStr = DateUtil.dateToString(DateUtil.dateIncreaseByMonth(DateUtil.stringToDate(yearMonth),1));
+		Sxkh sxkh = sxkhService.getSxkh(id);
+		String dateStr = DateUtil.dateIncrease(DateUtil.getCurrentDateString(),DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
 		SxkhTotal total = xsmxService.getTotal(sxkh, dateStr);
 		request.setAttribute("total", total);
 		request.setAttribute("sumOf", sxkh.getLimit());
@@ -106,10 +73,6 @@ public class XsmxAction extends ActionSupport {
 	}
 	
 	public String print(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-//		HttpSession session = request.getSession();
-//		User user = (User)session.getAttribute("user");
-		
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
 		Hkmx hkmx = getHkmx(sxkh);
@@ -118,8 +81,19 @@ public class XsmxAction extends ActionSupport {
 				
 		map = new HashMap<String, Object>();
 		
-		String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
-		String sj = DateUtil.getLastDateOfMonth(DateUtil.stringToDate(yearMonth));	
+		String dateStr = "";
+		if(DateUtil.getYear() == Integer.parseInt(year) && (DateUtil.getMonth() + 1) == Integer.parseInt(month)){
+			dateStr = DateUtil.getCurrentDateString();
+		}else{
+			String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+			dateStr = DateUtil.getLastDateOfMonth(DateUtil.stringToDate(yearMonth));
+		}
+		//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+		String sj = DateUtil.dateIncrease(dateStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
+		
+		SxkhTotal total = xsmxService.getTotal(sxkh, sj);
+		BigDecimal outTotal = new BigDecimal(0);
+		
 		String bmmc = "";
 		String bmbh = sxkh.getBmbh();
 		if("01".equals(bmbh)){
@@ -139,19 +113,21 @@ public class XsmxAction extends ActionSupport {
 		map.put("days", sxkh.getDays());
 		map.put("limit", sxkh.getLimit());
 		map.put("balance", sxkh.getBalance());
-		map.put("endDay", sj);
+		map.put("endDay", dateStr);
 		map.put("hked", hkmx.getHkje());
+		outTotal = outTotal.add(total.getTotalOut1());
+		outTotal = outTotal.add(total.getTotalOut2());
+		outTotal = outTotal.add(total.getTotalOut3());
+		outTotal = outTotal.add(total.getTotalOut4());
+		map.put("date1", total.getTotalOut1());
+		map.put("date2", total.getTotalOut2());
+		map.put("date3", total.getTotalOut3());
+		map.put("date4", total.getTotalOut4());
+		map.put("date5", outTotal);
+		map.put("date6", total.getTotal());
+		map.put("undate", total.getTotalIn());
 		
-		
-//		try{
-//			String reportSource = ServletActionContext.getServletContext().getRealPath("/report/xsmx.jrxml");
-//			File parent = new File(reportSource).getParentFile();
-//			JasperCompileManager.compileReportToFile(reportSource, new File(parent, "xsmx_report.jasper").getAbsolutePath());
-//		}catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//			return ERROR;
-//		}
+
 		return "print";
 	}
 	

@@ -1,10 +1,7 @@
 package lnyswz.hk.action;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +12,6 @@ import lnyswz.hk.bean.Hkmx;
 import lnyswz.hk.bean.HkmxLog;
 import lnyswz.hk.bean.HkmxTotal;
 import lnyswz.hk.bean.Sxkh;
-import lnyswz.hk.bean.SxkhTotal;
 import lnyswz.hk.bean.User;
 import lnyswz.hk.service.HkmxLogService;
 import lnyswz.hk.service.HkmxService;
