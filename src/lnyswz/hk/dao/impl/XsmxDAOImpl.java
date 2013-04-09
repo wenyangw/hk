@@ -19,8 +19,8 @@ public class XsmxDAOImpl extends AbstractPagerManager implements
 		return list.get(0);
 	}
 	@Override
-	public List<Xsmx> findXsmxs(String bmbh, String khbh, String xsfplsh, String ywybh) {
-		return this.getHibernateTemplate().find("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.xsfplsh >= ? and x.id.ywybh = ? order by x.id.kpsj", new String[]{bmbh, khbh, xsfplsh, ywybh});
+	public List<Xsmx> findXsmxs(String bmbh, String khbh, String ywybh, String xsfplsh, String date) {
+		return this.getHibernateTemplate().find("from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.ywybh = ? and x.id.xsfplsh >= ? and x.id.kpsj < ? order by x.id.kpsj", new String[]{bmbh, khbh, ywybh, xsfplsh, date});
 	}
 	
 	@Override

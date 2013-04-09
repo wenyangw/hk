@@ -34,19 +34,15 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/pager-taglib-2.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/standard.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/gson-2.2.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-digester-2.0.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iTextAsian.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-jasperreports-plugin-2.3.4.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-dbcp-1.2.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/groovy-all-1.7.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iText-2.1.7.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itextasiacmaps-1.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasperreports-4.1.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jdt-compiler-3.1.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/js_commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/groovy-all-1.7.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iTextAsian.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

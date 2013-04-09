@@ -48,11 +48,13 @@ public class XsmxAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
+		String tjDate = DateUtil.dateIncrease(DateUtil.getCurrentDateString(), DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
 		Hkmx hkmx = getHkmx(sxkh);
 		
 		String lastLsh = hkmx.getXsfplsh();
 		
-		xsmxSs = getXsmxS(sxkh, lastLsh);
+		
+		xsmxSs = getXsmxS(sxkh, lastLsh, tjDate);
 		
 		
 		request.setAttribute("list", xsmxSs);
@@ -77,7 +79,7 @@ public class XsmxAction extends ActionSupport {
 		
 		Hkmx hkmx = getHkmx(sxkh);
 		String lastLsh = hkmx.getXsfplsh();
-		xsmxSs = getXsmxS(sxkh, lastLsh);
+		
 				
 		map = new HashMap<String, Object>();
 		
@@ -91,6 +93,8 @@ public class XsmxAction extends ActionSupport {
 		//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
 		String sj = DateUtil.dateIncrease(dateStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
 		
+		xsmxSs = getXsmxS(sxkh, lastLsh, sj);
+		
 		SxkhTotal total = xsmxService.getTotal(sxkh, sj);
 		BigDecimal outTotal = new BigDecimal(0);
 		
@@ -100,11 +104,11 @@ public class XsmxAction extends ActionSupport {
 			bmmc = "辽宁文达印刷物资有限公司";
 		}else if("04".equals(bmbh)){
 			bmmc = "辽宁印刷物资责任有限公司出版纸张分公司";
-		}if("05".equals(bmbh)){
+		}else if("05".equals(bmbh)){
 			bmmc = "辽宁文达纸业有限公司";
-		}if("07".equals(bmbh)){
+		}else if("07".equals(bmbh)){
 			bmmc = "辽宁印刷物资有限责任公司经营拓展部";
-		}if("08".equals(bmbh)){
+		}else if("08".equals(bmbh)){
 			bmmc = "辽宁印刷物资责任有限公司大连分公司";
 		}
 		map.put("bmmc", bmmc);
@@ -156,8 +160,8 @@ public class XsmxAction extends ActionSupport {
 		return hkmx;
 	}
 	
-	public List<XsmxS> getXsmxS(Sxkh sxkh, String lastLsh){
-		List<Xsmx> xsmxs= xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), lastLsh);
+	public List<XsmxS> getXsmxS(Sxkh sxkh, String lastLsh, String date){
+		List<Xsmx> xsmxs= xsmxService.findXsmxs(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), lastLsh, date);
 		
 		List<XsmxS> xsmxSs = new ArrayList<XsmxS>();
 		
