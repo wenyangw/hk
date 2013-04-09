@@ -1,5 +1,8 @@
 package lnyswz.hk.bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * 
@@ -19,6 +22,8 @@ public class User{
 	private String name;
 	
 	private boolean used;
+	
+	private Set<Menu> menus = new HashSet<Menu>();
 	
 	/**
 	 * @hibernate.id
@@ -75,5 +80,16 @@ public class User{
 	}
 	public void setUsed(boolean used) {
 		this.used = used;
+	}
+	/**
+	 * @hibernate.set table="user_menu" lazy="true" inverse="true"
+	 * @hibernate.collection-key column="userId"
+	 * @hibernate.collection-many-to-many class="Menu" column="menuId"
+	 */
+	public Set<Menu> getMenus() {
+		return menus;
+	}
+	public void setMenus(Set<Menu> menus) {
+		this.menus = menus;
 	}
 }
