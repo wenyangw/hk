@@ -5,7 +5,6 @@ import java.util.List;
 import lnyswz.hk.bean.User;
 import lnyswz.hk.dao.UserDAO;
 import lnyswz.hk.utils.AbstractPagerManager;
-import lnyswz.hk.utils.PagerModel;
 
 public class UserDAOImpl extends AbstractPagerManager implements UserDAO {
 
@@ -34,8 +33,8 @@ public class UserDAOImpl extends AbstractPagerManager implements UserDAO {
 		return null;
 	}
 	
-	public PagerModel findUsers() {
-		return this.searchPaginated("from User");
+	public List<User> findUsers() {
+		return this.getHibernateTemplate().find("from User");
 	}
 	
 }

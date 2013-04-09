@@ -1,7 +1,7 @@
 package lnyswz.hk.bean;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * 
@@ -12,7 +12,8 @@ public class Menu {
 	private int id;
 	private String cname;
 	private String url;
-	private Set<User> user = new HashSet<User>();
+	private String logNo;
+	private Set<User> users = new TreeSet<User>();
 	
 	/**
 	 * @hibernate.id
@@ -45,16 +46,22 @@ public class Menu {
 		this.url = url;
 	}
 	
+	public String getLogNo() {
+		return logNo;
+	}
+	public void setLogNo(String logNo) {
+		this.logNo = logNo;
+	}
 	/**
 	 * @hibernate.set lazy="true" table="user_menu"
 	 * @hibernate.collection-key column="menuId"
 	 * @hibernate.collection-many-to-many class="User" column="userId"
 	 */
-	public Set<User> getUser() {
-		return user;
+	public Set<User> getUsers() {
+		return users;
 	}
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 	
 }

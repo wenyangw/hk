@@ -55,6 +55,15 @@
         	<result name="detail">/jsp/hkmxDetail.jsp</result>
         	<result name="delete">/jsp/deleteSuc.jsp</result>
         </action>
+        
+        <action name="user" class="userAction">
+        	<result name="list">/jsp/userList.jsp</result>
+        </action>
+        
+        <action name="privilege" class="privilegeAction">
+        	<result name="success">/jsp/privilege.jsp</result>
+        </action>
+        
     </package>
 
 

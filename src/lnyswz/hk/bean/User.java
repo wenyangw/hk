@@ -1,7 +1,7 @@
 package lnyswz.hk.bean;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
@@ -23,7 +23,7 @@ public class User{
 	
 	private boolean used;
 	
-	private Set<Menu> menus = new HashSet<Menu>();
+	private Set<Menu> menus = new TreeSet<Menu>();
 	
 	/**
 	 * @hibernate.id
@@ -82,7 +82,7 @@ public class User{
 		this.used = used;
 	}
 	/**
-	 * @hibernate.set table="user_menu" lazy="true" inverse="true"
+	 * @hibernate.set table="user_menu"
 	 * @hibernate.collection-key column="userId"
 	 * @hibernate.collection-many-to-many class="Menu" column="menuId"
 	 */

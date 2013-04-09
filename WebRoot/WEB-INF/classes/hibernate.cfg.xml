@@ -16,7 +16,7 @@
 			<property name="connection.username">sa</property>
 			<property name="connection.password">sine</property>
 			<property name="connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
-			<property name="connection.url">jdbc:jtds:sqlserver://192.168.0.3:1433/lnyswz</property>
+			<property name="connection.url">jdbc:jtds:sqlserver://218.25.74.4:1433/lnyswz</property>
 
 <!--		<property name="hibernate.hbm2ddl.auto">update</property>-->
 
@@ -26,6 +26,7 @@
 		<mapping resource="lnyswz/hk/bean/Hkmx.hbm.xml"/>
 		<mapping resource="lnyswz/hk/bean/Xsmx.hbm.xml"/>
 		<mapping resource="lnyswz/hk/bean/HkmxLog.hbm.xml"/>
+		<mapping resource="lnyswz/hk/bean/Menu.hbm.xml"/>
 	</session-factory>
 
 </hibernate-configuration>

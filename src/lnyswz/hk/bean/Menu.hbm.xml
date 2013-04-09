@@ -7,8 +7,8 @@
 <hibernate-mapping
 >
     <class
-        name="lnyswz.hk.bean.User"
-        table="hk_user"
+        name="lnyswz.hk.bean.Menu"
+        table="hk_menu"
     >
 
         <id
@@ -26,60 +26,36 @@
         </id>
 
         <property
-            name="username"
+            name="cname"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="username"
-            length="12"
+            column="cname"
+            length="20"
             not-null="true"
         />
 
         <property
-            name="password"
+            name="url"
             type="java.lang.String"
             update="true"
             insert="true"
-            column="password"
-            length="8"
-        />
-
-        <property
-            name="name"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="name"
-            length="30"
-            not-null="true"
-        />
-
-        <property
-            name="org"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="org"
-            length="2"
-            not-null="true"
-        />
-
-        <property
-            name="used"
-            type="boolean"
-            update="true"
-            insert="true"
-            column="used"
-            not-null="true"
+            column="url"
+            length="100"
         />
 		
-		<set name="menus" table="user_menu" cascade="save-update" lazy="false" order-by="menuId">  
-            <key column="userId"/>  
-            <many-to-many class="lnyswz.hk.bean.Menu" column="menuId"/>  
-        </set>
+		<property 
+			name="logNo"
+		 	type="java.lang.String"
+			column="logno"
+		/>
+		
+        <set name="users" table="user_menu" cascade="save-update">  
+            <key column="menuId"/>  
+            <many-to-many class="lnyswz.hk.bean.User" column="userId"/>  
+        </set>  
         
-        
-         
+          
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-User.xml

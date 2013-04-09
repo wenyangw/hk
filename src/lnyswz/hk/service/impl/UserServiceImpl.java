@@ -1,5 +1,7 @@
 package lnyswz.hk.service.impl;
 
+import java.util.List;
+
 import lnyswz.hk.bean.User;
 import lnyswz.hk.dao.UserDAO;
 import lnyswz.hk.service.UserService;
@@ -7,6 +9,10 @@ import lnyswz.hk.service.UserService;
 public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 	
+	@Override
+	public User getUser(int id) {
+		return userDAO.findUser(id);
+	}
 	public void modifyPassword(User user) {
 		userDAO.modifyUser(user);
 	}
@@ -32,6 +38,11 @@ public class UserServiceImpl implements UserService {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public List<User> findUsers() {
+		return userDAO.findUsers();
 	}
 
 	public void setUserDAO(UserDAO userDAO) {

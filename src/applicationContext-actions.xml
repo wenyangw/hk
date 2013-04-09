@@ -29,6 +29,13 @@
 		<property name="hkmxService" ref="hkmxService" />
 		<property name="sxkhService" ref="sxkhService" />
 	</bean>
+	<bean id="userAction" class="lnyswz.hk.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="privilegeAction" class="lnyswz.hk.action.PrivilegeAction" scope="prototype">
+		<property name="userService" ref="userService" />
+		<property name="menuService" ref="menuService" />
+	</bean>
 	
 </beans>
 

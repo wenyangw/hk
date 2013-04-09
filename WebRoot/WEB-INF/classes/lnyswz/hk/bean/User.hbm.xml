@@ -73,16 +73,13 @@
             not-null="true"
         />
 		
-		<set name="menus" table="user_menu" cascade="all" outer-join="false">  
+		<set name="menus" table="user_menu" cascade="save-update" lazy="false" order-by="menuId">  
             <key column="userId"/>  
-            <many-to-many class="Menu" column="menuId"/>  
+            <many-to-many class="lnyswz.hk.bean.Menu" column="menuId"/>  
         </set>
         
         
-        <set name="student" table="student_course_link" lazy="false" cascade="all">  
-            <key column="cid"/>  
-            <many-to-many class="com.test.Student" column="sid"/>  
-        </set>   
+         
         <!--
             To add non XDoclet property mappings, create a file named
                 hibernate-properties-User.xml

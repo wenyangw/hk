@@ -25,6 +25,9 @@
     <bean id="hkmxLogService" class="lnyswz.hk.service.impl.HkmxLogServiceImpl">
     	<property name="hkmxLogDAO" ref="hkmxLogDAO" />
     </bean>
+    <bean id="menuService" class="lnyswz.hk.service.impl.MenuServiceImpl">
+    	<property name="menuDAO" ref="menuDAO" />
+    </bean>
 	<!-- DAO Setup -->
 	<bean id="userDAO" class="lnyswz.hk.dao.impl.UserDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />        
@@ -39,6 +42,9 @@
         <property name="sessionFactory" ref="sessionFactory" />        
     </bean>
     <bean id="hkmxLogDAO" class="lnyswz.hk.dao.impl.HkmxLogDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />        
+    </bean>
+    <bean id="menuDAO" class="lnyswz.hk.dao.impl.MenuDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />        
     </bean>    
 </beans>

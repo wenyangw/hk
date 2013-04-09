@@ -1,5 +1,7 @@
 package lnyswz.hk.dao;
 
+import java.util.List;
+
 import lnyswz.hk.bean.User;
 import lnyswz.hk.utils.PagerModel;
 
@@ -14,5 +16,5 @@ public interface UserDAO {
 	
 	public User findUserByName(String username);
 	
-	public PagerModel findUsers();
+	public List<User> findUsers();
 }
