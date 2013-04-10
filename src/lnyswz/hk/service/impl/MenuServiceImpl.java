@@ -10,6 +10,11 @@ public class MenuServiceImpl implements MenuService {
 	private MenuDAO menuDAO;
 	
 	@Override
+	public Menu getMenu(int id) {
+		return menuDAO.findMenu(id);
+	}
+	
+	@Override
 	public List<Menu> findMenus() {
 		return menuDAO.findMenus();
 	}

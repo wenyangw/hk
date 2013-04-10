@@ -62,6 +62,7 @@
         
         <action name="privilege" class="privilegeAction">
         	<result name="success">/jsp/privilege.jsp</result>
+        	<result name="change">/jsp/privilegeSuc.jsp</result>
         </action>
         
     </package>

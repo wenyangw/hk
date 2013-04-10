@@ -1,7 +1,9 @@
 package lnyswz.hk.action;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +21,7 @@ public class PrivilegeAction extends ActionSupport {
 	private UserService userService;
 	
 	private int id;
+	private List<Integer> select;
 	@Override
 	public String execute() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -29,7 +32,20 @@ public class PrivilegeAction extends ActionSupport {
 		
 		request.setAttribute("all_menus", allMenus);
 		request.setAttribute("user_menus", set);
+		request.setAttribute("id", id);
 		return SUCCESS;
+	}
+	
+	public String change(){
+		User user = userService.getUser(id);
+		Set<Menu> set = new HashSet<Menu>();
+		for(int i : select){
+			Menu menu = menuService.getMenu(i);
+			set.add(menu);
+		}
+		user.setMenus(set);
+		userService.modifyUser(user);
+		return "change";
 	}
 	public int getId() {
 		return id;
@@ -37,6 +53,14 @@ public class PrivilegeAction extends ActionSupport {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public List<Integer> getSelect() {
+		return select;
+	}
+
+	public void setSelect(List<Integer> select) {
+		this.select = select;
+	}
+
 	public void setMenuService(MenuService menuService) {
 		this.menuService = menuService;
 	}

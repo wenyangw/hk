@@ -28,6 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	欢迎${user.name} &nbsp;&nbsp;<a href="logout.action">退出</a><br>
     <hr>
+    <form action="privilege!change.action" method="post">
+    <input type="hidden" name="id" value="${id}">
     <table>
     <tr>
     	<th>请选择</th>
@@ -36,7 +38,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <c:forEach items="${all_menus}" var="menu">
           
           <tr>
-            <td><input type="checkbox">${menu.cname}</td>
+            <td>
+            	<c:set var="flag" value="false" />
+            	<c:forEach items="${user_menus}" var="umenu">
+            		<c:if test="${menu.id == umenu.id}">
+            			<c:set var="flag" value="true" />
+            		</c:if>
+            	</c:forEach>
+            	<input type="checkbox" name="select" value="${menu.id}" <c:if test="${flag == true}">checked="checked"</c:if>>${menu.cname}
+            </td>
+            
           </tr>
           </c:forEach>
 	</c:if>
@@ -50,5 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </tr>
 	</c:if>
     </table>
+    <input type="submit" value="确定" />
+    <input type="button" value="返回" onclick="javascript:history.back()"/>
+    </form>
   </body>
 </html>

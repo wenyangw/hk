@@ -13,6 +13,11 @@ public class UserServiceImpl implements UserService {
 	public User getUser(int id) {
 		return userDAO.findUser(id);
 	}
+	
+	@Override
+	public void modifyUser(User user) {
+		userDAO.modifyUser(user);
+	}
 	public void modifyPassword(User user) {
 		userDAO.modifyUser(user);
 	}
