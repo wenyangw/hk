@@ -24,6 +24,7 @@ public class PrivilegeAction extends ActionSupport {
 	private List<Integer> select;
 	@Override
 	public String execute() throws Exception {
+		//test
 		HttpServletRequest request = ServletActionContext.getRequest();
 		List<Menu> allMenus = menuService.findMenus();
 		
