@@ -41,8 +41,8 @@ public class HkmxServiceImpl implements HkmxService {
 	}
 	
 	@Override
-	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh) {
-		return hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
+	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh,String yearMonth) {
+		return hkmxDAO.getLastHkmx(bmbh, khbh, ywybh, yearMonth);
 	}
 	
 	@Override

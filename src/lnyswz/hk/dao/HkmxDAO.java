@@ -10,7 +10,7 @@ public interface HkmxDAO {
 	public void update(Hkmx hkmx);
 	public void delete(Hkmx hkmx);
 	public String getLastHkLsh(String bmbh, String khbh, String ywybh);
-	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh);
+	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh, String date);
 	public List<Hkmx> getLastHkmxByLsh(String lastLsh);
 	public List<Hkmx> findUncompletedHkmxs(String lsh);
 	public List<Hkmx> findHkmxeds(String logNo);

@@ -41,8 +41,10 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 		//return this.getHibernateTemplate().find("from Hkmx h where h.xsfplsh = ?", getLastHkLsh(bmbh, khbh, ywybh));
 	//}
 	
-	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh) {
-		return this.getHibernateTemplate().find("from Hkmx h where h.hkje <> 0 and h.completed = '0' and h.xsfplsh in (select x.id.xsfplsh from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.ywybh = ?)", new String[]{bmbh, khbh, ywybh});
+	public List<Hkmx> getLastHkmx(String bmbh, String khbh, String ywybh, String date) {
+		//return this.getHibernateTemplate().find("from Hkmx h where h.hkje <> 0 and h.completed = '0' and h.xsfplsh in (select x.id.xsfplsh from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.ywybh = ?)", new String[]{bmbh, khbh, ywybh});
+		return this.getHibernateTemplate().find("from Hkmx h where h.hkje <> 0 and h.xsfplsh in (select x.id.xsfplsh from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.ywybh = ?) and hksj < ? and h.xsfplsh = (select max(h.xsfplsh) from Hkmx h" + 
+				 " where h.hkje <> 0 and h.xsfplsh in (select x.id.xsfplsh from Xsmx x where x.id.bmbh = ? and x.id.khbh = ? and x.id.ywybh = ?) and hksj < ?)", new String[]{bmbh, khbh, ywybh, date, bmbh, khbh, ywybh, date});
 	}
 	
 	

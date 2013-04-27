@@ -70,15 +70,23 @@ public class XsmxServiceImpl implements XsmxService {
 		
 				
 		//按新方式
-		List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh, ywybh);
+		List<Hkmx> hkmxs = hkmxDAO.getLastHkmx(bmbh, khbh, ywybh, yearMonth);
 		BigDecimal hked = new BigDecimal(0);
 		if(hkmxs.size() != 0){
-			if(lastLsh == null){
-				lastLsh = hkmxs.get(0).getXsfplsh();
-			}
-			//计算最后一笔已还款金额
-			for(Hkmx hkmx : hkmxs){
-				hked = hked.add(hkmx.getHkje());
+			//if(lastLsh == null){
+			lastLsh = hkmxs.get(0).getXsfplsh();
+			//}
+			if(hkmxs.get(0).getCompleted().equals("1")){
+				String str = lastLsh.substring(7);
+				int i = Integer.parseInt(str) + 1;
+				lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
+				
+				//计算最后一笔已还款金额
+				
+			}else{
+				for(Hkmx hkmx : hkmxs){
+					hked = hked.add(hkmx.getHkje());
+				}
 			}
 		}else{
 			if(lastLsh == null || lastLsh.trim().equals("")){
@@ -94,11 +102,18 @@ public class XsmxServiceImpl implements XsmxService {
 		
 		//统计时间
 		
-		Date tjDate = DateUtil.stringToDate(yearMonth);
+		Date tjDate = DateUtil.stringToDate(DateUtil.dateIncreaseByDay(yearMonth, DateUtil.ISO_EXPANDED_DATE_FORMAT, -1));
+		//Date tjDate = DateUtil.stringToDate(yearMonth);
+		String hksjStr;
 		for(Xsmx xsmx : lists){
 			//根据开票时间，得到不同时段的时候值
-			String hksjStr = DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, 
-				sxkh.getDays());
+			if(sxkh.getYjkh().equals("0") || sxkh.getYjkh() == null || sxkh.getYjkh().equals(" ")){
+				hksjStr = DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, sxkh.getDays());
+			}else{
+				hksjStr = DateUtil.getLastDateOfMonth(DateUtil.stringToDate(xsmx.getId().getKpsj()));
+			}
+			//String hksjStr = DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, 
+			//	sxkh.getDays());
 			String hksjStr1 = DateUtil.dateIncreaseByDay(hksjStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, 30);
 			String hksjStr2 = DateUtil.dateIncreaseByDay(hksjStr1, DateUtil.ISO_EXPANDED_DATE_FORMAT, 60);
 			String hksjStr3 = DateUtil.dateIncreaseByDay(hksjStr2, DateUtil.ISO_EXPANDED_DATE_FORMAT, 90);

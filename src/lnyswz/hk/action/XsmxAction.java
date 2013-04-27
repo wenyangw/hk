@@ -49,10 +49,9 @@ public class XsmxAction extends ActionSupport {
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
 		String tjDate = DateUtil.dateIncrease(DateUtil.getCurrentDateString(), DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
-		Hkmx hkmx = getHkmx(sxkh);
 		
+		Hkmx hkmx = getHkmx(sxkh, tjDate);
 		String lastLsh = hkmx.getXsfplsh();
-		
 		
 		xsmxSs = getXsmxS(sxkh, lastLsh, tjDate);
 		
@@ -77,9 +76,6 @@ public class XsmxAction extends ActionSupport {
 	public String print(){
 		Sxkh sxkh = sxkhService.getSxkh(id);
 		
-		Hkmx hkmx = getHkmx(sxkh);
-		String lastLsh = hkmx.getXsfplsh();
-		
 				
 		map = new HashMap<String, Object>();
 		
@@ -92,6 +88,9 @@ public class XsmxAction extends ActionSupport {
 		}
 		//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
 		String sj = DateUtil.dateIncrease(dateStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
+		
+		Hkmx hkmx = getHkmx(sxkh, sj);
+		String lastLsh = hkmx.getXsfplsh();
 		
 		xsmxSs = getXsmxS(sxkh, lastLsh, sj);
 		
@@ -135,18 +134,31 @@ public class XsmxAction extends ActionSupport {
 		return "print";
 	}
 	
-	public Hkmx getHkmx(Sxkh sxkh){
+	public Hkmx getHkmx(Sxkh sxkh, String tjDate){
+		
 		String lastLsh = sxkh.getLastLsh();
-		List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh());
+		//String tjDate = DateUtil.dateIncrease(DateUtil.getCurrentDateString(), DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
+		
+		List<Hkmx> hkmxs = hkmxService.getLastHkmx(sxkh.getBmbh(), sxkh.getKhbh(), sxkh.getYwybh(), tjDate);
 		BigDecimal hked = new BigDecimal(0);
 		if(hkmxs.size() != 0){
-			if(lastLsh == null){
-				lastLsh = hkmxs.get(0).getXsfplsh();
+			//if(lastLsh == null){
+			lastLsh = hkmxs.get(0).getXsfplsh();
+			if(hkmxs.get(0).getCompleted().equals("1")){
+				String str = lastLsh.substring(7);
+				int i = Integer.parseInt(str) + 1;
+				lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
+				
+				//计算最后一笔已还款金额
+				
+			}else{
+				for(Hkmx hkmx : hkmxs){
+					hked = hked.add(hkmx.getHkje());
+				}
 			}
-			//计算最后一笔已还款金额
-			for(Hkmx hkmx : hkmxs){
-				hked = hked.add(hkmx.getHkje());
-			}
+			
+			//}
+			
 		}else{
 			if(lastLsh == null || lastLsh.trim().equals("")){
 				lastLsh = sxkh.getLsh();
