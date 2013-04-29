@@ -3,6 +3,7 @@ package lnyswz.hk.service.impl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import lnyswz.hk.bean.Hkmx;
@@ -21,6 +22,11 @@ public class XsmxServiceImpl implements XsmxService {
 	private XsmxDAO xsmxDAO;
 	private HkmxDAO hkmxDAO;
 	private SxkhDAO sxkhDAO;
+	
+	@Override
+	public Xsmx getXsmxByLsh(String lsh) {
+		return xsmxDAO.getXsmx(lsh);
+	}
 	
 	@Override
 	public List<Xsmx> findXsmxs(String bmbh, String khbh, String ywybh, String lastLsh, String date) {
@@ -76,18 +82,25 @@ public class XsmxServiceImpl implements XsmxService {
 			//if(lastLsh == null){
 			lastLsh = hkmxs.get(0).getXsfplsh();
 			//}
-			if(hkmxs.get(0).getCompleted().equals("1")){
-				String str = lastLsh.substring(7);
-				int i = Integer.parseInt(str) + 1;
-				lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
+			//if(hkmxs.get(0).getCompleted().equals("1")){
+				//String str = lastLsh.substring(7);
+				//int i = Integer.parseInt(str) + 1;
+				//lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
 				
 				//计算最后一笔已还款金额
 				
-			}else{
+			//}else{
 				for(Hkmx hkmx : hkmxs){
 					hked = hked.add(hkmx.getHkje());
 				}
-			}
+				Xsmx xsmx = getXsmxByLsh(lastLsh);
+				if(xsmx.getId().getXsje().equals(hked)){
+					String str = lastLsh.substring(7);
+					int i = Integer.parseInt(str) + 1;
+					lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
+					hked = new BigDecimal(0);
+				}
+			//}
 		}else{
 			if(lastLsh == null || lastLsh.trim().equals("")){
 				lastLsh = sxkh.getLsh();
@@ -105,7 +118,10 @@ public class XsmxServiceImpl implements XsmxService {
 		Date tjDate = DateUtil.stringToDate(DateUtil.dateIncreaseByDay(yearMonth, DateUtil.ISO_EXPANDED_DATE_FORMAT, -1));
 		//Date tjDate = DateUtil.stringToDate(yearMonth);
 		String hksjStr;
-		for(Xsmx xsmx : lists){
+		//for(Xsmx xsmx : lists){
+		for(Iterator<Xsmx> itr = lists.iterator();itr.hasNext();)  
+        {  
+            Xsmx xsmx = itr.next();
 			//根据开票时间，得到不同时段的时候值
 			if(sxkh.getYjkh().equals("0") || sxkh.getYjkh() == null || sxkh.getYjkh().equals(" ")){
 				hksjStr = DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, sxkh.getDays());
@@ -127,7 +143,11 @@ public class XsmxServiceImpl implements XsmxService {
 			BigDecimal xsje = xsmx.getId().getXsje();
 			//如果是最后一笔已还款，则减掉已还金额
 			if(lastLsh.equals(xsmx.getId().getXsfplsh())){
-				xsje = xsje.subtract(hked);
+				if(xsje.equals(hked)){
+					itr.remove();
+				}else{
+					xsje = xsje.subtract(hked);
+				}
 			}
 		
 			//根据还款时候，计算超期范围

@@ -11,4 +11,5 @@ public interface XsmxService {
 	public List<Xsmx> findXsmxs(String bmbh, String khbh, String ywybh, String lastLsh, String date);
 	public SxkhTotal getTotal(Sxkh sxkh, String yearMonth);
 	public List<SxkhTotal> getTotals(String bmbh, String yearMonth);
+	public Xsmx getXsmxByLsh(String lsh);
 }

@@ -144,17 +144,18 @@ public class XsmxAction extends ActionSupport {
 		if(hkmxs.size() != 0){
 			//if(lastLsh == null){
 			lastLsh = hkmxs.get(0).getXsfplsh();
-			if(hkmxs.get(0).getCompleted().equals("1")){
+			for(Hkmx hkmx : hkmxs){
+				hked = hked.add(hkmx.getHkje());
+			}
+			Xsmx xsmx = xsmxService.getXsmxByLsh(lastLsh);
+			if(xsmx.getId().getXsje().equals(hked)){
 				String str = lastLsh.substring(7);
 				int i = Integer.parseInt(str) + 1;
 				lastLsh = lastLsh.substring(0, 7).concat(String.format("%04d", i));
 				
 				//计算最后一笔已还款金额
+				hked = new BigDecimal(0);
 				
-			}else{
-				for(Hkmx hkmx : hkmxs){
-					hked = hked.add(hkmx.getHkje());
-				}
 			}
 			
 			//}
