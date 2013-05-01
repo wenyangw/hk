@@ -5,5 +5,7 @@ import java.util.List;
 import lnyswz.hk.bean.Lsck;
 
 public interface LsckService {
-	public List<Lsck> findLscks(String bmbh, String date);
+	public List<String> findThds();
+	public List<String> findBzs();
+	public Lsck getLsck(String thdlsh);
 }

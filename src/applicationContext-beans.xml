@@ -28,6 +28,10 @@
     <bean id="menuService" class="lnyswz.hk.service.impl.MenuServiceImpl">
     	<property name="menuDAO" ref="menuDAO" />
     </bean>
+    <bean id="lsckService" class="lnyswz.hk.service.impl.LsckServiceImpl">
+    	<property name="lsckDAO" ref="lsckDAO" />
+    </bean>
+    
 	<!-- DAO Setup -->
 	<bean id="userDAO" class="lnyswz.hk.dao.impl.UserDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />        
@@ -45,6 +49,9 @@
         <property name="sessionFactory" ref="sessionFactory" />        
     </bean>
     <bean id="menuDAO" class="lnyswz.hk.dao.impl.MenuDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />        
+    </bean>
+    <bean id="lsckDAO" class="lnyswz.hk.dao.impl.LsckDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />        
     </bean>    
 </beans>

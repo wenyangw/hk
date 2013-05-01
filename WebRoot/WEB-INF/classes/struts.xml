@@ -65,6 +65,8 @@
         	<result name="change">/jsp/privilegeSuc.jsp</result>
         </action>
         
+        <action name="lsck" class="lsckAction">
+        </action>
     </package>
 
 

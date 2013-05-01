@@ -37,5 +37,8 @@
 		<property name="menuService" ref="menuService" />
 	</bean>
 	
+	<bean id="lsckAction" class="lnyswz.hk.action.LsckAction" scope="prototype">
+		<property name="lsckService" ref="lsckService" />
+	</bean>
 </beans>
 
