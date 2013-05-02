@@ -80,21 +80,21 @@ public class XsmxAction extends ActionSupport {
 		map = new HashMap<String, Object>();
 		
 		//所选月第一天，取最后一笔还款用
-		String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+		//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
 		
 		String dateStr = "";
 		
 		if(DateUtil.getYear() == Integer.parseInt(year) && (DateUtil.getMonth() + 1) == Integer.parseInt(month)){
 			dateStr = DateUtil.getCurrentDateString();
-			yearMonth = DateUtil.dateIncrease(dateStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
+			//yearMonth = DateUtil.dateIncrease(dateStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
 		}else{
-			//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+			String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
 			dateStr = DateUtil.getLastDateOfMonth(DateUtil.stringToDate(yearMonth));
 		}
 		//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
 		String sj = DateUtil.dateIncrease(dateStr, DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
 		
-		Hkmx hkmx = getHkmx(sxkh, yearMonth);
+		Hkmx hkmx = getHkmx(sxkh, sj);
 		String lastLsh = hkmx.getXsfplsh();
 		
 		xsmxSs = getXsmxS(sxkh, lastLsh, sj);

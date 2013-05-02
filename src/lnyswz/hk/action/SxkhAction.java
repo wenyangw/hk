@@ -61,9 +61,9 @@ public class SxkhAction extends ActionSupport {
 			dateStr = DateUtil.dateIncrease(DateUtil.getCurrentDateString(),DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
 		}else{
 			//3013-5-2 16:27
-			//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
-			//dateStr = DateUtil.getNextMonthFirst(DateUtil.stringToDate(yearMonth));
-			dateStr = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+			String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+			dateStr = DateUtil.getNextMonthFirst(DateUtil.stringToDate(yearMonth));
+			//dateStr = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
 		}
 		User user = (User)session.getAttribute("user");
 		List<SxkhTotal> list = xsmxService.getTotals(user.getOrg(), dateStr);
