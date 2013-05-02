@@ -60,8 +60,10 @@ public class SxkhAction extends ActionSupport {
 		if(DateUtil.getYear() == Integer.parseInt(year) && (DateUtil.getMonth() + 1) == Integer.parseInt(month)){
 			dateStr = DateUtil.dateIncrease(DateUtil.getCurrentDateString(),DateUtil.ISO_EXPANDED_DATE_FORMAT, Calendar.DATE, 1);
 		}else{
-			String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
-			dateStr = DateUtil.getNextMonthFirst(DateUtil.stringToDate(yearMonth));
+			//3013-5-2 16:27
+			//String yearMonth = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
+			//dateStr = DateUtil.getNextMonthFirst(DateUtil.stringToDate(yearMonth));
+			dateStr = year + "-" + (month.length() == 2 ? month : "0" + month) + "-01";
 		}
 		User user = (User)session.getAttribute("user");
 		List<SxkhTotal> list = xsmxService.getTotals(user.getOrg(), dateStr);

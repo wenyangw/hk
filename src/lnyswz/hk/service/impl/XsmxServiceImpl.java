@@ -57,7 +57,7 @@ public class XsmxServiceImpl implements XsmxService {
 		String khmc = sxkh.getKhmc();
 		String ywybh = sxkh.getYwybh();
 		String ywymc = sxkh.getYwymc();
-		String lastLsh = sxkh.getLastLsh();
+		String lastLsh = sxkh.getLsh();
 		//原处理方式，单独取一次流水号
 //		if(lastLsh == null){
 //			lastLsh = hkmxDAO.getLastHkLsh(bmbh, khbh, ywybh);
@@ -115,7 +115,9 @@ public class XsmxServiceImpl implements XsmxService {
 		
 		//统计时间
 		
-		Date tjDate = DateUtil.stringToDate(DateUtil.dateIncreaseByDay(yearMonth, DateUtil.ISO_EXPANDED_DATE_FORMAT, -1));
+		//2013-5-2 16:27
+		//Date tjDate = DateUtil.stringToDate(DateUtil.dateIncreaseByDay(yearMonth, DateUtil.ISO_EXPANDED_DATE_FORMAT, -1));
+		Date tjDate = DateUtil.dateIncreaseByMonth(DateUtil.stringToDate(yearMonth), 1);
 		//Date tjDate = DateUtil.stringToDate(yearMonth);
 		String hksjStr;
 		//for(Xsmx xsmx : lists){
