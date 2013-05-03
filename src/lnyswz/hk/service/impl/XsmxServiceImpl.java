@@ -116,8 +116,8 @@ public class XsmxServiceImpl implements XsmxService {
 		//统计时间
 		
 		//2013-5-2 16:27
-		//Date tjDate = DateUtil.stringToDate(DateUtil.dateIncreaseByDay(yearMonth, DateUtil.ISO_EXPANDED_DATE_FORMAT, -1));
-		Date tjDate = DateUtil.dateIncreaseByMonth(DateUtil.stringToDate(yearMonth), 1);
+		Date tjDate = DateUtil.stringToDate(DateUtil.dateIncreaseByDay(yearMonth, DateUtil.ISO_EXPANDED_DATE_FORMAT, -1));
+		//Date tjDate = DateUtil.dateIncreaseByMonth(DateUtil.stringToDate(yearMonth), 1);
 		//Date tjDate = DateUtil.stringToDate(yearMonth);
 		String hksjStr;
 		//for(Xsmx xsmx : lists){
