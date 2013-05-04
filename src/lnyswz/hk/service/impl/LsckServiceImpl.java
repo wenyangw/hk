@@ -2,7 +2,7 @@ package lnyswz.hk.service.impl;
 
 import java.util.List;
 
-import lnyswz.hk.bean.Lsck;
+import lnyswz.hk.bean.Thd;
 import lnyswz.hk.dao.LsckDAO;
 import lnyswz.hk.service.LsckService;
 
@@ -10,18 +10,18 @@ public class LsckServiceImpl implements LsckService {
 	private LsckDAO lsckDAO;
 	
 	@Override
-	public List<String> findThds() {
-		return lsckDAO.findThds();
+	public List<String> findThds(String date) {
+		return lsckDAO.findThds(date);
 	}
 	
 	@Override
-	public List<String> findBzs() {
-		return lsckDAO.findBzs();
+	public List<String> findBzs(String date) {
+		return lsckDAO.findBzs(date);
 	}
 	
 	@Override
-	public Lsck getLsck(String thdlsh) {
-		return lsckDAO.getLsck(thdlsh);
+	public List<Thd> getLscks(String thdlsh, String date) {
+		return lsckDAO.getLscks(thdlsh, date);
 	}
 
 	public void setLsckDAO(LsckDAO lsckDAO) {

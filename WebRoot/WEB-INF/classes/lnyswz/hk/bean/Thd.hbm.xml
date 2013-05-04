@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+ <class name="lnyswz.hk.bean.Thd" table="V_HK_THD_ALL">
+  <composite-id name="id" class="lnyswz.hk.bean.ThdId">
+   <key-property name="thdlsh" type="string">
+    <column name="thdlsh"/>
+   </key-property>
+   <key-property name="kh" type="string">
+    <column name="kh"/>
+   </key-property>
+   <key-property name="thsj" type="string">
+    <column name="thsj" />
+   </key-property>
+      <key-property name="spbh" type="string">
+    <column name="spbh"/>
+   </key-property>
+   <key-property name="spmc" type="string">
+    <column name="spmc"/>
+   </key-property>
+   <key-property name="spcd" type="string">
+    <column name="spcd" />
+   </key-property>
+   
+   <key-property name="spsl" type="big_decimal">
+    <column name="spsl" />
+   </key-property>
+  <key-property name="spton" type="big_decimal">
+   <column name="spton" />
+  </key-property>
+   <key-property name="bz" type="string">
+    <column name="bz"/>
+   </key-property>
+  </composite-id>
+ </class>
+</hibernate-mapping>
+
