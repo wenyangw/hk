@@ -939,6 +939,20 @@ public static String getStringDateShort() {
     String first_day = year + "-" + month + "-01";
     return first_day;
   }
+  
+  
+  //根据日期，返回日
+  public static int getDayOfMonth(String txtDate) {  
+      Date date = stringToDate(txtDate);  
+      Calendar calendar = Calendar.getInstance();  
+        
+      calendar.setTime(date);  
+      String week = new SimpleDateFormat("d").format(date);  
+      
+      int day = Integer.parseInt(week);
+      
+      return day;
+  }
 
   public static void main(String[] args) {
 	System.out.println(daysBetween(stringToDate("2013-03-18"), stringToDate("2012-9-16")));

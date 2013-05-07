@@ -14,6 +14,7 @@ package lnyswz.hk.bean;
 import java.math.BigDecimal;
 
 import lnyswz.hk.utils.DateUtil;
+import lnyswz.hk.utils.HkUtil;
 /** 
  * to-do. 
  * 
@@ -42,11 +43,12 @@ public class XsmxS implements java.io.Serializable{
 		setKpsj(xsmx.getId().getKpsj());
 		setXsfplsh(xsmx.getId().getXsfplsh());
 		setXsje(xsmx.getId().getXsje());
-		if(yjkh.equals("0") || yjkh == null || yjkh.equals(" ")){
-			setHksj(DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, days));
-		}else{
-			setHksj(DateUtil.getLastDateOfMonth(DateUtil.stringToDate(xsmx.getId().getKpsj())));
-		}
+//		if(yjkh.equals("0") || yjkh == null || yjkh.equals(" ")){
+//			setHksj(DateUtil.dateIncreaseByDay(xsmx.getId().getKpsj(), DateUtil.ISO_EXPANDED_DATE_FORMAT, days));
+//		}else{
+//			setHksj(DateUtil.getLastDateOfMonth(DateUtil.stringToDate(xsmx.getId().getKpsj())));
+//		}
+		setHksj(HkUtil.getHksj(xsmx.getId().getKpsj(), days, yjkh));
 	}
 	/** 
 	 * for test. 
