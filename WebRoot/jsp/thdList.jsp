@@ -39,6 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<th>商品编号</th>
     	<th>商品名称</th>
     	<th>产地</th>
+    	<th>单位</th>
     	<th>数量</th>
     	<th>吨数</th>
     	<th>备注</th>
@@ -53,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>${thd.id.spbh}</td>
             <td>${thd.id.spmc}</td>
             <td>${thd.id.spcd}</td>
+            <td>${thd.id.jldwmc}</td>
             <td>${thd.id.spsl}</td>
             <td>${thd.id.spton}</td>
             <td>${thd.id.bz}</td>

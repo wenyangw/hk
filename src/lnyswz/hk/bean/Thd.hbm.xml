@@ -25,7 +25,9 @@
    <key-property name="spcd" type="string">
     <column name="spcd" />
    </key-property>
-   
+   <key-property name="jldwmc" type="string">
+    <column name="jldwmc" />
+   </key-property>
    <key-property name="spsl" type="big_decimal">
     <column name="spsl" />
    </key-property>

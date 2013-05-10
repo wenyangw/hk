@@ -24,6 +24,7 @@ public class ThdId implements java.io.Serializable{
 	private String spbh;
 	private String spmc;
 	private String spcd;
+	private String jldwmc;
 	private BigDecimal spsl;
 	private BigDecimal spton;
 	private String thsj;
@@ -74,6 +75,14 @@ public class ThdId implements java.io.Serializable{
 
 	public void setSpcd(String spcd) {
 		this.spcd = spcd;
+	}
+
+	public String getJldwmc() {
+		return jldwmc;
+	}
+
+	public void setJldwmc(String jldwmc) {
+		this.jldwmc = jldwmc;
 	}
 
 	public BigDecimal getSpsl() {

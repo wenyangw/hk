@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -69,6 +70,7 @@ public class LsckAction extends ActionSupport {
             //}
         }
 		//System.out.println("thds.size = " + thds.size());
+		
 		
 		List<Thd> lscks = new ArrayList<Thd>();
 		for(String thd : thds){

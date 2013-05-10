@@ -13,7 +13,7 @@ public class LsckDAOImpl extends AbstractPagerManager implements LsckDAO {
 	@Override
 	public List<String> findThds(String date){
 		return this.getSession()
-			.createSQLQuery("select thdlsh from v_hk_thd where thsj < ?")
+			.createSQLQuery("select distinct thdlsh from v_hk_thd where thsj < ?")
 			.addScalar("thdlsh", Hibernate.STRING)
 			.setString(0, date)
 			.list();
@@ -30,11 +30,6 @@ public class LsckDAOImpl extends AbstractPagerManager implements LsckDAO {
 	
 	@Override
 	public List<Thd> getLscks(String thdlsh, String date){
-//		return this.getSession()
-//				.createSQLQuery("select l.* from v_hk_thd_all l where thdlsh = ? order by thdlsh")
-//				.addEntity("l", Lsck.class)
-//				.setString(0, thdlsh)
-//				.list();
 		return this.getHibernateTemplate().find("from Thd t where t.id.thdlsh = ? and t.id.thsj < ? order by t.id.kh, t.id.thdlsh", new String[]{thdlsh, date});
 	}
 	

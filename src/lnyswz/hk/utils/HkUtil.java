@@ -8,7 +8,7 @@ public class HkUtil {
 		if(yjkh.equals("0") || yjkh == null || yjkh.equals(" ")){
 			hksj = DateUtil.dateIncreaseByDay(kpsj, DateUtil.ISO_EXPANDED_DATE_FORMAT, days);
 		}else{
-			if(DateUtil.getDayOfMonth(kpsj) < 20){
+			if(DateUtil.getDayOfMonth(kpsj) < 21){
 				hksj = DateUtil.getLastDateOfMonth(DateUtil.stringToDate(kpsj));
 			}else{
 				hksj = DateUtil.dateIncreaseByDay(kpsj, DateUtil.ISO_EXPANDED_DATE_FORMAT, 30);
