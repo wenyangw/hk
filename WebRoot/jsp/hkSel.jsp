@@ -19,7 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<link href="<%=request.getContextPath() %>/style/main.css" rel="stylesheet" type="text/css" />
-	<script type=text/javascript src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" language="javascript" src="<%=request.getContextPath() %>/js/util.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script>
 	
 	<script type="text/javascript">
 	$(function(){
@@ -69,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%--		<option value="12">12</option>--%>
 	</select>月
 	<br>
-	<input type="submit" value="确定">
+	<input type="submit" value="确定"  onclick="showloading('正在处理数据，请稍等。。。')">
 	<input type="button" value="返回" onclick="javascript:history.back()"/>
 	</form>
   </body>
