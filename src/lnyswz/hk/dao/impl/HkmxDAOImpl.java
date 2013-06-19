@@ -26,7 +26,6 @@ public class HkmxDAOImpl extends AbstractPagerManager implements HkmxDAO {
 	}
 	@Override
 	public String getLastHkLsh(String bmbh, String khbh, String ywybh) {
-		System.out.println("get lastlsh runing");
 		return (String)this.getSession()
 			.createSQLQuery("select distinct xsfplsh from th_spxs x where xsfplsh in (select xsfplsh from t_hkmx  h where hkje <> 0 and completed = '0') and bmbh = ? and khbh = ? and ywybh = ?")
 			.addScalar("xsfplsh", Hibernate.STRING)

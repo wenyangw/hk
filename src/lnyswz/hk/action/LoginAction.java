@@ -34,7 +34,6 @@ public class LoginAction extends ActionSupport {
 	
 	public String check() throws IOException{
 		//String str="xxoohuai";
-		System.out.println("Check");
 		boolean isExist = userService.check(username);
 		
 		HttpServletResponse response = ServletActionContext.getResponse();

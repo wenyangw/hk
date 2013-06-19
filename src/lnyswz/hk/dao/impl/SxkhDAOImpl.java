@@ -34,7 +34,6 @@ public class SxkhDAOImpl extends AbstractPagerManager implements SxkhDAO {
 	
 	@Override
 	public List<Sxkh> getSxkhs(String org) {
-		System.out.println("org = " + org);
 		return this.getHibernateTemplate().find("from Sxkh s where s.bmbh = ? order by s.ywybh, s.khbh", org);
 	}
 	
