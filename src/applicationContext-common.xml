@@ -10,26 +10,26 @@
 	
 	
 	<!-- Hibernate SessionFactory -->
-<!-- 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> -->
-<!-- 	<property name="hibernateProperties"> -->
-<!-- 		<props> -->
-<!-- 			<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop> -->
-<!-- 			<prop key="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</prop> -->
-<!-- 			<prop key="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.0.3:1433/lnyswz</prop> -->
-<!-- 			<prop key="hibernate.connection.username">sa</prop> -->
-<!-- 			<prop key="hibernate.connection.password">sine</prop> -->
-<!-- 			<prop key="bonecp.idleMaxAgeInMinutes">240</prop> -->
-<!-- 			<prop key="bonecp.idleConnectionTestPeriodInMinutes">60</prop> -->
-<!-- 			<prop key="bonecp.partitionCount">3</prop> -->
-<!-- 			<prop key="bonecp.acquireIncrement">10</prop> -->
-<!-- 			<prop key="bonecp.maxConnectionsPerPartition">60</prop> -->
-<!--  			<prop key="bonecp.minConnectionsPerPartition">20</prop> -->
-<!--  			<prop key="bonecp.statementsCacheSize">50</prop> -->
-<!--  			<prop key="bonecp.releaseHelperThreads">3</prop> -->
-<!-- 		</props> -->
-<!-- 	</property> -->
-<!-- 	<property name="configLocation" value="classpath:hibernate.cfg.xml" /> -->
-<!-- </bean> -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
+			<prop key="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</prop>
+			<prop key="hibernate.connection.url">jdbc:jtds:sqlserver://218.25.74.4:1433/lnyswz</prop>
+			<prop key="hibernate.connection.username">sa</prop>
+			<prop key="hibernate.connection.password">sine</prop>
+			<prop key="bonecp.idleMaxAgeInMinutes">240</prop>
+			<prop key="bonecp.idleConnectionTestPeriodInMinutes">60</prop>
+			<prop key="bonecp.partitionCount">3</prop>
+			<prop key="bonecp.acquireIncrement">10</prop>
+			<prop key="bonecp.maxConnectionsPerPartition">60</prop>
+ 			<prop key="bonecp.minConnectionsPerPartition">20</prop>
+ 			<prop key="bonecp.statementsCacheSize">50</prop>
+ 			<prop key="bonecp.releaseHelperThreads">3</prop>
+		</props>
+	</property>
+	<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+</bean>
 	
 	<!-- Spring DataSource -->
 <!-- 	<bean  id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource"> -->
@@ -60,11 +60,11 @@
 <!-- 	</bean> -->
 
 	<!-- 配置sessionFactory 不用连接池-->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-	<property name="configLocation">
-	<value>classpath:hibernate.cfg.xml</value>
-	</property>
-	</bean>
+<!-- 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> -->
+<!-- 	<property name="configLocation"> -->
+<!-- 	<value>classpath:hibernate.cfg.xml</value> -->
+<!-- 	</property> -->
+<!-- 	</bean> -->
 
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"

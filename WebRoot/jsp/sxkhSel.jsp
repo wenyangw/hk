@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%--		<option value="12">12</option>--%>
 	</select>月
 	<br>
-	<input type="submit" value="确定">
+	<input type="submit" value="确定"   onclick="showloading('正在处理数据，请稍等。。。')">
 	<input type="button" value="返回" onclick="javascript:history.back()"/>
 	</form>
   </body>
