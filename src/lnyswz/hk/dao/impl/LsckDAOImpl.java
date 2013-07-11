@@ -14,8 +14,11 @@ public class LsckDAOImpl extends AbstractPagerManager implements LsckDAO {
 	public List<String> findThds(String date){
 		return this.getSession()
 			.createSQLQuery("select distinct thdlsh from v_hk_thd where thsj < ?")
+			//视图中带参数，在查询期限后补开发票的临时出库要显示出来
+			//.createSQLQuery("select distinct thdlsh from fun_hk_thd(?) where thsj < ?")	
 			.addScalar("thdlsh", Hibernate.STRING)
 			.setString(0, date)
+			.setString(1, date)
 			.list();
 	}
 	

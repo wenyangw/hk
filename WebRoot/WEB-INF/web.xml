@@ -16,25 +16,6 @@
     </listener>
     <!-- log4j end -->
 	
-<!-- 	<servlet> -->
-<!--     <servlet-name>proxoolServletConfigurator</servlet-name> -->
-<!--     <servlet-class> -->
-<!--         org.logicalcobwebs.proxool.configuration.ServletConfigurator -->
-<!--     </servlet-class> -->
-<!--     <init-param> -->
-<!--         <param-name>xmlFile</param-name> -->
-<!--         <param-value>WEB-INF/proxool.xml</param-value> -->
-<!--     </init-param> -->
-<!--     <load-on-startup>1</load-on-startup> -->
-<!-- </servlet> -->
-<!-- <servlet> -->
-<!--     <servlet-name>context</servlet-name> -->
-<!--     <servlet-class> -->
-<!--         org.springframework.web.context.ContextLoaderServlet -->
-<!--     </servlet-class> -->
-<!--     <load-on-startup>2</load-on-startup> -->
-<!-- </servlet> -->
-	
 	<context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:applicationContext-*.xml</param-value>

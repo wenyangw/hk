@@ -15,7 +15,7 @@
 		<props>
 			<prop key="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</prop>
 			<prop key="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</prop>
-			<prop key="hibernate.connection.url">jdbc:jtds:sqlserver://218.25.74.4:1433/lnyswz</prop>
+			<prop key="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.0.3:1433/lnyswz</prop>
 			<prop key="hibernate.connection.username">sa</prop>
 			<prop key="hibernate.connection.password">sine</prop>
 			<prop key="bonecp.idleMaxAgeInMinutes">240</prop>
