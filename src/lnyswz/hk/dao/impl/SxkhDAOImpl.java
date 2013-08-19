@@ -17,13 +17,11 @@ public class SxkhDAOImpl extends AbstractPagerManager implements SxkhDAO {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
 		this.getHibernateTemplate().delete(this.getHibernateTemplate().get(Sxkh.class, id));
 	}
 
 	@Override
 	public void modify(Sxkh sxkh) {
-		// TODO Auto-generated method stub
 		this.getHibernateTemplate().saveOrUpdate(sxkh);
 	}
 	
